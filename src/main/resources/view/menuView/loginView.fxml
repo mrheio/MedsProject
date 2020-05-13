@@ -8,6 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
+<?import java.net.URL?>
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.menuController.LoginC">
     <children>
         <PasswordField fx:id="password" layoutX="95.0" layoutY="208.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#keyReleaseProperty" prefHeight="26.0" prefWidth="291.0" AnchorPane.bottomAnchor="166.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="214.0" AnchorPane.topAnchor="208.0" />
@@ -26,4 +27,7 @@
             </font>
         </Label>
     </children>
+    <stylesheets>
+        <URL value="@../../css/theme.css" />
+    </stylesheets>
 </AnchorPane>
