@@ -24,7 +24,7 @@
                     <right>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                             <children>
-                                <ComboBox fx:id="doctorOptionsComboBox" layoutX="25.0" layoutY="14.0" prefWidth="150.0" promptText="NAME" />
+                                <ComboBox fx:id="doctorOptionsComboBox" layoutX="25.0" layoutY="14.0" onAction="#doctorOptionsComboBoxAction" prefWidth="150.0" promptText="NAME" />
                             </children>
                         </AnchorPane>
                     </right>
@@ -42,13 +42,13 @@
                             </VBox.margin>
                         </TextField>
                         <Label fx:id="writeDownTreatment" text="Write down a treatment" />
-                        <TextArea fx:id="treatmentTextArea" prefHeight="230.0" prefWidth="165.0" wrapText="true">
+                        <TextArea fx:id="treatmentTextArea" onKeyReleased="#keyReleaseProperty" prefHeight="230.0" prefWidth="165.0" wrapText="true">
                             <VBox.margin>
                                 <Insets left="15.0" />
                             </VBox.margin>
                         </TextArea>
-                        <Button fx:id="giveTreatmentButton" mnemonicParsing="false" prefHeight="45.0" prefWidth="165.0" text="GIVE TREATMENT" textAlignment="CENTER" wrapText="true" />
-                        <Button fx:id="appointmentNeededButton" layoutX="25.0" layoutY="475.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="165.0" text="MEDICAL APPOINTMENT NEEDED" textAlignment="CENTER" wrapText="true" />
+                        <Button fx:id="giveTreatmentButton" mnemonicParsing="false" onAction="#giveTreatmentAction" prefHeight="45.0" prefWidth="165.0" text="GIVE TREATMENT" textAlignment="CENTER" wrapText="true" />
+                        <Button fx:id="appointmentNeededButton" layoutX="25.0" layoutY="475.0" mnemonicParsing="false" onAction="#appointmentNeededAction" prefHeight="45.0" prefWidth="165.0" text="MEDICAL APPOINTMENT NEEDED" textAlignment="CENTER" wrapText="true" />
                     </children>
                     <padding>
                         <Insets bottom="20.0" right="20.0" />
