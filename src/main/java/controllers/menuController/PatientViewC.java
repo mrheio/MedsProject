@@ -86,6 +86,7 @@ public class PatientViewC implements Initializable {
     }
 
     @FXML void requestHelpButtonAction(ActionEvent actionEvent) {
+        RequestHelpViewC.setPatientProblem(new PatientProblem());
         ViewMisc.showStage("/view/otherView/requestHelpView.fxml");
     }
 
