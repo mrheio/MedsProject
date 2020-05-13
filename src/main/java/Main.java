@@ -3,12 +3,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import misc.users.UserMisc;
 import misc.utility.ViewMisc;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        UserMisc.readUsers("users.json");
         ViewMisc.setPrimaryStage(primaryStage);
         ViewMisc.getPrimaryStage().setTitle("Meds Login");
         ViewMisc.showStage("/view/menuView/loginView.fxml");
