@@ -68,4 +68,3 @@ public class UserMisc {
         UserMisc.loggedUser = loggedUser;
     }
 }
-
