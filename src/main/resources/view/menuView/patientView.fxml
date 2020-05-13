@@ -100,4 +100,7 @@
             </right>
         </BorderPane>
     </content>
+    <stylesheets>
+        <URL value="@../../css/theme.css" />
+    </stylesheets>
 </ScrollPane>
