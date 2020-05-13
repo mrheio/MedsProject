@@ -144,4 +144,3 @@ public class PatientViewC implements Initializable {
         doctorSolvedProblems.setVisible(true);
     }
 }
-
