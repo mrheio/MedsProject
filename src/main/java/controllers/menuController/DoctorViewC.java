@@ -50,11 +50,7 @@ public class DoctorViewC implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        surnameColumn.setCellValueFactory(data -> data.getValue().surnameProperty());
-        forenameColumn.setCellValueFactory(data -> data.getValue().forenameProperty());
-        patientsTableView.setItems(patients);
-
-        patientSelected();
+        initializePatientTable();
 
         doctorOptionsComboBox.setPromptText(UserMisc.getLoggedUser().getSurname() + " " + UserMisc.getLoggedUser().getForename());
         doctorOptionsComboBox.setItems(doctorOptions);
@@ -85,6 +81,13 @@ public class DoctorViewC implements Initializable {
     @FXML void keyReleaseProperty(KeyEvent keyEvent) {
         BooleanBinding booleanBinding = treatmentTextArea.textProperty().isEmpty();
         giveTreatmentButton.disableProperty().bind(booleanBinding);
+    }
+
+    private void initializePatientTable() {
+        patientsTableView.setItems(patients);
+        surnameColumn.setCellValueFactory(data -> data.getValue().surnameProperty());
+        forenameColumn.setCellValueFactory(data -> data.getValue().forenameProperty());
+        patientSelected();
     }
 
     private void setPatientDetails() {

@@ -1,7 +1,11 @@
 package misc.utility;
 
+import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
+import javafx.scene.control.TableColumn;
+import model.roles.Doctor;
 
+import javax.swing.text.TableView;
 import java.util.List;
 
 public class NodeMisc {

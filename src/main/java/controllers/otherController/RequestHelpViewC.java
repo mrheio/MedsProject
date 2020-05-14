@@ -99,6 +99,16 @@ public class RequestHelpViewC implements Initializable {
         patientProblem.setHasChronicConditions("no");
     }
 
+    @FXML void cancelButtonAction(ActionEvent event) {
+        ViewMisc.showStage("/view/menuView/patientView.fxml");
+    }
+
+    @FXML void requestHelpButtonAction(ActionEvent event) throws IOException {
+        setDetails();
+        PatientMisc.addLoggedPatientProblem(patientProblem);
+        ViewMisc.showStage("/view/menuView/patientView.fxml");
+    }
+
     private void setDetails() {
         patientProblem.setDescriptionOfProblem(problemTextArea.getText());
         if (patientProblem.getHasAllergies().equals("yes")) {
@@ -113,14 +123,5 @@ public class RequestHelpViewC implements Initializable {
         }
     }
 
-    @FXML void cancelButtonAction(ActionEvent event) {
-        ViewMisc.showStage("/view/menuView/patientView.fxml");
-    }
-
-    @FXML void requestHelpButtonAction(ActionEvent event) throws IOException {
-        setDetails();
-        PatientMisc.addLoggedPatientProblem(patientProblem);
-        ViewMisc.showStage("/view/menuView/patientView.fxml");
-    }
 
 }
