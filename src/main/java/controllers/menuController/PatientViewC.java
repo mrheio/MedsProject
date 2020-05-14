@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import misc.users.DoctorMisc;
 import misc.users.PatientMisc;
 import misc.users.UserMisc;
+import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
 import model.other.PatientProblem;
 import model.roles.Doctor;
@@ -57,9 +58,46 @@ public class PatientViewC implements Initializable {
         patientOptionsComboBox.setPromptText(UserMisc.getLoggedUser().getSurname() + " " + UserMisc.getLoggedUser().getForename());
         patientOptionsComboBox.setItems(patientOptions);
 
-        hideNodes();
+        NodeMisc.hideNode(doctorName, doctorSolvedProblems);
     }
 
+    @FXML void requestHelpButtonAction(ActionEvent actionEvent) {
+        RequestHelpViewC.setPatientProblem(new PatientProblem());
+        ViewMisc.showStage("/view/otherView/requestHelpView.fxml");
+    }
+
+    @FXML void patientOptionsComboBoxAction(ActionEvent actionEvent) {
+        if (patientOptionsComboBox.getSelectionModel().getSelectedItem().equals("Log out")) {
+            UserMisc.logOutUser();
+        }
+    }
+
+    @FXML void deleteProblemButtonAction(ActionEvent actionEvent) throws IOException {
+        PatientProblem patientProblem = problemsTableView.getSelectionModel().getSelectedItem();
+        patientProblems.remove(patientProblem);
+        PatientMisc.deleteLoggedPatientProblem(patientProblem);
+
+    }
+
+    private void filterTableView(ObservableList list, TextField filterTextField, TableView table) {
+        FilteredList<Doctor> filteredList = new FilteredList<>(list, p -> true);
+        doctorFilterTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(model -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String text = newValue.toLowerCase();
+                if (model.getSpecialty().toLowerCase().indexOf(text) != -1) {
+                    return true;
+                }
+                return false;
+            });
+            SortedList<Doctor> sortedList = new SortedList<Doctor>(filteredList);
+            sortedList.comparatorProperty().bind(doctorsTableView.comparatorProperty());
+            table.setItems(sortedList);
+        });
+    }
 
     private void initializeTables() {
         doctorsTableView.focusedProperty().addListener((observableValue, oldVal, newVal) -> {
@@ -85,49 +123,6 @@ public class PatientViewC implements Initializable {
 
     }
 
-    @FXML void requestHelpButtonAction(ActionEvent actionEvent) {
-        RequestHelpViewC.setPatientProblem(new PatientProblem());
-        ViewMisc.showStage("/view/otherView/requestHelpView.fxml");
-    }
-
-    @FXML void patientOptionsComboBoxAction(ActionEvent actionEvent) {
-        if (patientOptionsComboBox.getSelectionModel().getSelectedItem().equals("Log out")) {
-            UserMisc.logOutUser();
-        }
-    }
-
-    @FXML void deleteProblemButtonAction(ActionEvent actionEvent) throws IOException {
-        PatientProblem patientProblem = problemsTableView.getSelectionModel().getSelectedItem();
-        patientProblems.remove(patientProblem);
-        PatientMisc.deleteLoggedPatientProblem(patientProblem);
-
-    }
-
-    private void hideNodes() {
-        doctorName.setVisible(false);
-        doctorSolvedProblems.setVisible(false);
-    }
-
-    private void filterTableView(ObservableList list, TextField filterTextField, TableView table) {
-        FilteredList<Doctor> filteredList = new FilteredList<>(list, p -> true);
-        doctorFilterTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(model -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-
-                String text = newValue.toLowerCase();
-                if (model.getSpecialty().toLowerCase().indexOf(text) != -1) {
-                    return true;
-                }
-                return false;
-            });
-            SortedList<Doctor> sortedList = new SortedList<Doctor>(filteredList);
-            sortedList.comparatorProperty().bind(doctorsTableView.comparatorProperty());
-            table.setItems(sortedList);
-        });
-    }
-
     private void doctorSelected() {
         doctorsTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Doctor>() {
             @Override
@@ -140,7 +135,8 @@ public class PatientViewC implements Initializable {
     private void showDoctorDetails() {
         Doctor selectedDoctor = doctorsTableView.getSelectionModel().getSelectedItem();
         doctorName.setText(selectedDoctor.getSurname() + " " + selectedDoctor.getForename());
-        doctorName.setVisible(true);
-        doctorSolvedProblems.setVisible(true);
+        NodeMisc.showNode(doctorName, doctorSolvedProblems);
     }
+
+
 }

@@ -4,11 +4,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import misc.utility.NodeMisc;
 import misc.utility.TextMisc;
 import misc.users.PatientMisc;
 import misc.utility.ViewMisc;
 import model.other.PatientProblem;
 import model.other.ProblemTypes;
+import static java.util.Arrays.asList;
 
 import java.io.IOException;
 import java.net.URL;
@@ -51,14 +53,11 @@ public class RequestHelpViewC implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         problemTypeComboBox.setItems(ProblemTypes.getPhysicalProblems());
-        problemTypeComboBox.setVisible(false);
-        separatedByCommasLabel1.setVisible(false);
-        separatedByCommasLabel2.setVisible(false);
-        alreadyProblemLabel.setVisible(false);
+        NodeMisc.hideNode(problemTypeComboBox, separatedByCommasLabel1, separatedByCommasLabel2, alreadyProblemLabel);
     }
 
     @FXML void physicalButtonAction(ActionEvent actionEvent) {
-        problemTypeComboBox.setVisible(true);
+        NodeMisc.showNode(problemTypeComboBox);
     }
 
     @FXML void problemTypeComboBoxAction(ActionEvent actionEvent) {
@@ -66,43 +65,37 @@ public class RequestHelpViewC implements Initializable {
     }
 
     @FXML void mentalButtonAction(ActionEvent actionEvent) {
-        problemTypeComboBox.setVisible(false);
+        NodeMisc.showNode(problemTypeComboBox);
         patientProblem.setTypeOfProblem(mentalRadioButton.getText());
     }
 
     @FXML void yesAllergiesButtonAction(ActionEvent actionEvent) {
-        allergiesTextArea.setDisable(false);
-        separatedByCommasLabel1.setVisible(true);
+        NodeMisc.showEnableNode(asList(separatedByCommasLabel1), asList(allergiesTextArea));
         patientProblem.setHasAllergies("yes");
     }
 
     @FXML void idkAllergiesButtonAction(ActionEvent actionEvent) {
-        allergiesTextArea.setDisable(true);
-        separatedByCommasLabel1.setVisible(false);
+        NodeMisc.hideDisableNode(asList(separatedByCommasLabel1), asList(allergiesTextArea));
         patientProblem.setHasAllergies("unknown");
     }
 
     @FXML void noAllergiesButtonAction(ActionEvent actionEvent) {
-        allergiesTextArea.setDisable(true);
-        separatedByCommasLabel1.setVisible(false);
+        NodeMisc.hideDisableNode(asList(separatedByCommasLabel1), asList(allergiesTextArea));
         patientProblem.setHasAllergies("no");
     }
 
     @FXML void yesChronicConditionsButtonAction(ActionEvent actionEvent) {
-        chronicConditionsTextArea.setDisable(false);
-        separatedByCommasLabel2.setVisible(true);
+        NodeMisc.showEnableNode(asList(separatedByCommasLabel2), asList(chronicConditionsTextArea));
         patientProblem.setHasChronicConditions("yes");
     }
 
     @FXML void idkChronicConditionsButtonAction(ActionEvent actionEvent) {
-        chronicConditionsTextArea.setDisable(true);
-        separatedByCommasLabel2.setVisible(false);
+        NodeMisc.hideDisableNode(asList(separatedByCommasLabel2), asList(chronicConditionsTextArea));
         patientProblem.setHasChronicConditions("unknown");
     }
 
     @FXML void noChronicConditionsButtonAction(ActionEvent actionEvent) {
-        chronicConditionsTextArea.setDisable(true);
-        separatedByCommasLabel2.setVisible(false);
+        NodeMisc.hideDisableNode(asList(separatedByCommasLabel2), asList(chronicConditionsTextArea));
         patientProblem.setHasChronicConditions("no");
     }
 
@@ -129,4 +122,5 @@ public class RequestHelpViewC implements Initializable {
         PatientMisc.addLoggedPatientProblem(patientProblem);
         ViewMisc.showStage("/view/menuView/patientView.fxml");
     }
+
 }

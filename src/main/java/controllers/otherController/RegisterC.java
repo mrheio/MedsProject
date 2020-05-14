@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.util.StringConverter;
 import misc.utility.BCrypt;
 import misc.users.UserMisc;
+import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
 import model.date.Date;
 import model.date.month;
@@ -61,18 +62,15 @@ public class RegisterC implements Initializable{
         roleComboBox.setItems(FXCollections.observableArrayList("Patient", "Doctor"));
 
         doctorSpecialtyComboBox.setItems(ProblemTypes.getPhysicalProblems());
-        doctorSpecialtyComboBox.setVisible(false);
-        addressTextField.setVisible(false);
+        NodeMisc.hideNode(doctorSpecialtyComboBox, addressTextField);
     }
 
     @FXML void roleComboBoxAction(ActionEvent actionEvent) {
         if (roleComboBox.getSelectionModel().getSelectedItem().equals("Patient")) {
-            doctorSpecialtyComboBox.setVisible(false);
-            addressTextField.setVisible(false);
+            NodeMisc.hideNode(doctorSpecialtyComboBox, addressTextField);
         }
         if (roleComboBox.getSelectionModel().getSelectedItem().equals("Doctor")) {
-            doctorSpecialtyComboBox.setVisible(true);
-            addressTextField.setVisible(true);
+            NodeMisc.showNode(doctorSpecialtyComboBox, addressTextField);
         }
     }
 

@@ -9,12 +9,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import misc.utility.BCrypt;
 import misc.users.UserMisc;
+import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
 import model.roles.Person;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import static java.util.Arrays.asList;
 
 public class LoginC implements Initializable {
 
@@ -27,8 +30,7 @@ public class LoginC implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        badLogin.setVisible(false);
-        loginButton.setDisable(true);
+        NodeMisc.hideDisableNode(asList(badLogin), asList(loginButton));
     }
 
     @FXML void keyReleaseProperty() {
@@ -53,7 +55,7 @@ public class LoginC implements Initializable {
             }
         }
         if (userExists == false) {
-            badLogin.setVisible(true);
+            NodeMisc.showNode(badLogin);
             password.clear();
         }
     }

@@ -14,6 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import misc.users.DoctorMisc;
 import misc.users.UserMisc;
+import misc.utility.NodeMisc;
 import model.other.PatientProblem;
 import model.roles.Patient;
 
@@ -58,8 +59,8 @@ public class DoctorViewC implements Initializable {
         doctorOptionsComboBox.setPromptText(UserMisc.getLoggedUser().getSurname() + " " + UserMisc.getLoggedUser().getForename());
         doctorOptionsComboBox.setItems(doctorOptions);
 
-        hideNodes();
-        giveTreatmentButton.setDisable(true);
+        NodeMisc.hideNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, addressTextField, patientDetailsAnchorPane);
+        NodeMisc.disableNode(giveTreatmentButton);
     }
 
     @FXML void doctorOptionsComboBoxAction(ActionEvent actionEvent) {
@@ -74,37 +75,16 @@ public class DoctorViewC implements Initializable {
     }
 
     @FXML void appointmentNeededAction(ActionEvent event) throws IOException {
-        Patient patient = patientsTableView.getSelectionModel().getSelectedItem();
-        PatientProblem patientProblem = patient.returnSpecificProblem();
-        patientProblem.setTreatment("Appointment needed!");
-        patients.remove(patientsTableView.getSelectionModel().getSelectedItem());
-        UserMisc.writeUsers("users.json");
+        setPatientTreatment("Appointment needed!");
     }
 
     @FXML void giveTreatmentAction(ActionEvent event) throws IOException {
-        Patient patient = patientsTableView.getSelectionModel().getSelectedItem();
-        PatientProblem patientProblem = patient.returnSpecificProblem();
-        patientProblem.setTreatment(treatmentTextArea.getText());
-        patients.remove(patientsTableView.getSelectionModel().getSelectedItem());
-        UserMisc.writeUsers("users.json");
+        setPatientTreatment(treatmentTextArea.getText());
     }
 
     @FXML void keyReleaseProperty(KeyEvent keyEvent) {
         BooleanBinding booleanBinding = treatmentTextArea.textProperty().isEmpty();
         giveTreatmentButton.disableProperty().bind(booleanBinding);
-    }
-
-    private void hideNodes() {
-        giveTreatmentButton.setVisible(false);
-        appointmentNeededButton.setVisible(false);
-        treatmentTextArea.setVisible(false);
-        writeDownTreatment.setVisible(false);
-        addressTextField.setVisible(false);
-        patientDetailsAnchorPane.setVisible(false);
-    }
-
-    private void clearNodes() {
-
     }
 
     private void setPatientDetails() {
@@ -113,7 +93,7 @@ public class DoctorViewC implements Initializable {
         patientName.setText(patient.getSurname() + " " + patient.getForename());
         patientAgeLabel.setText("AGE: " + Period.between(patient.getBirthday(), LocalDate.now()).getYears());
         problemTextArea.setText(patientProblem.getDescriptionOfProblem());
-        if (patient.returnSpecificProblem().getHasAllergies().equals("no")) {
+        if (patientProblem.getHasAllergies().equals("no")) {
             allergiesTextArea.setText("DOESN'T HAVE");
         }
         if (patientProblem.getHasAllergies().equals("unknown")) {
@@ -135,11 +115,7 @@ public class DoctorViewC implements Initializable {
 
     private void showPatientDetails() {
         setPatientDetails();
-        giveTreatmentButton.setVisible(true);
-        appointmentNeededButton.setVisible(true);
-        treatmentTextArea.setVisible(true);
-        writeDownTreatment.setVisible(true);
-        patientDetailsAnchorPane.setVisible(true);
+        NodeMisc.showNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAnchorPane);
     }
 
     private void patientSelected() {
@@ -157,13 +133,21 @@ public class DoctorViewC implements Initializable {
                 try {
                     DoctorMisc.updateLoggedDoctorAddress(addressTextField.getText());
                     addressTextField.clear();
-                    addressTextField.setVisible(false);
+                    NodeMisc.hideNode(addressTextField);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
 
+    }
+
+    private void setPatientTreatment(String treatment) throws IOException {
+        Patient patient = patientsTableView.getSelectionModel().getSelectedItem();
+        PatientProblem patientProblem = patient.returnSpecificProblem();
+        patientProblem.setTreatment(treatment);
+        patients.remove(patientsTableView.getSelectionModel().getSelectedItem());
+        UserMisc.writeUsers("users.json");
     }
 
 }
