@@ -1,5 +1,6 @@
 package misc.users;
 
+import misc.utility.FileMisc;
 import model.other.PatientProblem;
 import model.roles.Doctor;
 import model.roles.Patient;
@@ -11,9 +12,9 @@ import java.util.List;
 
 public class DoctorMisc {
 
-    public static List<Doctor> getDoctorsFromFile(String fileName) throws IOException {
+    public static List<Doctor> getDoctorsFromFile() throws IOException {
         List<Doctor> doctors = new ArrayList<>();
-        UserMisc.readUsers(fileName);
+        UserMisc.readUsers();
         for (Person x: UserMisc.getUsers()) {
             if (x.getRole().equals("Doctor")) {
                 doctors.add((Doctor) x);
@@ -35,7 +36,7 @@ public class DoctorMisc {
     public static List<Patient> getPatientsForLoggedDoctor() throws IOException {
         Doctor doctor = (Doctor) UserMisc.getLoggedUser();
         List<Patient> patientsForDoctor = new ArrayList<>();
-        for (Patient x: PatientMisc.getPatientsFromFile("users.json")) {
+        for (Patient x: PatientMisc.getPatientsFromFile()) {
             for (PatientProblem y: x.getProblems()) {
                 if (y.getTypeOfProblem().equals(doctor.getSpecialty()) && y.getTreatment() == null) {
                     patientsForDoctor.add(x);
@@ -52,7 +53,7 @@ public class DoctorMisc {
                 UserMisc.setLoggedUser(x);
             }
         }
-        UserMisc.writeUsers("users.json");
+        UserMisc.writeUsers();
     }
 
 }

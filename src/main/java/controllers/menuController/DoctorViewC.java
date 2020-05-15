@@ -14,6 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import misc.users.DoctorMisc;
 import misc.users.UserMisc;
+import misc.utility.FileMisc;
 import misc.utility.NodeMisc;
 import model.other.PatientProblem;
 import model.roles.Patient;
@@ -26,21 +27,21 @@ import java.util.ResourceBundle;
 
 public class DoctorViewC implements Initializable {
 
-    @FXML Label writeDownTreatment;
-    @FXML TextField addressTextField;
-    @FXML private TextArea treatmentTextArea;
     @FXML private ComboBox doctorOptionsComboBox;
+    @FXML private AnchorPane patientDetailsAnchorPane;
+    @FXML private TextField addressTextField;
     @FXML private Button giveTreatmentButton;
     @FXML private Button appointmentNeededButton;
     @FXML private TableView<Patient> patientsTableView;
-    @FXML private TableColumn<Patient, String> surnameColumn;
-    @FXML private TableColumn<Patient, String> forenameColumn;
-    @FXML private AnchorPane patientDetailsAnchorPane;
-    @FXML private Label patientName;
+        @FXML private TableColumn<Patient, String> surnameColumn;
+        @FXML private TableColumn<Patient, String> forenameColumn;
+    @FXML private TextArea treatmentTextArea;
     @FXML private TextArea problemTextArea;
     @FXML private TextArea allergiesTextArea;
     @FXML private TextArea chronicConditionsTextArea;
+    @FXML private Label patientName;
     @FXML private Label patientAgeLabel;
+    @FXML private Label writeDownTreatment;
 
     private ObservableList<Patient> patients = FXCollections.observableList(DoctorMisc.getPatientsForLoggedDoctor());
     private ObservableList<String> doctorOptions = FXCollections.observableArrayList("Log out", "Change address");
@@ -150,7 +151,7 @@ public class DoctorViewC implements Initializable {
         PatientProblem patientProblem = patient.returnSpecificProblem();
         patientProblem.setTreatment(treatment);
         patients.remove(patientsTableView.getSelectionModel().getSelectedItem());
-        UserMisc.writeUsers("users.json");
+        UserMisc.writeUsers();
     }
 
 }

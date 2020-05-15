@@ -11,6 +11,7 @@ import javafx.scene.control.*;
 import javafx.util.StringConverter;
 import misc.utility.BCrypt;
 import misc.users.UserMisc;
+import misc.utility.FileMisc;
 import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
 import model.date.Date;
@@ -27,19 +28,22 @@ import java.util.ResourceBundle;
 
 public class RegisterC implements Initializable{
 
-    @FXML private TextField addressTextField;
+
     @FXML private ScrollPane registerScrollPane;
     @FXML private TextField surname;
     @FXML private TextField forename;
+    @FXML private TextField email;
+    @FXML private TextField usernameTextField;
+    @FXML private TextField addressTextField;
+    @FXML private PasswordField passwordField;
+    @FXML private PasswordField confirmPasswordField;
     @FXML private ComboBox<Integer> dayComboBox;
     @FXML private ComboBox<month> monthComboBox;
     @FXML private ComboBox<Integer> yearComboBox;
-    @FXML private TextField email;
-    @FXML private TextField usernameTextField;
-    @FXML private PasswordField passwordField;
-    @FXML private PasswordField confirmPasswordField;
     @FXML private ComboBox<String> roleComboBox;
-    @FXML private ComboBox doctorSpecialtyComboBox;
+    @FXML private ComboBox<String> doctorSpecialtyComboBox;
+
+
     @FXML private Button createAccountButton;
 
     private ObservableList<String> roles = FXCollections.observableArrayList("Patient", "Doctor");
@@ -69,12 +73,12 @@ public class RegisterC implements Initializable{
     }
 
     @FXML void createAccountButtonAction(ActionEvent actionEvent) throws IOException {
-        UserMisc.readUsers("users.json");
+        UserMisc.readUsers();
         Person person = null;
         if (passwordField.getText().equals(confirmPasswordField.getText())) {
             person = returnPerson();
             UserMisc.addUser(person);
-            UserMisc.writeUsers("users.json");
+            UserMisc.writeUsers();
             ViewMisc.showStage("/view/menuView/loginView.fxml");
         } else {
             passwordField.clear();

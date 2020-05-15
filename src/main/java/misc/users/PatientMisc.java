@@ -1,5 +1,6 @@
 package misc.users;
 
+import misc.utility.FileMisc;
 import model.other.PatientProblem;
 import model.roles.Patient;
 import model.roles.Person;
@@ -18,7 +19,7 @@ public class PatientMisc {
                 UserMisc.setLoggedUser(x);
             }
         }
-        UserMisc.writeUsers("users.json");
+        UserMisc.writeUsers();
     }
 
     public static void deleteLoggedPatientProblem(PatientProblem patientProblem) throws IOException {
@@ -34,7 +35,7 @@ public class PatientMisc {
                 UserMisc.setLoggedUser(x);
             }
         }
-        UserMisc.writeUsers("users.json");
+        UserMisc.writeUsers();
     }
 
     public static List<Patient> getPatientsFromUsers() {
@@ -47,9 +48,9 @@ public class PatientMisc {
         return patients;
     }
 
-    public static List<Patient> getPatientsFromFile(String fileName) throws IOException {
+    public static List<Patient> getPatientsFromFile() throws IOException {
         List<Patient> patients = new ArrayList<>();
-        UserMisc.readUsers(fileName);
+        UserMisc.readUsers();
         for (Person x: UserMisc.getUsers()) {
             if (x.getRole().equals("Patient")) {
                 patients.add((Patient) x);

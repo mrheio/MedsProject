@@ -15,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import misc.users.DoctorMisc;
 import misc.users.PatientMisc;
 import misc.users.UserMisc;
+import misc.utility.FileMisc;
 import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
 import model.other.PatientProblem;
@@ -28,23 +29,23 @@ import java.util.ResourceBundle;
 public class PatientViewC implements Initializable {
 
 
-    public Button deleteProblemButton;
-    @FXML private TableColumn<PatientProblem, String> typeOfProblemTableColumn;
-    @FXML private TableColumn<PatientProblem, String> problemTableColumn;
-    @FXML private TableColumn<PatientProblem, String> treatmentTableColumn;
+    @FXML private AnchorPane doctorDetailsAnchorPane;
+    @FXML private Button deleteProblemButton;
     @FXML private TableView<PatientProblem> problemsTableView;
+        @FXML private TableColumn<PatientProblem, String> typeOfProblemTableColumn;
+        @FXML private TableColumn<PatientProblem, String> problemTableColumn;
+        @FXML private TableColumn<PatientProblem, String> treatmentTableColumn;
     @FXML private ComboBox patientOptionsComboBox;
     @FXML private TextField doctorFilterTextField;
     @FXML private TableView<Doctor> doctorsTableView;
-    @FXML private TableColumn<Doctor, String> surnameColumn;
-    @FXML private TableColumn<Doctor, String> forenameColumn;
-    @FXML private TableColumn<Doctor, String> specialtyColumn;
-    @FXML private AnchorPane doctorDetailsAnchorPane;
+        @FXML private TableColumn<Doctor, String> surnameColumn;
+        @FXML private TableColumn<Doctor, String> forenameColumn;
+        @FXML private TableColumn<Doctor, String> specialtyColumn;
     @FXML private Label doctorName;
     @FXML private TableView doctorSolvedProblems;
-    @FXML private TableColumn solvedProblemsTableView;
+        @FXML private TableColumn solvedProblemsTableView;
 
-    private ObservableList<Doctor> doctors = FXCollections.observableList(DoctorMisc.getDoctorsFromFile("users.json"));
+    private ObservableList<Doctor> doctors = FXCollections.observableList(DoctorMisc.getDoctorsFromFile());
     private ObservableList<String> patientOptions = FXCollections.observableArrayList("Log out");
     private ObservableList<PatientProblem> patientProblems = FXCollections.observableList(((Patient) UserMisc.getLoggedUser()).getProblems());
 

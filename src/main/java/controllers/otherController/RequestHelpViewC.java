@@ -19,24 +19,25 @@ import java.util.ResourceBundle;
 public class RequestHelpViewC implements Initializable {
 
 
-    @FXML private Label alreadyProblemLabel;
-    @FXML private RadioButton physicalRadioButton;
-    @FXML private RadioButton mentalRadioButton;
+
     @FXML private ToggleGroup typeOfProblem;
+        @FXML private RadioButton physicalRadioButton;
+        @FXML private RadioButton mentalRadioButton;
+    @FXML private ToggleGroup allergies;
+        @FXML private RadioButton yesAllergiesRadioButton;
+        @FXML private RadioButton idkAllergiesRadioButton;
+        @FXML private RadioButton noAllergiesRadioButton;
+    @FXML private ToggleGroup chronicConditions;
+        @FXML private RadioButton yesChronicConditionsRadioButton;
+        @FXML private RadioButton idkChronicConditionsRadioButton;
+        @FXML private RadioButton noChronicConditionsRadioButton;
     @FXML private ComboBox problemTypeComboBox;
     @FXML private TextArea problemTextArea;
     @FXML private TextArea allergiesTextArea;
-    @FXML private RadioButton yesAllergiesRadioButton;
-    @FXML private ToggleGroup allergies;
-    @FXML private RadioButton idkAllergiesRadioButton;
-    @FXML private RadioButton noAllergiesRadioButton;
+    @FXML private TextArea chronicConditionsTextArea;
     @FXML private Button cancelButton;
     @FXML private Button requestHelpButton;
-    @FXML private TextArea chronicConditionsTextArea;
-    @FXML private RadioButton yesChronicConditionsRadioButton;
-    @FXML private ToggleGroup chronicConditions;
-    @FXML private RadioButton idkChronicConditionsRadioButton;
-    @FXML private RadioButton noChronicConditionsRadioButton;
+    @FXML private Label alreadyProblemLabel;
     @FXML private Label separatedByCommasLabel1;
     @FXML private Label separatedByCommasLabel2;
 
