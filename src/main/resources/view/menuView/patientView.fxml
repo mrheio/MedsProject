@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.menuController.PatientViewC">
+<ScrollPane prefWidth="819.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.menuController.PatientViewC">
     <content>
         <BorderPane prefHeight="600.0" prefWidth="800.0">
             <top>
@@ -82,17 +82,6 @@
             <right>
                 <AnchorPane fx:id="doctorDetailsAnchorPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <TableView fx:id="doctorSolvedProblems" editable="true" layoutX="6.0" layoutY="87.0" prefHeight="350.0" prefWidth="188.0" AnchorPane.bottomAnchor="94.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="86.0">
-                            <placeholder>
-                                <Label text="No problem solved" />
-                            </placeholder>
-                            <columns>
-                                <TableColumn fx:id="solvedProblemsTableView" prefWidth="75.0" text="Solved problems" />
-                            </columns>
-                            <columnResizePolicy>
-                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                            </columnResizePolicy>
-                        </TableView>
                         <Button fx:id="requestHelpButton" layoutX="40.0" layoutY="471.0" mnemonicParsing="false" onAction="#requestHelpButtonAction" prefHeight="45.0" prefWidth="120.0" text="REQUEST HELP" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="40.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="471.0" />
                         <Label fx:id="doctorName" layoutX="18.0" layoutY="8.0" text="SURNAME FORENAME" />
                     </children>

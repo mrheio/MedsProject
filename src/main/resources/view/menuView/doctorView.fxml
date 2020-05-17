@@ -81,31 +81,43 @@
             <center>
                 <AnchorPane fx:id="patientDetailsAnchorPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                     <children>
-                        <Label fx:id="patientName" layoutX="14.0" layoutY="14.0" text="SURNAME FORENAME" AnchorPane.bottomAnchor="501.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="119.0" AnchorPane.topAnchor="14.0" />
+                        <Label fx:id="patientName" layoutX="14.0" layoutY="14.0" text="SURNAME FORENAME" AnchorPane.bottomAnchor="501.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="119.0" AnchorPane.topAnchor="14.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
                         <VBox layoutX="118.0" layoutY="60.0" prefHeight="470.0" prefWidth="350.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
                             <children>
                                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                     <children>
-                                        <Label layoutX="14.0" layoutY="14.0" text="About problem" />
-                                        <TextArea fx:id="problemTextArea" editable="false" layoutX="14.0" layoutY="42.0" prefHeight="100.0" prefWidth="300.0" wrapText="true" />
+                                        <Label layoutX="14.0" layoutY="14.0" text="About problem">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label fx:id="problemDescriptionLabel" layoutX="14.0" layoutY="44.0" prefHeight="100.0" prefWidth="109.0" text="Problem Description" textAlignment="JUSTIFY" wrapText="true" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="44.0" />
                                     </children>
                                 </AnchorPane>
                                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                     <children>
-                                        <Label layoutX="14.0" layoutY="14.0" text="Allergies" />
-                                        <TextArea fx:id="allergiesTextArea" editable="false" layoutX="14.0" layoutY="43.0" prefHeight="100.0" prefWidth="300.0" wrapText="true" />
+                                        <Label layoutX="14.0" layoutY="14.0" text="Allergies">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label fx:id="allergiesDescriptionLabel" layoutX="82.0" layoutY="38.0" prefHeight="100.0" prefWidth="109.0" text="Allergies Description" textAlignment="JUSTIFY" wrapText="true" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="44.0" />
                                     </children>
                                 </AnchorPane>
                                 <AnchorPane layoutX="10.0" layoutY="167.0" prefHeight="200.0" prefWidth="200.0">
                                     <children>
-                                        <Label layoutX="14.0" layoutY="14.0" text="Chronic conditions" />
-                                        <TextArea fx:id="chronicConditionsTextArea" editable="false" layoutX="14.0" layoutY="43.0" prefHeight="100.0" prefWidth="300.0" wrapText="true" />
+                                        <Label layoutX="14.0" layoutY="14.0" text="Chronic conditions">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label fx:id="ccDescriptionLabel" prefHeight="100.0" prefWidth="109.0" text="Chronic conditions Description" textAlignment="JUSTIFY" wrapText="true" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="44.0" />
                                     </children>
                                 </AnchorPane>
                             </children>
                         </VBox>
                         <Line endX="150.0" layoutX="175.0" layoutY="51.0" startX="-150.0" />
-                        <Label fx:id="patientAgeLabel" layoutX="175.0" layoutY="19.0" text="AGE: " />
+                        <Label fx:id="patientAgeLabel" layoutX="217.0" layoutY="19.0" text="AGE: " />
                     </children>
                 </AnchorPane>
             </center>

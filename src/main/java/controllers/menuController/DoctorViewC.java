@@ -36,9 +36,9 @@ public class DoctorViewC implements Initializable {
         @FXML private TableColumn<Patient, String> surnameColumn;
         @FXML private TableColumn<Patient, String> forenameColumn;
     @FXML private TextArea treatmentTextArea;
-    @FXML private TextArea problemTextArea;
-    @FXML private TextArea allergiesTextArea;
-    @FXML private TextArea chronicConditionsTextArea;
+    @FXML private Label problemDescriptionLabel;
+    @FXML private Label allergiesDescriptionLabel;
+    @FXML private Label ccDescriptionLabel;
     @FXML private Label patientName;
     @FXML private Label patientAgeLabel;
     @FXML private Label writeDownTreatment;
@@ -96,24 +96,24 @@ public class DoctorViewC implements Initializable {
         PatientProblem patientProblem = patient.returnSpecificProblem();
         patientName.setText(patient.getSurname() + " " + patient.getForename());
         patientAgeLabel.setText("AGE: " + Period.between(patient.getBirthday(), LocalDate.now()).getYears());
-        problemTextArea.setText(patientProblem.getDescriptionOfProblem());
+        problemDescriptionLabel.setText(patientProblem.getDescriptionOfProblem());
         if (patientProblem.getHasAllergies().equals("no")) {
-            allergiesTextArea.setText("DOESN'T HAVE");
+            allergiesDescriptionLabel.setText("DOESN'T HAVE");
         }
         if (patientProblem.getHasAllergies().equals("unknown")) {
-            allergiesTextArea.setText("DOESN'T KNOW");
+            allergiesDescriptionLabel.setText("DOESN'T KNOW");
         }
         if (patientProblem.getHasAllergies().equals("yes")) {
-            allergiesTextArea.setText(patientProblem.getAllergies().toString());
+            allergiesDescriptionLabel.setText(patientProblem.getAllergies().toString());
         }
         if (patientProblem.getHasChronicConditions().equals("no")) {
-            chronicConditionsTextArea.setText("DOESN'T HAVE");
+            ccDescriptionLabel.setText("DOESN'T HAVE");
         }
         if (patientProblem.getHasChronicConditions().equals("unknown")) {
-            chronicConditionsTextArea.setText("DOESN'T KNOW");
+            ccDescriptionLabel.setText("DOESN'T KNOW");
         }
         if (patientProblem.getHasChronicConditions().equals("yes")) {
-            chronicConditionsTextArea.setText(patientProblem.getChronicConditions().toString());
+            ccDescriptionLabel.setText(patientProblem.getChronicConditions().toString());
         }
     }
 
