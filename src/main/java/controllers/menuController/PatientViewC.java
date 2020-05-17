@@ -133,8 +133,15 @@ public class PatientViewC implements Initializable {
 
     private void showDoctorDetails() {
         Doctor selectedDoctor = doctorsTableView.getSelectionModel().getSelectedItem();
-        doctorName.setText(selectedDoctor.getSurname() + " " + selectedDoctor.getForename());
-        NodeMisc.showNode(doctorName);
+        if (selectedDoctor != null) {
+            doctorName.setText(selectedDoctor.getSurname() + " " + selectedDoctor.getForename());
+            NodeMisc.showNode(doctorName);
+        }
+        if (selectedDoctor == null) {
+            doctorName.setText(null);
+            NodeMisc.hideNode(doctorName);
+        }
+
     }
 
 

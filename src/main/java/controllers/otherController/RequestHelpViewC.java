@@ -66,7 +66,8 @@ public class RequestHelpViewC implements Initializable {
     }
 
     @FXML void mentalButtonAction(ActionEvent actionEvent) {
-        NodeMisc.showNode(problemTypeComboBox);
+        problemTypeComboBox.getSelectionModel().clearSelection();
+        NodeMisc.hideNode(problemTypeComboBox);
         patientProblem.setTypeOfProblem(mentalRadioButton.getText());
     }
 
