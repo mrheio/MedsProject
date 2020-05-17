@@ -1,10 +1,10 @@
 # Meds
 
-- ##Project structure:
+##Project structure:
 
-- ###java
+ ###java
 
-#####controllers
+####controllers
 - **menuController**
     - DoctorViewC
     - LoginC
@@ -13,7 +13,7 @@
     - RegisterC
     - RequestHelpViewC
     
-#####misc
+####misc
 - **users**
     - DoctorMisc
     - PatientMisc
@@ -25,7 +25,7 @@
     - TextMisc
     - ViewMisc
     
-#####model
+####model
 - **date**
     - Date
     - month
@@ -37,17 +37,17 @@
     - Patient
     - *Person*
     
-#####Main
+####Main
 
-- ###resources
+###resources
 
-#####css
+####css
 - theme.css
 
-#####data
+####data
 - users.json
 
-#####view
+####view
 - **menuView**
     - doctorView.fxml
     - loginView.fxml
