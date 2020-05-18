@@ -21,8 +21,8 @@ import static java.util.Arrays.asList;
 
 public class LoginC implements Initializable {
 
-    @FXML private TextField username;
-    @FXML private PasswordField password;
+    @FXML private TextField usernameTextField;
+    @FXML private PasswordField passwordField;
     @FXML private Label badLogin;
     @FXML private Button loginButton;
     @FXML private Button cancelButton;
@@ -34,30 +34,12 @@ public class LoginC implements Initializable {
     }
 
     @FXML void keyReleaseProperty() {
-        BooleanBinding booleanBinding = Bindings.or(username.textProperty().isEmpty(), password.textProperty().isEmpty());
+        BooleanBinding booleanBinding = Bindings.or(usernameTextField.textProperty().isEmpty(), passwordField.textProperty().isEmpty());
         loginButton.disableProperty().bind(booleanBinding);
     }
 
     @FXML void loginAction() throws IOException {
-        boolean userExists = false;
-        for (Person x: UserMisc.getUsers()) {
-            if (username.getText().equals(x.getUsername()) && BCrypt.checkpw(password.getText(), x.getPassword())) {
-                userExists = true;
-                UserMisc.setLoggedUser(x);
-                if (x.getRole().equals("Patient")) {
-                    System.out.println("Logged as patient");
-                    ViewMisc.showStage("/view/menuView/patientView.fxml");
-                }
-                if (x.getRole().equals("Doctor")) {
-                    System.out.println("Logged as doctor");
-                    ViewMisc.showStage("/view/menuView/doctorView.fxml");
-                }
-            }
-        }
-        if (userExists == false) {
-            NodeMisc.showNode(badLogin);
-            password.clear();
-        }
+        checkUser();
     }
 
     @FXML void cancelAction() {
@@ -66,6 +48,35 @@ public class LoginC implements Initializable {
 
     @FXML void createNewAccountButtonAction() throws IOException {
         ViewMisc.showStage("/view/otherView/registerView.fxml");
+    }
+    
+    private void checkUser() {
+        String username = usernameTextField.getText();
+        String pw = passwordField.getText();
+        boolean userExists = false;
+        Person person = null;
+        for (Person x: UserMisc.getUsers()) {
+            if (username.equals(x.getUsername()) && BCrypt.checkpw(pw, x.getPassword())) {
+                userExists = true;
+                person = x;
+                break;
+            }
+        }
+        if (userExists == true) {
+            UserMisc.setLoggedUser(person);
+            if (person.getRole().equals("Patient")) {
+                System.out.println("Logged as patient");
+                ViewMisc.showStage("/view/menuView/patientView.fxml");
+            }
+            if (person.getRole().equals("Doctor")) {
+                System.out.println("Logged as doctor");
+                ViewMisc.showStage("/view/menuView/doctorView.fxml");
+            }
+        }
+        if (userExists == false) {
+            NodeMisc.showNode(badLogin);
+            passwordField.clear();
+        }
     }
 
 

@@ -42,8 +42,6 @@ public class PatientViewC implements Initializable {
         @FXML private TableColumn<Doctor, String> forenameColumn;
         @FXML private TableColumn<Doctor, String> specialtyColumn;
     @FXML private Label doctorName;
-    @FXML private TableView doctorSolvedProblems;
-        @FXML private TableColumn solvedProblemsTableView;
 
     private ObservableList<Doctor> doctors = FXCollections.observableList(DoctorMisc.getDoctorsFromFile());
     private ObservableList<String> patientOptions = FXCollections.observableArrayList("Log out");
@@ -59,7 +57,7 @@ public class PatientViewC implements Initializable {
         patientOptionsComboBox.setPromptText(UserMisc.getLoggedUser().getSurname() + " " + UserMisc.getLoggedUser().getForename());
         patientOptionsComboBox.setItems(patientOptions);
 
-        NodeMisc.hideNode(doctorName, doctorSolvedProblems);
+        NodeMisc.hideNode(doctorName);
     }
 
     @FXML void requestHelpButtonAction(ActionEvent actionEvent) {
@@ -135,8 +133,15 @@ public class PatientViewC implements Initializable {
 
     private void showDoctorDetails() {
         Doctor selectedDoctor = doctorsTableView.getSelectionModel().getSelectedItem();
-        doctorName.setText(selectedDoctor.getSurname() + " " + selectedDoctor.getForename());
-        NodeMisc.showNode(doctorName, doctorSolvedProblems);
+        if (selectedDoctor != null) {
+            doctorName.setText(selectedDoctor.getSurname() + " " + selectedDoctor.getForename());
+            NodeMisc.showNode(doctorName);
+        }
+        if (selectedDoctor == null) {
+            doctorName.setText(null);
+            NodeMisc.hideNode(doctorName);
+        }
+
     }
 
 

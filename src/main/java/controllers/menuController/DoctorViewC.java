@@ -17,6 +17,7 @@ import misc.users.UserMisc;
 import misc.utility.FileMisc;
 import misc.utility.NodeMisc;
 import model.other.PatientProblem;
+import model.roles.Doctor;
 import model.roles.Patient;
 
 import java.io.IOException;
@@ -36,9 +37,9 @@ public class DoctorViewC implements Initializable {
         @FXML private TableColumn<Patient, String> surnameColumn;
         @FXML private TableColumn<Patient, String> forenameColumn;
     @FXML private TextArea treatmentTextArea;
-    @FXML private TextArea problemTextArea;
-    @FXML private TextArea allergiesTextArea;
-    @FXML private TextArea chronicConditionsTextArea;
+    @FXML private Label problemDescriptionLabel;
+    @FXML private Label allergiesDescriptionLabel;
+    @FXML private Label ccDescriptionLabel;
     @FXML private Label patientName;
     @FXML private Label patientAgeLabel;
     @FXML private Label writeDownTreatment;
@@ -67,7 +68,6 @@ public class DoctorViewC implements Initializable {
         if (doctorOptionsComboBox.getSelectionModel().getSelectedItem().equals("Change address")) {
             addressTextField.setVisible(true);
             changeAddressOnEnter();
-            doctorOptionsComboBox.getSelectionModel().clearSelection();
         }
     }
 
@@ -91,42 +91,43 @@ public class DoctorViewC implements Initializable {
         patientSelected();
     }
 
-    private void setPatientDetails() {
+    private void setShowPatientDetails() {
         Patient patient = patientsTableView.getSelectionModel().getSelectedItem();
-        PatientProblem patientProblem = patient.returnSpecificProblem();
-        patientName.setText(patient.getSurname() + " " + patient.getForename());
-        patientAgeLabel.setText("AGE: " + Period.between(patient.getBirthday(), LocalDate.now()).getYears());
-        problemTextArea.setText(patientProblem.getDescriptionOfProblem());
-        if (patientProblem.getHasAllergies().equals("no")) {
-            allergiesTextArea.setText("DOESN'T HAVE");
-        }
-        if (patientProblem.getHasAllergies().equals("unknown")) {
-            allergiesTextArea.setText("DOESN'T KNOW");
-        }
-        if (patientProblem.getHasAllergies().equals("yes")) {
-            allergiesTextArea.setText(patientProblem.getAllergies().toString());
-        }
-        if (patientProblem.getHasChronicConditions().equals("no")) {
-            chronicConditionsTextArea.setText("DOESN'T HAVE");
-        }
-        if (patientProblem.getHasChronicConditions().equals("unknown")) {
-            chronicConditionsTextArea.setText("DOESN'T KNOW");
-        }
-        if (patientProblem.getHasChronicConditions().equals("yes")) {
-            chronicConditionsTextArea.setText(patientProblem.getChronicConditions().toString());
-        }
-    }
+        if (patient != null) {
+            PatientProblem patientProblem = patient.returnSpecificProblem();
+            patientName.setText(patient.getSurname() + " " + patient.getForename());
+            patientAgeLabel.setText("AGE: " + Period.between(patient.getBirthday(), LocalDate.now()).getYears());
+            problemDescriptionLabel.setText(patientProblem.getDescriptionOfProblem());
+            String hasAllergies = patientProblem.getHasAllergies();
+            String hasCC = patientProblem.getHasChronicConditions();
+            if (patientProblem.getHasAllergies().equals("yes")) {
+                allergiesDescriptionLabel.setText(patientProblem.getAllergies().toString());
+            } else {
+                allergiesDescriptionLabel.setText(hasAllergies);
+            }
+            if (patientProblem.getHasChronicConditions().equals("yes")) {
+                ccDescriptionLabel.setText(patientProblem.getChronicConditions().toString());
+            } else {
+                ccDescriptionLabel.setText(hasCC);
+            }
+            NodeMisc.showNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAnchorPane);
 
-    private void showPatientDetails() {
-        setPatientDetails();
-        NodeMisc.showNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAnchorPane);
+        }
+        if (patient == null) {
+            patientName.setText("");
+            patientAgeLabel.setText("");
+            problemDescriptionLabel.setText("");
+            allergiesDescriptionLabel.setText("");
+            ccDescriptionLabel.setText("");
+            NodeMisc.hideNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAnchorPane);
+        }
     }
 
     private void patientSelected() {
         patientsTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Patient>() {
             @Override
-            public void changed(ObservableValue<? extends Patient> observableValue, Patient patient, Patient t1) {
-                showPatientDetails();
+            public void changed(ObservableValue<? extends Patient> observableValue, Patient doctor, Patient t1) {
+                setShowPatientDetails();
             }
         });
     }
