@@ -8,6 +8,7 @@ import javafx.beans.property.*;
 
 import javax.print.Doc;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.EXISTING_PROPERTY, property = "role", visible = true)
 @JsonSubTypes({
@@ -126,6 +127,25 @@ public abstract class Person {
 
     public void setRole(String role) {
         this.role.set(role);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(surname.getValue(), person.surname.getValue()) &&
+                Objects.equals(forename.getValue(), person.forename.getValue()) &&
+                Objects.equals(birthday.getValue(), person.birthday.getValue()) &&
+                Objects.equals(email.getValue(), person.email.getValue()) &&
+                Objects.equals(username.getValue(), person.username.getValue()) &&
+                Objects.equals(password.getValue(), person.password.getValue()) &&
+                Objects.equals(role.getValue(), person.role.getValue());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(surname, forename, birthday, email, username, password, role);
     }
 
     @Override

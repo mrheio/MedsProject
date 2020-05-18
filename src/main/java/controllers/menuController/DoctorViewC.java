@@ -68,7 +68,6 @@ public class DoctorViewC implements Initializable {
         if (doctorOptionsComboBox.getSelectionModel().getSelectedItem().equals("Change address")) {
             addressTextField.setVisible(true);
             changeAddressOnEnter();
-            doctorOptionsComboBox.getSelectionModel().clearSelection();
         }
     }
 

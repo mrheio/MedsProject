@@ -13,39 +13,15 @@ import java.util.List;
 public class PatientMisc {
 
     public static void addLoggedPatientProblem(PatientProblem patientProblem) throws IOException {
-        for (Patient x: PatientMisc.getPatientsFromUsers()) {
-            if (x.getUsername().equals(UserMisc.getLoggedUser().getUsername())) {
-                x.getProblems().add(patientProblem);
-                UserMisc.setLoggedUser(x);
-            }
-        }
-        UserMisc.writeUsers();
+        Patient patient = (Patient) UserMisc.getLoggedUser();
+        patient.getProblems().add(patientProblem);
+        UserMisc.updateUsers(patient);
     }
 
     public static void deleteLoggedPatientProblem(PatientProblem patientProblem) throws IOException {
-        for (Patient x: PatientMisc.getPatientsFromUsers()) {
-            if (x.getUsername().equals(UserMisc.getLoggedUser().getUsername())) {
-                Iterator<PatientProblem> iterator = x.getProblems().iterator();
-                while(iterator.hasNext()) {
-                    PatientProblem problem = iterator.next();
-                    if (problem.getDescriptionOfProblem().equals(patientProblem.getDescriptionOfProblem())) {
-                        iterator.remove();
-                    }
-                }
-                UserMisc.setLoggedUser(x);
-            }
-        }
-        UserMisc.writeUsers();
-    }
-
-    public static List<Patient> getPatientsFromUsers() {
-        List<Patient> patients = new ArrayList<>();
-        for (Person x: UserMisc.getUsers()) {
-            if (x.getRole().equals("Patient")) {
-                patients.add((Patient) x);
-            }
-        }
-        return patients;
+        Patient patient = (Patient) UserMisc.getLoggedUser();
+        patient.getProblems().remove(patientProblem);
+        UserMisc.updateUsers(patient);
     }
 
     public static List<Patient> getPatientsFromFile() throws IOException {
@@ -58,6 +34,18 @@ public class PatientMisc {
         }
         return patients;
     }
+
+    public static List<Patient> getPatientsFromUsers() {
+        List<Patient> patients = new ArrayList<>();
+        for (Person x: UserMisc.getUsers()) {
+            if (x.getRole().equals("Patient")) {
+                patients.add((Patient) x);
+            }
+        }
+        return patients;
+    }
+
+
 
 
 }

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import misc.utility.BCrypt;
 import misc.utility.FileMisc;
 import misc.utility.ViewMisc;
 import model.roles.Person;
@@ -19,6 +20,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class UserMisc {
@@ -66,11 +68,6 @@ public class UserMisc {
         UserMisc.users = users;
     }
 
-    public static void logOutUser() {
-        setLoggedUser(null);
-        ViewMisc.showStage("/view/menuView/loginView.fxml");
-    }
-
     public static Person getLoggedUser() {
         return loggedUser;
     }
@@ -78,4 +75,19 @@ public class UserMisc {
     public static void setLoggedUser(Person loggedUser) {
         UserMisc.loggedUser = loggedUser;
     }
+
+    public static void updateUsers(Person person) throws IOException {
+        for (Person x: users) {
+            if (x.equals(person)) {
+                users.set(users.indexOf(x), person);
+            }
+        }
+        UserMisc.writeUsers();
+    }
+
+    public static void logOutUser() {
+        setLoggedUser(null);
+        ViewMisc.showStage("/view/menuView/loginView.fxml");
+    }
+
 }
