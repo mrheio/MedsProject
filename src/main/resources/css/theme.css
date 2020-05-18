@@ -1,0 +1,136 @@
+.root {
+    -fx-background-color: linear-gradient(to bottom, rgb(36, 39, 45), rgb(42, 46, 51));
+}
+
+.border-pane {
+    -fx-background-color: linear-gradient(to bottom, rgb(36, 39, 45), rgb(42, 46, 51));
+}
+
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-color: linear-gradient(to bottom, rgb(36, 39, 45), rgb(42, 46, 51));
+}
+
+.scroll-pane .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #E7E7E8;
+    -fx-background-radius: 0;
+}
+
+.label {
+    -fx-text-fill: #E7E7E8;
+}
+
+.button {
+    -fx-background-color: linear-gradient(to bottom, rgb(80, 80, 80), rgb(51, 57, 63));
+    -fx-background-radius: 0;
+    -fx-text-fill: #E7E7E8;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, rgb(85, 85, 85), rgb(60, 65, 70));
+}
+
+.button:pressed {
+    -fx-background-color: linear-gradient(to bottom, rgb(43, 48, 53), rgb(49, 54, 60));
+}
+
+.text-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: #E7E7E8;
+    -fx-border-style: solid;
+    -fx-border-color: #4B5466;
+    -fx-border-width: 0.5px;
+}
+
+.text-field: focused {
+    -fx-border-color: #7D8594;
+}
+
+.text-area {
+    -fx-background-color: transparent;
+    -fx-text-fill: #E7E7E8;
+    -fx-border-style: solid;
+    -fx-border-color: #4B5466;
+    -fx-border-width: 0.5px;
+    -fx-area-background: transparent;
+}
+
+.text-area: focused {
+    -fx-border-color: #7D8594;
+}
+
+.text-area .content {
+    -fx-background-color: transparent;
+}
+
+.combo-box {
+	-fx-background-color: transparent;
+	-fx-border-style: solid;
+    -fx-border-color: #4B5466;
+    -fx-border-width: 0.5px;
+}
+
+.combo-box .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.combo-box .scroll-bar .thumb {
+    -fx-background-color: #E7E7E8;
+    -fx-background-radius: 0;
+}
+
+.combo-box: hover {
+    -fx-border-color: #7D8594;
+}
+
+.combo-box .list-view {
+    -fx-background-color: linear-gradient(to bottom, rgb(36, 39, 45), rgb(42, 46, 51));
+}
+
+.combo-box .list-cell {
+    -fx-background-color: linear-gradient(to bottom, rgb(36, 39, 45), rgb(42, 46, 51));
+    -fx-text-fill: #E7E7E8;
+}
+
+.check-box {
+    -fx-text-fill: #E7E7E8;
+}
+
+.radio-button {
+    -fx-text-fill: #E7E7E8;
+
+}
+
+.table-view {
+   -fx-background-color: transparent;
+   -fx-text-fill: #E7E7E8;
+   -fx-table-cell-border-color: transparent;
+   -fx-selection-bar: transparent;
+   -fx-selection-bar-non-focused: transparent
+}
+
+.table-row-cell {
+  -fx-background-color: transparent;
+  -fx-text-fill: #E7E7E8;
+}
+
+.table-row-cell:filled:selected {
+    -fx-background-color: linear-gradient(to bottom, rgb(85, 85, 85), rgb(60, 65, 70));
+}
+
+.table-column {
+    -fx-text-fill: #E7E7E8;
+}
+
+.table-view .column-header,
+.table-view .column-header .filler,
+.table-view .column-header-background .filler {
+    -fx-background-color: linear-gradient(to bottom, rgb(43, 48, 53), rgb(49, 54, 60));
+}

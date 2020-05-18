@@ -15,7 +15,7 @@ public class Patient extends Person {
         this.problems = new ArrayList<>();
     }
 
-    public Patient(String surname, String forename, LocalDate birthday, String email, String username, String password, String role) {
+    public Patient(String surname, String forename, LocalDate birthday, String email, String username,  String password, String role) {
         super(surname, forename, birthday, email, username, password, role);
 
     }
@@ -26,5 +26,35 @@ public class Patient extends Person {
 
     public void setProblems(List<PatientProblem> problems) {
         this.problems = problems;
+    }
+
+    public void deletePatientProblem(PatientProblem patientProblem) {
+        problems.remove(patientProblem);
+    }
+
+    public PatientProblem returnSpecificProblem() {
+        for (PatientProblem x: problems) {
+            if (x.getTypeOfProblem().equals(((Doctor) UserMisc.getLoggedUser()).getSpecialty())) {
+                return x;
+            }
+        }
+        return null;
+    }
+
+    public List<PatientProblem> returnNoTreatmentProblems() {
+        List<PatientProblem> noTreatmentProblems = new ArrayList<>();
+        for (PatientProblem x: problems) {
+            if (x.getTreatment() == null) {
+                noTreatmentProblems.add(x);
+            }
+        }
+        return noTreatmentProblems;
+    }
+
+    @Override
+    public String toString() {
+        return "Patient{" +
+                "problems=" + problems +
+                "} " + super.toString();
     }
 }

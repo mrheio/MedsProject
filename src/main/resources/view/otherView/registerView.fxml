@@ -143,4 +143,7 @@
             </content>
         </ScrollPane>
     </children>
+    <stylesheets>
+        <URL value="@../../css/theme.css" />
+    </stylesheets>
 </AnchorPane>

@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class Date {
     private int day;
-    private model.date.month month;
+    private month month;
     private int year;
 
     public int getDay() {
@@ -42,8 +42,8 @@ public class Date {
         return days;
     }
 
-    public static ObservableList<model.date.month> generateMonths() {
-        ObservableList<model.date.month> months = FXCollections.observableArrayList();
+    public static ObservableList<month> generateMonths() {
+        ObservableList<month> months = FXCollections.observableArrayList();
         months.add(new month(1, "January"));
         months.add(new month(2, "February"));
         months.add(new month(3, "March"));
