@@ -17,6 +17,7 @@ import misc.users.UserMisc;
 import misc.utility.FileMisc;
 import misc.utility.NodeMisc;
 import model.other.PatientProblem;
+import model.roles.Doctor;
 import model.roles.Patient;
 
 import java.io.IOException;
@@ -67,7 +68,6 @@ public class DoctorViewC implements Initializable {
         if (doctorOptionsComboBox.getSelectionModel().getSelectedItem().equals("Change address")) {
             addressTextField.setVisible(true);
             changeAddressOnEnter();
-            doctorOptionsComboBox.getSelectionModel().clearSelection();
         }
     }
 
@@ -91,42 +91,43 @@ public class DoctorViewC implements Initializable {
         patientSelected();
     }
 
-    private void setPatientDetails() {
+    private void setShowPatientDetails() {
         Patient patient = patientsTableView.getSelectionModel().getSelectedItem();
-        PatientProblem patientProblem = patient.returnSpecificProblem();
-        patientName.setText(patient.getSurname() + " " + patient.getForename());
-        patientAgeLabel.setText("AGE: " + Period.between(patient.getBirthday(), LocalDate.now()).getYears());
-        problemDescriptionLabel.setText(patientProblem.getDescriptionOfProblem());
-        if (patientProblem.getHasAllergies().equals("no")) {
-            allergiesDescriptionLabel.setText("DOESN'T HAVE");
-        }
-        if (patientProblem.getHasAllergies().equals("unknown")) {
-            allergiesDescriptionLabel.setText("DOESN'T KNOW");
-        }
-        if (patientProblem.getHasAllergies().equals("yes")) {
-            allergiesDescriptionLabel.setText(patientProblem.getAllergies().toString());
-        }
-        if (patientProblem.getHasChronicConditions().equals("no")) {
-            ccDescriptionLabel.setText("DOESN'T HAVE");
-        }
-        if (patientProblem.getHasChronicConditions().equals("unknown")) {
-            ccDescriptionLabel.setText("DOESN'T KNOW");
-        }
-        if (patientProblem.getHasChronicConditions().equals("yes")) {
-            ccDescriptionLabel.setText(patientProblem.getChronicConditions().toString());
-        }
-    }
+        if (patient != null) {
+            PatientProblem patientProblem = patient.returnSpecificProblem();
+            patientName.setText(patient.getSurname() + " " + patient.getForename());
+            patientAgeLabel.setText("AGE: " + Period.between(patient.getBirthday(), LocalDate.now()).getYears());
+            problemDescriptionLabel.setText(patientProblem.getDescriptionOfProblem());
+            String hasAllergies = patientProblem.getHasAllergies();
+            String hasCC = patientProblem.getHasChronicConditions();
+            if (patientProblem.getHasAllergies().equals("yes")) {
+                allergiesDescriptionLabel.setText(patientProblem.getAllergies().toString());
+            } else {
+                allergiesDescriptionLabel.setText(hasAllergies);
+            }
+            if (patientProblem.getHasChronicConditions().equals("yes")) {
+                ccDescriptionLabel.setText(patientProblem.getChronicConditions().toString());
+            } else {
+                ccDescriptionLabel.setText(hasCC);
+            }
+            NodeMisc.showNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAnchorPane);
 
-    private void showPatientDetails() {
-        setPatientDetails();
-        NodeMisc.showNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAnchorPane);
+        }
+        if (patient == null) {
+            patientName.setText("");
+            patientAgeLabel.setText("");
+            problemDescriptionLabel.setText("");
+            allergiesDescriptionLabel.setText("");
+            ccDescriptionLabel.setText("");
+            NodeMisc.hideNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAnchorPane);
+        }
     }
 
     private void patientSelected() {
         patientsTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Patient>() {
             @Override
-            public void changed(ObservableValue<? extends Patient> observableValue, Patient patient, Patient t1) {
-                showPatientDetails();
+            public void changed(ObservableValue<? extends Patient> observableValue, Patient doctor, Patient t1) {
+                setShowPatientDetails();
             }
         });
     }

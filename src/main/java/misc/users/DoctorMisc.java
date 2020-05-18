@@ -35,8 +35,9 @@ public class DoctorMisc {
 
     public static List<Patient> getPatientsForLoggedDoctor() throws IOException {
         Doctor doctor = (Doctor) UserMisc.getLoggedUser();
+        List<Patient> allPatients = PatientMisc.getPatientsFromFile();
         List<Patient> patientsForDoctor = new ArrayList<>();
-        for (Patient x: PatientMisc.getPatientsFromFile()) {
+        for (Patient x: allPatients) {
             for (PatientProblem y: x.getProblems()) {
                 if (y.getTypeOfProblem().equals(doctor.getSpecialty()) && y.getTreatment() == null) {
                     patientsForDoctor.add(x);
@@ -47,13 +48,9 @@ public class DoctorMisc {
     }
 
     public static void updateLoggedDoctorAddress(String address) throws IOException {
-        for (Doctor x: DoctorMisc.getDoctorsFromUsers()) {
-            if (x.getUsername().equals(UserMisc.getLoggedUser().getUsername())) {
-                x.setAddress(address);
-                UserMisc.setLoggedUser(x);
-            }
-        }
-        UserMisc.writeUsers();
+        Doctor doctor = (Doctor) UserMisc.getLoggedUser();
+        doctor.setAddress(address);
+        UserMisc.updateUsers(doctor);
     }
 
 }
