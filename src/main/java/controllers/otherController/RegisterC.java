@@ -141,7 +141,7 @@ public class RegisterC implements Initializable{
                monthComboBox.getSelectionModel().isEmpty() ||
                yearComboBox.getSelectionModel().isEmpty() ||
                roleComboBox.getSelectionModel().isEmpty() ||
-               (!roleComboBox.getSelectionModel().getSelectedItem().equals("Doctor") &&
+               (roleComboBox.getSelectionModel().getSelectedItem().equals("Doctor") &&
                        doctorSpecialtyComboBox.getSelectionModel().isEmpty());
 
     }
