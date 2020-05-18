@@ -2,11 +2,15 @@ package controllers.otherController;
 
 
 import javafx.beans.Observable;
+import javafx.beans.binding.Binding;
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.util.StringConverter;
 import misc.utility.BCrypt;
@@ -20,6 +24,7 @@ import model.other.ProblemTypes;
 import model.roles.Doctor;
 import model.roles.Patient;
 import model.roles.Person;
+import org.apache.commons.validator.routines.EmailValidator;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,7 +32,6 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class RegisterC implements Initializable{
-
 
     @FXML private ScrollPane registerScrollPane;
     @FXML private TextField surname;
@@ -42,9 +46,9 @@ public class RegisterC implements Initializable{
     @FXML private ComboBox<Integer> yearComboBox;
     @FXML private ComboBox<String> roleComboBox;
     @FXML private ComboBox<String> doctorSpecialtyComboBox;
-
-
     @FXML private Button createAccountButton;
+    @FXML private Button cancelButton;
+    @FXML private Label checkFieldsLabel;
 
     private ObservableList<String> roles = FXCollections.observableArrayList("Patient", "Doctor");
 
@@ -54,7 +58,7 @@ public class RegisterC implements Initializable{
 
         initializeCBES();
 
-        NodeMisc.hideNode(doctorSpecialtyComboBox, addressTextField);
+        NodeMisc.hideNode(doctorSpecialtyComboBox, addressTextField, checkFieldsLabel);
     }
 
     @FXML void roleComboBoxAction() {
@@ -75,14 +79,13 @@ public class RegisterC implements Initializable{
     @FXML void createAccountButtonAction(ActionEvent actionEvent) throws IOException {
         UserMisc.readUsers();
         Person person = null;
-        if (passwordField.getText().equals(confirmPasswordField.getText())) {
+        if (checkFields()) {
+            NodeMisc.showNode(checkFieldsLabel);
+        } else {
             person = returnPerson();
             UserMisc.addUser(person);
             UserMisc.writeUsers();
             ViewMisc.showStage("/view/menuView/loginView.fxml");
-        } else {
-            passwordField.clear();
-            confirmPasswordField.clear();
         }
     }
 
@@ -123,6 +126,24 @@ public class RegisterC implements Initializable{
         ymdSettings();
         roleComboBox.setItems(roles);
         doctorSpecialtyComboBox.setItems(ProblemTypes.getPhysicalProblems());
+    }
+
+    private boolean checkFields() {
+       return surname.getText().isEmpty() ||
+               forename.getText().isEmpty() ||
+               email.getText().isEmpty() ||
+               !EmailValidator.getInstance().isValid(email.getText()) ||
+               usernameTextField.getText().isEmpty() ||
+               passwordField.getText().isEmpty() ||
+               confirmPasswordField.getText().isEmpty() ||
+               (!passwordField.getText().equals(confirmPasswordField.getText())) ||
+               dayComboBox.getSelectionModel().isEmpty() ||
+               monthComboBox.getSelectionModel().isEmpty() ||
+               yearComboBox.getSelectionModel().isEmpty() ||
+               roleComboBox.getSelectionModel().isEmpty() ||
+               (!roleComboBox.getSelectionModel().getSelectedItem().equals("Doctor") &&
+                       doctorSpecialtyComboBox.getSelectionModel().isEmpty());
+
     }
 
 }
