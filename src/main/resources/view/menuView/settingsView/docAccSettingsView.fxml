@@ -60,6 +60,8 @@
                               <PasswordField fx:id="oldPasswordField" layoutX="200.0" layoutY="19.0" prefHeight="27.0" prefWidth="165.0" AnchorPane.bottomAnchor="455.0" AnchorPane.leftAnchor="192.0" />
                               <PasswordField fx:id="newPasswordField" layoutX="200.0" layoutY="59.0" prefHeight="27.0" prefWidth="165.0" AnchorPane.bottomAnchor="415.0" AnchorPane.leftAnchor="192.0" />
                               <PasswordField fx:id="confirmPasswordField" layoutX="206.0" layoutY="100.0" prefHeight="27.0" prefWidth="165.0" AnchorPane.bottomAnchor="375.0" AnchorPane.leftAnchor="192.0" />
+                              <Label fx:id="badOldPassword" layoutX="192.0" layoutY="175.0" text="You have entered your old password incorrectly" visible="false" AnchorPane.leftAnchor="192.0" />
+                              <Label fx:id="badNewPassword" layoutX="192.0" layoutY="195.0" text="Your new password does not match" visible="false" AnchorPane.leftAnchor="192.0" />
                            </children>
                         </AnchorPane>
                   </content>

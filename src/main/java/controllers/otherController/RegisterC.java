@@ -1,21 +1,15 @@
 package controllers.otherController;
 
 
-import javafx.beans.Observable;
-import javafx.beans.binding.Binding;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.util.StringConverter;
 import misc.utility.BCrypt;
 import misc.users.UserMisc;
-import misc.utility.FileMisc;
 import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
 import model.date.Date;
@@ -50,14 +44,9 @@ public class RegisterC implements Initializable{
     @FXML private Button cancelButton;
     @FXML private Label checkFieldsLabel;
 
-    private ObservableList<String> roles = FXCollections.observableArrayList("Patient", "Doctor");
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        registerScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-
-        initializeCBES();
-
+        configureCBES();
         NodeMisc.hideNode(doctorSpecialtyComboBox, addressTextField, checkFieldsLabel);
     }
 
@@ -122,8 +111,9 @@ public class RegisterC implements Initializable{
         dayComboBox.setItems(Date.generateDays(31));
     }
 
-    private void initializeCBES() {
+    private void configureCBES() {
         ymdSettings();
+        ObservableList<String> roles = FXCollections.observableArrayList("Patient", "Doctor");
         roleComboBox.setItems(roles);
         doctorSpecialtyComboBox.setItems(ProblemTypes.getPhysicalProblems());
     }

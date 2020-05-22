@@ -42,21 +42,15 @@ public class PatientMenuC implements Initializable {
         @FXML private TableColumn<Doctor, String> specialtyColumn;
     @FXML private Label doctorName;
 
-    private ObservableList<Doctor> doctors = FXCollections.observableList(DoctorMisc.getDoctorsFromFile());
-    private ObservableList<String> patientOptions = FXCollections.observableArrayList("Log out");
     private ObservableList<PatientProblem> patientProblems = FXCollections.observableList(((Patient) UserMisc.getLoggedUser()).getProblems());
-
-    public PatientMenuC() throws IOException {
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        initializeTables();
-
-        patientOptionsComboBox.setPromptText(UserMisc.getLoggedUser().getSurname() + " " + UserMisc.getLoggedUser().getForename());
-        patientOptionsComboBox.setItems(patientOptions);
-
-        NodeMisc.hideNode(doctorName);
+        try {
+            configureMenu();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML void requestHelpButtonAction(ActionEvent actionEvent) {
@@ -75,6 +69,12 @@ public class PatientMenuC implements Initializable {
         patientProblems.remove(patientProblem);
         PatientMisc.deleteLoggedPatientProblem(patientProblem);
 
+    }
+
+    private void configurePatientMenuCB() {
+        ObservableList<String> patientOptions = FXCollections.observableArrayList("Log out");
+        patientOptionsComboBox.setPromptText(UserMisc.getLoggedUser().getSurname() + " " + UserMisc.getLoggedUser().getForename());
+        patientOptionsComboBox.setItems(patientOptions);
     }
 
     private void filterTableView(ObservableList list, TextField filterTextField, TableView table) {
@@ -97,7 +97,8 @@ public class PatientMenuC implements Initializable {
         });
     }
 
-    private void initializeTables() {
+    private void configureTables() throws IOException {
+        ObservableList<Doctor> doctors = FXCollections.observableList(DoctorMisc.getDoctorsFromFile());
         doctorsTableView.focusedProperty().addListener((observableValue, oldVal, newVal) -> {
             if (!newVal) {
                 doctorsTableView.getSelectionModel().clearSelection();
@@ -119,6 +120,12 @@ public class PatientMenuC implements Initializable {
         problemTableColumn.setCellValueFactory(patientProblemStringCellDataFeatures -> patientProblemStringCellDataFeatures.getValue().descriptionOfProblemProperty());
         treatmentTableColumn.setCellValueFactory(patientProblemStringCellDataFeatures -> patientProblemStringCellDataFeatures.getValue().treatmentProperty());
 
+    }
+
+    private void configureMenu() throws IOException {
+        configurePatientMenuCB();
+        configureTables();
+        NodeMisc.hideNode(doctorName);
     }
 
     private void doctorSelected() {

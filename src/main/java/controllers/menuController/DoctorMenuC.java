@@ -42,20 +42,13 @@ public class DoctorMenuC implements Initializable {
     @FXML private Label writeDownTreatment;
 
     private ObservableList<Patient> patients = FXCollections.observableList(DoctorMisc.getPatientsForLoggedDoctor());
-    private ObservableList<String> doctorOptions = FXCollections.observableArrayList("Log out", "Change address");
 
     public DoctorMenuC() throws IOException {
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        initializePatientTable();
-
-        doctorOptionsComboBox.setPromptText(UserMisc.getLoggedUser().getSurname() + " " + UserMisc.getLoggedUser().getForename());
-        doctorOptionsComboBox.setItems(doctorOptions);
-
-        NodeMisc.hideNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAnchorPane);
-        NodeMisc.disableNode(giveTreatmentButton);
+        configureMenu();
     }
 
     @FXML void doctorOptionsComboBoxAction(ActionEvent actionEvent) {
@@ -80,11 +73,24 @@ public class DoctorMenuC implements Initializable {
         giveTreatmentButton.disableProperty().bind(booleanBinding);
     }
 
-    private void initializePatientTable() {
+    private void configureDoctorOptionsCB() {
+        ObservableList<String> doctorOptions = FXCollections.observableArrayList("Log out", "Change address");
+        doctorOptionsComboBox.setPromptText(UserMisc.getLoggedUser().getSurname() + " " + UserMisc.getLoggedUser().getForename());
+        doctorOptionsComboBox.setItems(doctorOptions);
+    }
+
+    private void configurePatientTable() {
         patientsTableView.setItems(patients);
         surnameColumn.setCellValueFactory(data -> data.getValue().surnameProperty());
         forenameColumn.setCellValueFactory(data -> data.getValue().forenameProperty());
         patientSelected();
+    }
+
+    private void configureMenu() {
+        configureDoctorOptionsCB();
+        configurePatientTable();
+        NodeMisc.hideNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAnchorPane);
+        NodeMisc.disableNode(giveTreatmentButton);
     }
 
     private void setShowPatientDetails() {

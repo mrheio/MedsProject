@@ -28,6 +28,8 @@ public class DocAccSettingsC implements Initializable {
     @FXML private PasswordField oldPasswordField;
     @FXML private PasswordField newPasswordField;
     @FXML private PasswordField confirmPasswordField;
+    @FXML private Label badOldPassword;
+    @FXML private Label badNewPassword;
 
     private Doctor loggedDoctor = (Doctor) UserMisc.getLoggedUser();
 
@@ -42,15 +44,15 @@ public class DocAccSettingsC implements Initializable {
         UserMisc.updateUsers(loggedDoctor);
     }
 
-    @FXML private void editUsernameButtonAction(ActionEvent event) {
+    @FXML void editUsernameButtonAction(ActionEvent event) {
         NodeMisc.enableNode(usernameTextField);
     }
 
-    @FXML private void editAddressButtonAction(ActionEvent event) {
+    @FXML void editAddressButtonAction(ActionEvent event) {
         NodeMisc.enableNode(addressTextField);
     }
 
-    @FXML private void updateAccDetailsButtonAction(ActionEvent actionEvent) throws IOException {
+    @FXML void updateAccDetailsButtonAction(ActionEvent actionEvent) throws IOException {
         loggedDoctor.setEmail(emailTextField.getText());
         loggedDoctor.setUsername(usernameTextField.getText());
         loggedDoctor.setAddress(addressTextField.getText());
@@ -58,22 +60,35 @@ public class DocAccSettingsC implements Initializable {
         UserMisc.updateUsers(loggedDoctor);
     }
 
-    @FXML private void changePasswordButtonAction(ActionEvent event) throws IOException {
+    @FXML void changePasswordButtonAction(ActionEvent event) throws IOException {
         String oldPW = oldPasswordField.getText();
         String newPW = newPasswordField.getText();
         String confirmNewPW = confirmPasswordField.getText();
+        if (!BCrypt.checkpw(oldPW, loggedDoctor.getPassword())) {
+            NodeMisc.showNode(badOldPassword);
+        }
+        if (!newPW.equals(confirmNewPW)) {
+            NodeMisc.showNode(badNewPassword);
+        }
+        if (BCrypt.checkpw(oldPW, loggedDoctor.getPassword())) {
+            NodeMisc.hideNode(badOldPassword);
+        }
+        if (newPW.equals(confirmNewPW)) {
+            NodeMisc.hideNode(badNewPassword);
+        }
         if (BCrypt.checkpw(oldPW, loggedDoctor.getPassword()) && newPW.equals(confirmNewPW)) {
             loggedDoctor.setPassword(BCrypt.hashpw(newPW, BCrypt.gensalt(12)));
             UserMisc.updateUsers(loggedDoctor);
             oldPasswordField.clear();
             newPasswordField.clear();
             confirmPasswordField.clear();
+            NodeMisc.hideNode(badOldPassword, badNewPassword);
             ViewMisc.showStage("/view/menuView/loginView.fxml");
             UserMisc.setLoggedUser(null);
         }
     }
 
-    @FXML private void forgotPasswordHLAction(ActionEvent event) {
+    @FXML void forgotPasswordHLAction(ActionEvent event) {
 
     }
 
