@@ -58,9 +58,9 @@
     - settingsView
         - docAccSettingsView
         - patientAccSettingsView
-    - doctorMenuView.fxml
-    - loginView.fxml
-    - patientMenuView.fxml
+    - doctorMenuView
+    - loginView
+    - patientMenuView
 - **otherView**
-    - registerView.fxml
-    - requestHelpView.fxml
+    - registerView
+    - requestHelpView
