@@ -55,7 +55,7 @@ public class DoctorMenuC implements Initializable {
         if (doctorOptionsComboBox.getSelectionModel().getSelectedItem().equals("Log out")) {
             UserMisc.logOutUser();
         }
-        if (doctorOptionsComboBox.getSelectionModel().getSelectedItem().equals("Change address")) {
+        if (doctorOptionsComboBox.getSelectionModel().getSelectedItem().equals("Edit profile")) {
             ViewMisc.showStage("/view/menuView/settingsView/docAccSettingsView.fxml");
         }
     }
@@ -74,7 +74,7 @@ public class DoctorMenuC implements Initializable {
     }
 
     private void configureDoctorOptionsCB() {
-        ObservableList<String> doctorOptions = FXCollections.observableArrayList("Log out", "Change address");
+        ObservableList<String> doctorOptions = FXCollections.observableArrayList("Log out", "Edit profile");
         doctorOptionsComboBox.setPromptText(UserMisc.getLoggedUser().getSurname() + " " + UserMisc.getLoggedUser().getForename());
         doctorOptionsComboBox.setItems(doctorOptions);
     }

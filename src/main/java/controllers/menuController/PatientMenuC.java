@@ -62,6 +62,9 @@ public class PatientMenuC implements Initializable {
         if (patientOptionsComboBox.getSelectionModel().getSelectedItem().equals("Log out")) {
             UserMisc.logOutUser();
         }
+        if (patientOptionsComboBox.getSelectionModel().getSelectedItem().equals("Edit profile")) {
+            ViewMisc.showStage("/view/menuView/settingsView/patientAccSettingsView.fxml");
+        }
     }
 
     @FXML void deleteProblemButtonAction(ActionEvent actionEvent) throws IOException {
@@ -72,7 +75,7 @@ public class PatientMenuC implements Initializable {
     }
 
     private void configurePatientMenuCB() {
-        ObservableList<String> patientOptions = FXCollections.observableArrayList("Log out");
+        ObservableList<String> patientOptions = FXCollections.observableArrayList("Log out", "Edit profile");
         patientOptionsComboBox.setPromptText(UserMisc.getLoggedUser().getSurname() + " " + UserMisc.getLoggedUser().getForename());
         patientOptionsComboBox.setItems(patientOptions);
     }
