@@ -2,6 +2,40 @@
     -fx-background-color: linear-gradient(to bottom, rgb(36, 39, 45), rgb(42, 46, 51));
 }
 
+.anchor-pane {
+    -fx-background-color: linear-gradient(to bottom, rgb(36, 39, 45), rgb(42, 46, 51));
+}
+
+.tab-pane {
+    -fx-tab-min-width: 30px;
+    -fx-tab-max-width: 30px;
+    -fx-tab-min-height: 130px;
+    -fx-tab-max-height: 130px;
+}
+
+.tab-pane *.tab-header-area *.tab-header-background {
+  -fx-background-color:transparent;
+}
+
+.tab {
+  -fx-background-color:transparent ;
+   -fx-focus-color: transparent;
+}
+
+.tab:hover {
+    -fx-background-color: rgb(49, 53, 62);
+}
+
+.tab:selected
+{
+    -fx-border-width: 3 0 0 0;
+    -fx-border-color: white;
+}
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-color: transparent;
+}
+
 .border-pane {
     -fx-background-color: linear-gradient(to bottom, rgb(36, 39, 45), rgb(42, 46, 51));
 }
@@ -39,6 +73,24 @@
 
 .button:pressed {
     -fx-background-color: linear-gradient(to bottom, rgb(43, 48, 53), rgb(49, 54, 60));
+}
+
+#editEmailButton, #editUsernameButton, #editAddressButton {
+    -fx-cursor: hand;
+    -fx-background-color: transparent;
+    -fx-background-image: url("../images/edit.png");
+    -fx-background-size: 30px 30px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+#settingsMenuButton {
+    -fx-background-color: transparent;
+    -fx-border-color: white;
+}
+
+#settingsMenuButton:hover {
+    -fx-background-color: linear-gradient(to bottom, rgb(85, 85, 85), rgb(60, 65, 70));
 }
 
 .text-field {
@@ -134,3 +186,10 @@
 .table-view .column-header-background .filler {
     -fx-background-color: linear-gradient(to bottom, rgb(43, 48, 53), rgb(49, 54, 60));
 }
+
+.hyperlink {
+    -fx-underline: false;
+    -fx-border-color: transparent;
+}
+
+

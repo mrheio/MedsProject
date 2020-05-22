@@ -6,9 +6,11 @@
 
 #### controllers
 - **menuController**
-    - DoctorViewC
+    - settings
+        - DocAccSettingsC
+    - DoctorMenuC
     - LoginC
-    - PatientViewC
+    - PatientMenuC
 - **otherController**
     - RegisterC
     - RequestHelpViewC
@@ -49,9 +51,9 @@
 
 #### view
 - **menuView**
-    - doctorView.fxml
+    - doctorMenuView.fxml
     - loginView.fxml
-    - patientView.fxml
+    - patientMenuView.fxml
 - **otherView**
     - registerView.fxml
     - requestHelpView.fxml

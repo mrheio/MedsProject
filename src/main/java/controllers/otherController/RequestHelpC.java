@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class RequestHelpViewC implements Initializable {
+public class RequestHelpC implements Initializable {
 
 
 
@@ -48,7 +48,7 @@ public class RequestHelpViewC implements Initializable {
     }
 
     public static void setPatientProblem(PatientProblem patientProblem) {
-        RequestHelpViewC.patientProblem = patientProblem;
+        RequestHelpC.patientProblem = patientProblem;
     }
 
     @Override
@@ -102,13 +102,13 @@ public class RequestHelpViewC implements Initializable {
     }
 
     @FXML void cancelButtonAction(ActionEvent event) {
-        ViewMisc.showStage("/view/menuView/patientView.fxml");
+        ViewMisc.showStage("/view/menuView/patientMenuView.fxml");
     }
 
     @FXML void requestHelpButtonAction(ActionEvent event) throws IOException {
         setDetails();
         PatientMisc.addLoggedPatientProblem(patientProblem);
-        ViewMisc.showStage("/view/menuView/patientView.fxml");
+        ViewMisc.showStage("/view/menuView/patientMenuView.fxml");
     }
 
     private void setDetails() {

@@ -1,6 +1,6 @@
 package controllers.menuController;
 
-import controllers.otherController.RequestHelpViewC;
+import controllers.otherController.RequestHelpC;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -15,7 +15,6 @@ import javafx.scene.layout.AnchorPane;
 import misc.users.DoctorMisc;
 import misc.users.PatientMisc;
 import misc.users.UserMisc;
-import misc.utility.FileMisc;
 import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
 import model.other.PatientProblem;
@@ -26,7 +25,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PatientViewC implements Initializable {
+public class PatientMenuC implements Initializable {
 
 
     @FXML private AnchorPane doctorDetailsAnchorPane;
@@ -47,7 +46,7 @@ public class PatientViewC implements Initializable {
     private ObservableList<String> patientOptions = FXCollections.observableArrayList("Log out");
     private ObservableList<PatientProblem> patientProblems = FXCollections.observableList(((Patient) UserMisc.getLoggedUser()).getProblems());
 
-    public PatientViewC() throws IOException {
+    public PatientMenuC() throws IOException {
     }
 
     @Override
@@ -61,7 +60,7 @@ public class PatientViewC implements Initializable {
     }
 
     @FXML void requestHelpButtonAction(ActionEvent actionEvent) {
-        RequestHelpViewC.setPatientProblem(new PatientProblem());
+        RequestHelpC.setPatientProblem(new PatientProblem());
         ViewMisc.showStage("/view/otherView/requestHelpView.fxml");
     }
 
