@@ -1,6 +1,6 @@
 package controllers.menuController;
 
-import controllers.otherController.RequestHelpViewC;
+import controllers.otherController.RequestHelpC;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -15,7 +15,6 @@ import javafx.scene.layout.AnchorPane;
 import misc.users.DoctorMisc;
 import misc.users.PatientMisc;
 import misc.users.UserMisc;
-import misc.utility.FileMisc;
 import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
 import model.other.PatientProblem;
@@ -26,7 +25,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class PatientViewC implements Initializable {
+public class PatientMenuC implements Initializable {
 
 
     @FXML private AnchorPane doctorDetailsAnchorPane;
@@ -43,31 +42,28 @@ public class PatientViewC implements Initializable {
         @FXML private TableColumn<Doctor, String> specialtyColumn;
     @FXML private Label doctorName;
 
-    private ObservableList<Doctor> doctors = FXCollections.observableList(DoctorMisc.getDoctorsFromFile());
-    private ObservableList<String> patientOptions = FXCollections.observableArrayList("Log out");
     private ObservableList<PatientProblem> patientProblems = FXCollections.observableList(((Patient) UserMisc.getLoggedUser()).getProblems());
-
-    public PatientViewC() throws IOException {
-    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        initializeTables();
-
-        patientOptionsComboBox.setPromptText(UserMisc.getLoggedUser().getSurname() + " " + UserMisc.getLoggedUser().getForename());
-        patientOptionsComboBox.setItems(patientOptions);
-
-        NodeMisc.hideNode(doctorName);
+        try {
+            configureMenu();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML void requestHelpButtonAction(ActionEvent actionEvent) {
-        RequestHelpViewC.setPatientProblem(new PatientProblem());
+        RequestHelpC.setPatientProblem(new PatientProblem());
         ViewMisc.showStage("/view/otherView/requestHelpView.fxml");
     }
 
     @FXML void patientOptionsComboBoxAction(ActionEvent actionEvent) {
         if (patientOptionsComboBox.getSelectionModel().getSelectedItem().equals("Log out")) {
             UserMisc.logOutUser();
+        }
+        if (patientOptionsComboBox.getSelectionModel().getSelectedItem().equals("Edit profile")) {
+            ViewMisc.showStage("/view/menuView/settingsView/patientAccSettingsView.fxml");
         }
     }
 
@@ -76,6 +72,12 @@ public class PatientViewC implements Initializable {
         patientProblems.remove(patientProblem);
         PatientMisc.deleteLoggedPatientProblem(patientProblem);
 
+    }
+
+    private void configurePatientMenuCB() {
+        ObservableList<String> patientOptions = FXCollections.observableArrayList("Log out", "Edit profile");
+        patientOptionsComboBox.setPromptText(UserMisc.getLoggedUser().getSurname() + " " + UserMisc.getLoggedUser().getForename());
+        patientOptionsComboBox.setItems(patientOptions);
     }
 
     private void filterTableView(ObservableList list, TextField filterTextField, TableView table) {
@@ -98,7 +100,8 @@ public class PatientViewC implements Initializable {
         });
     }
 
-    private void initializeTables() {
+    private void configureTables() throws IOException {
+        ObservableList<Doctor> doctors = FXCollections.observableList(DoctorMisc.getDoctorsFromFile());
         doctorsTableView.focusedProperty().addListener((observableValue, oldVal, newVal) -> {
             if (!newVal) {
                 doctorsTableView.getSelectionModel().clearSelection();
@@ -120,6 +123,12 @@ public class PatientViewC implements Initializable {
         problemTableColumn.setCellValueFactory(patientProblemStringCellDataFeatures -> patientProblemStringCellDataFeatures.getValue().descriptionOfProblemProperty());
         treatmentTableColumn.setCellValueFactory(patientProblemStringCellDataFeatures -> patientProblemStringCellDataFeatures.getValue().treatmentProperty());
 
+    }
+
+    private void configureMenu() throws IOException {
+        configurePatientMenuCB();
+        configureTables();
+        NodeMisc.hideNode(doctorName);
     }
 
     private void doctorSelected() {

@@ -4,16 +4,19 @@
 
  ### java
 
-#### controllers
+#### controllers (java classes)
 - **menuController**
-    - DoctorViewC
+    - settings
+        - DocAccSettingsC
+        - PatientAccSettingsC
+    - DoctorMenuC
     - LoginC
-    - PatientViewC
+    - PatientMenuC
 - **otherController**
     - RegisterC
     - RequestHelpViewC
     
-#### misc
+#### misc (java classes)
 - **users**
     - DoctorMisc
     - PatientMisc
@@ -25,7 +28,7 @@
     - TextMisc
     - ViewMisc
     
-#### model
+#### model (java classes)
 - **date**
     - Date
     - month
@@ -47,11 +50,17 @@
 #### data
 - users.json
 
-#### view
+#### images
+- edit.png
+
+#### view (fxml files)
 - **menuView**
-    - doctorView.fxml
+    - settingsView
+        - docAccSettingsView
+        - patientAccSettingsView
+    - doctorMenuView.fxml
     - loginView.fxml
-    - patientView.fxml
+    - patientMenuView.fxml
 - **otherView**
     - registerView.fxml
     - requestHelpView.fxml

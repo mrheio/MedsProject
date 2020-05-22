@@ -137,9 +137,6 @@ public abstract class Person {
         return Objects.equals(surname.getValue(), person.surname.getValue()) &&
                 Objects.equals(forename.getValue(), person.forename.getValue()) &&
                 Objects.equals(birthday.getValue(), person.birthday.getValue()) &&
-                Objects.equals(email.getValue(), person.email.getValue()) &&
-                Objects.equals(username.getValue(), person.username.getValue()) &&
-                Objects.equals(password.getValue(), person.password.getValue()) &&
                 Objects.equals(role.getValue(), person.role.getValue());
     }
 
