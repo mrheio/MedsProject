@@ -1,5 +1,6 @@
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import misc.users.UserMisc;
 import misc.utility.FileMisc;
 import misc.utility.ViewMisc;
@@ -12,7 +13,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         UserMisc.readUsers();
         ViewMisc.setPrimaryStage(primaryStage);
-        ViewMisc.getPrimaryStage().setTitle("Meds Login");
         ViewMisc.showStage("/view/menuView/loginView.fxml");
     }
 

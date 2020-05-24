@@ -7,9 +7,10 @@ import java.nio.file.Paths;
 public class FileMisc {
 
     private static final String projectFolderLocation = System.getProperty("user.dir");
-    private static final Path usersPath = Paths.get(projectFolderLocation, "src/main/resources/data/users.json");
+    private static final Path usersPath = Paths.get(projectFolderLocation, "users.json");
 
     public static Path getUsersPath() {
+        System.out.println(usersPath);
         return usersPath;
     }
 
