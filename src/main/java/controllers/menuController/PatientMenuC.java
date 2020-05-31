@@ -100,13 +100,9 @@ public class PatientMenuC implements Initializable {
         });
     }
 
-    private void configureTables() throws IOException {
+    private void configureDoctorsTable() throws IOException {
         ObservableList<Doctor> doctors = FXCollections.observableList(DoctorMisc.getDoctorsFromFile());
-        doctorsTableView.focusedProperty().addListener((observableValue, oldVal, newVal) -> {
-            if (!newVal) {
-                doctorsTableView.getSelectionModel().clearSelection();
-            }
-        });
+        NodeMisc.deselectTableView(doctorsTableView);
         doctorsTableView.setItems(doctors);
         surnameColumn.setCellValueFactory(doctorStringCellDataFeatures -> doctorStringCellDataFeatures.getValue().surnameProperty());
         forenameColumn.setCellValueFactory(doctorStringCellDataFeatures -> doctorStringCellDataFeatures.getValue().forenameProperty());
@@ -117,12 +113,18 @@ public class PatientMenuC implements Initializable {
         filterTableView(doctors, doctorFilterTextField, doctorsTableView);
 
         doctorSelected();
+    }
 
+    private void configureProblemsTable() {
         problemsTableView.setItems(patientProblems);
         typeOfProblemTableColumn.setCellValueFactory(patientProblemStringCellDataFeatures -> patientProblemStringCellDataFeatures.getValue().typeOfProblemProperty());
         problemTableColumn.setCellValueFactory(patientProblemStringCellDataFeatures -> patientProblemStringCellDataFeatures.getValue().descriptionOfProblemProperty());
         treatmentTableColumn.setCellValueFactory(patientProblemStringCellDataFeatures -> patientProblemStringCellDataFeatures.getValue().treatmentProperty());
+    }
 
+    private void configureTables() throws IOException {
+        configureDoctorsTable();
+        configureProblemsTable();
     }
 
     private void configureMenu() throws IOException {

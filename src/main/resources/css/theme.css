@@ -192,4 +192,8 @@
     -fx-border-color: transparent;
 }
 
+#problemTA . content, #allergiesTA .content, #ccTA .content {
+    -fx-cursor: default;
+}
+
 

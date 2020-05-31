@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,103 +14,110 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.otherController.RequestHelpC">
-    <children>
-        <GridPane prefHeight="691.0" prefWidth="400.0">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="400.0" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" vgrow="SOMETIMES" />
-            </rowConstraints>
-            <children>
-                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="400.0">
-                    <children>
-                        <Label alignment="CENTER" layoutX="14.0" layoutY="36.0" prefHeight="50.0" prefWidth="133.0" text="REQUEST HELP FORM" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="253.0" AnchorPane.topAnchor="36.0">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </AnchorPane>
-                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="400.0" GridPane.rowIndex="1">
-                    <children>
-                        <Label layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="260.0" text="What type of problem do you have?" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="14.0">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                        </Label>
-                        <RadioButton fx:id="mentalRadioButton" layoutX="99.0" layoutY="50.0" mnemonicParsing="false" onAction="#mentalButtonAction" text="Mental" AnchorPane.leftAnchor="99.0" AnchorPane.topAnchor="50.0">
-                            <toggleGroup>
-                                <ToggleGroup fx:id="typeOfProblem" />
-                            </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="physicalRadioButton" layoutX="14.0" layoutY="50.0" mnemonicParsing="false" onAction="#physicalButtonAction" prefHeight="16.0" prefWidth="85.0" text="Physical" toggleGroup="$typeOfProblem" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="301.0" AnchorPane.topAnchor="50.0" />
-                        <ComboBox fx:id="problemTypeComboBox" layoutX="199.0" layoutY="46.0" onAction="#problemTypeComboBoxAction" prefHeight="25.0" prefWidth="165.0" promptText="Choose problem type" />
-                    </children>
-                </AnchorPane>
-                <AnchorPane layoutX="10.0" layoutY="110.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="400.0" GridPane.rowIndex="2">
-                    <children>
-                        <Label layoutX="14.0" prefHeight="40.0" prefWidth="165.0" text="Describe your problem" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="221.0" AnchorPane.topAnchor="0.0">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                        </Label>
-                        <TextArea fx:id="problemTextArea" layoutX="14.0" layoutY="32.0" prefHeight="87.0" prefWidth="350.0" wrapText="true" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="32.0" />
-                    </children>
-                </AnchorPane>
-                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="400.0" GridPane.rowIndex="3">
-                    <children>
-                        <Label layoutX="14.0" prefHeight="40.0" prefWidth="195.0" text="Do you have any allergies?" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="0.0">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                        </Label>
-                        <TextArea fx:id="allergiesTextArea" disable="true" layoutX="191.0" layoutY="80.0" prefHeight="50.0" prefWidth="195.0" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-                        <RadioButton fx:id="yesAllergiesRadioButton" layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#yesAllergiesButtonAction" text="Yes" AnchorPane.bottomAnchor="94.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="40.0">
-                            <toggleGroup>
-                                <ToggleGroup fx:id="allergies" />
-                            </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="idkAllergiesRadioButton" layoutX="167.0" layoutY="40.0" mnemonicParsing="false" onAction="#idkAllergiesButtonAction" text="I don't know" toggleGroup="$allergies" />
-                        <RadioButton fx:id="noAllergiesRadioButton" layoutX="349.0" layoutY="40.0" mnemonicParsing="false" onAction="#noAllergiesButtonAction" text="No" toggleGroup="$allergies" />
-                        <Label fx:id="separatedByCommasLabel1" layoutX="14.0" layoutY="129.0" text="Write them separated by commas (,)" />
-                    </children>
-                </AnchorPane>
-                <AnchorPane layoutX="10.0" layoutY="360.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="400.0" GridPane.rowIndex="4">
-                    <children>
-                        <Label layoutX="14.0" prefHeight="40.0" prefWidth="260.0" text="Do you have any chronic conditions?" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="0.0">
-                            <font>
-                                <Font size="16.0" />
-                            </font>
-                        </Label>
-                        <TextArea fx:id="chronicConditionsTextArea" disable="true" layoutX="191.0" layoutY="80.0" prefHeight="50.0" prefWidth="195.0" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-                        <RadioButton fx:id="yesChronicConditionsRadioButton" layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#yesChronicConditionsButtonAction" text="Yes" AnchorPane.bottomAnchor="94.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="40.0">
-                            <toggleGroup>
-                                <ToggleGroup fx:id="chronicConditions" />
-                            </toggleGroup>
-                        </RadioButton>
-                        <RadioButton fx:id="idkChronicConditionsRadioButton" layoutX="167.0" layoutY="40.0" mnemonicParsing="false" onAction="#idkChronicConditionsButtonAction" text="I don't know" toggleGroup="$chronicConditions" />
-                        <RadioButton fx:id="noChronicConditionsRadioButton" layoutX="349.0" layoutY="40.0" mnemonicParsing="false" onAction="#noChronicConditionsButtonAction" text="No" toggleGroup="$chronicConditions" />
-                        <Label fx:id="separatedByCommasLabel2" layoutX="14.0" layoutY="129.0" text="Write them separated by commas (,)" />
-                    </children>
-                </AnchorPane>
-                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
-                    <children>
-                        <Button fx:id="cancelButton" layoutX="60.0" layoutY="42.0" mnemonicParsing="false" onAction="#cancelButtonAction" prefHeight="40.0" prefWidth="140.0" text="CANCEL" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="246.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="42.0" />
-                        <Button fx:id="requestHelpButton" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" onAction="#requestHelpButtonAction" prefHeight="40.0" prefWidth="140.0" text="REQUEST HELP" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="246.0" AnchorPane.topAnchor="42.0" />
-                        <Label fx:id="alreadyProblemLabel" layoutX="14.0" layoutY="21.0" text="You already have a problem for this specialty" />
-                    </children>
-                </AnchorPane>
-            </children>
-        </GridPane>
-    </children>
+<ScrollPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.otherController.RequestHelpC">
+   <content>
+      <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="400.0">
+          <children>
+              <GridPane prefHeight="691.0" prefWidth="400.0">
+                  <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="400.0" />
+                  </columnConstraints>
+                  <rowConstraints>
+                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" vgrow="SOMETIMES" />
+                  </rowConstraints>
+                  <children>
+                      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="400.0">
+                          <children>
+                              <Label alignment="CENTER" layoutX="14.0" layoutY="36.0" prefHeight="50.0" prefWidth="195.0" text="REQUEST HELP FORM" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="36.0">
+                                  <font>
+                                      <Font size="20.0" />
+                                  </font>
+                              </Label>
+                          </children>
+                      </AnchorPane>
+                      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="400.0" GridPane.rowIndex="1">
+                          <children>
+                              <Label layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="260.0" text="What type of problem do you have?" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="14.0">
+                                  <font>
+                                      <Font size="16.0" />
+                                  </font>
+                              </Label>
+                              <RadioButton fx:id="mentalRadioButton" layoutX="99.0" layoutY="50.0" mnemonicParsing="false" onAction="#mentalButtonAction" text="Mental" AnchorPane.leftAnchor="99.0" AnchorPane.topAnchor="50.0">
+                                  <toggleGroup>
+                                      <ToggleGroup fx:id="typeOfProblem" />
+                                  </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="physicalRadioButton" layoutX="14.0" layoutY="50.0" mnemonicParsing="false" onAction="#physicalButtonAction" prefHeight="16.0" prefWidth="85.0" text="Physical" toggleGroup="$typeOfProblem" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="301.0" AnchorPane.topAnchor="50.0" />
+                              <ComboBox fx:id="problemTypeComboBox" layoutX="199.0" layoutY="46.0" onAction="#problemTypeComboBoxAction" prefHeight="25.0" prefWidth="165.0" promptText="Choose problem type" />
+                          </children>
+                      </AnchorPane>
+                      <AnchorPane layoutX="10.0" layoutY="110.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="400.0" GridPane.rowIndex="2">
+                          <children>
+                              <Label layoutX="14.0" prefHeight="40.0" prefWidth="165.0" text="Describe your problem" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="221.0" AnchorPane.topAnchor="0.0">
+                                  <font>
+                                      <Font size="16.0" />
+                                  </font>
+                              </Label>
+                              <TextArea fx:id="problemTextArea" layoutX="14.0" layoutY="32.0" prefHeight="87.0" prefWidth="350.0" wrapText="true" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="32.0" />
+                          </children>
+                      </AnchorPane>
+                      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="400.0" GridPane.rowIndex="3">
+                          <children>
+                              <Label layoutX="14.0" prefHeight="40.0" prefWidth="195.0" text="Do you have any allergies?" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="0.0">
+                                  <font>
+                                      <Font size="16.0" />
+                                  </font>
+                              </Label>
+                              <TextArea fx:id="allergiesTextArea" disable="true" layoutX="191.0" layoutY="80.0" prefHeight="50.0" prefWidth="195.0" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+                              <RadioButton fx:id="yesAllergiesRadioButton" layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#yesAllergiesButtonAction" text="Yes" AnchorPane.bottomAnchor="94.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="40.0">
+                                  <toggleGroup>
+                                      <ToggleGroup fx:id="allergies" />
+                                  </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="idkAllergiesRadioButton" layoutX="167.0" layoutY="40.0" mnemonicParsing="false" onAction="#idkAllergiesButtonAction" text="I don't know" toggleGroup="$allergies" />
+                              <RadioButton fx:id="noAllergiesRadioButton" layoutX="349.0" layoutY="40.0" mnemonicParsing="false" onAction="#noAllergiesButtonAction" text="No" toggleGroup="$allergies" />
+                              <Label fx:id="separatedByCommasLabel1" layoutX="14.0" layoutY="129.0" text="Write them separated by commas (,)" />
+                          </children>
+                      </AnchorPane>
+                      <AnchorPane layoutX="10.0" layoutY="360.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="400.0" GridPane.rowIndex="4">
+                          <children>
+                              <Label layoutX="14.0" prefHeight="40.0" prefWidth="260.0" text="Do you have any chronic conditions?" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="0.0">
+                                  <font>
+                                      <Font size="16.0" />
+                                  </font>
+                              </Label>
+                              <TextArea fx:id="chronicConditionsTextArea" disable="true" layoutX="191.0" layoutY="80.0" prefHeight="50.0" prefWidth="195.0" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+                              <RadioButton fx:id="yesChronicConditionsRadioButton" layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#yesChronicConditionsButtonAction" text="Yes" AnchorPane.bottomAnchor="94.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="40.0">
+                                  <toggleGroup>
+                                      <ToggleGroup fx:id="chronicConditions" />
+                                  </toggleGroup>
+                              </RadioButton>
+                              <RadioButton fx:id="idkChronicConditionsRadioButton" layoutX="167.0" layoutY="40.0" mnemonicParsing="false" onAction="#idkChronicConditionsButtonAction" text="I don't know" toggleGroup="$chronicConditions" />
+                              <RadioButton fx:id="noChronicConditionsRadioButton" layoutX="349.0" layoutY="40.0" mnemonicParsing="false" onAction="#noChronicConditionsButtonAction" text="No" toggleGroup="$chronicConditions" />
+                              <Label fx:id="separatedByCommasLabel2" layoutX="14.0" layoutY="129.0" text="Write them separated by commas (,)" />
+                          </children>
+                      </AnchorPane>
+                      <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="5">
+                          <children>
+                              <Button fx:id="cancelButton" layoutX="60.0" layoutY="42.0" mnemonicParsing="false" onAction="#cancelButtonAction" prefHeight="40.0" prefWidth="140.0" text="CANCEL" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="246.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="42.0" />
+                              <Button fx:id="requestHelpButton" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" onAction="#requestHelpButtonAction" prefHeight="40.0" prefWidth="140.0" text="REQUEST HELP" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="246.0" AnchorPane.topAnchor="42.0" />
+                              <Label fx:id="alreadyProblemLabel" layoutX="14.0" layoutY="21.0" text="You already have a problem for this specialty" />
+                          </children>
+                      </AnchorPane>
+                  </children>
+              </GridPane>
+          </children>
+          <stylesheets>
+              <URL value="@../../css/theme.css" />
+          </stylesheets>
+      </AnchorPane>
+   </content>
     <stylesheets>
         <URL value="@../../css/theme.css" />
     </stylesheets>
-</AnchorPane>
+</ScrollPane>
