@@ -15,7 +15,10 @@
 <?import javafx.scene.text.Font?>
 
 <ScrollPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.otherController.RequestHelpC">
-   <content>
+    <stylesheets>
+        <URL value="@../../css/theme.css" />
+    </stylesheets>
+    <content>
       <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="400.0">
           <children>
               <GridPane prefHeight="691.0" prefWidth="400.0">
@@ -117,7 +120,5 @@
           </stylesheets>
       </AnchorPane>
    </content>
-    <stylesheets>
-        <URL value="@../../css/theme.css" />
-    </stylesheets>
+
 </ScrollPane>

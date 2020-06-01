@@ -15,6 +15,9 @@
 <?import javafx.scene.text.Font?>
 
 <ScrollPane fitToHeight="true" fitToWidth="true" styleClass="edge-to-edge" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.menuController.DoctorMenuC">
+    <stylesheets>
+        <URL value="@../../css/theme.css" />
+    </stylesheets>
     <content>
       <AnchorPane prefHeight="600.0" prefWidth="800.0">
          <children>
@@ -109,7 +112,4 @@
          </children>
       </AnchorPane>
     </content>
-    <stylesheets>
-        <URL value="@../../css/theme.css" />
-    </stylesheets>
 </ScrollPane>

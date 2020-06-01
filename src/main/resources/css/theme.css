@@ -1,12 +1,12 @@
 .root {
-    -fx-background-color: linear-gradient(to bottom, rgb(50, 16, 28), rgb(47, 15, 26));
+    -fx-background-color: linear-gradient(to bottom, rgb(33, 35, 39), rgb(22, 26, 29));
 }
 /* panes */
 
     /* anchor-panes */
 
 .anchor-pane {
-    -fx-background-color: linear-gradient(to bottom, rgb(50, 16, 28), rgb(47, 15, 26));
+    -fx-background-color: linear-gradient(to bottom, rgb(33, 35, 39), rgb(22, 26, 29));
 }
 
 #patientMenuLeftAP {
@@ -27,11 +27,11 @@
 }
 
 .tab-pane *.tab-header-area *.tab-header-background {
-  -fx-background-color:transparent;
+  -fx-background-color: transparent;
 }
 
 .tab {
-  -fx-background-color:transparent ;
+  -fx-background-color: transparent;
    -fx-focus-color: transparent;
 }
 

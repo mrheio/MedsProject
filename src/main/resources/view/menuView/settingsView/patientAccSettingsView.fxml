@@ -12,30 +12,37 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<ScrollPane styleClass="edge-to-edge" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.menuController.settings.PatientAccSettingsC">
+<ScrollPane fitToHeight="true" fitToWidth="true" styleClass="edge-to-edge" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.menuController.settings.PatientAccSettingsC">
+    <stylesheets>
+        <URL value="@../../../css/theme.css" />
+    </stylesheets>
     <content>
-        <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: linear-gradient(to bottom, rgb(36, 39, 45), rgb(42, 46, 51))linear-gradient(to bottom, rgb(36, 39, 45), rgb(42, 46, 51));">
+        <AnchorPane prefHeight="600.0" prefWidth="800.0">
             <children>
-                <TabPane layoutY="94.0" prefHeight="500.0" prefWidth="800.0" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="200.0" tabMaxWidth="30.0" tabMinHeight="200.0" tabMinWidth="30.0">
+                <TabPane layoutY="94.0" prefHeight="500.0" prefWidth="800.0" rotateGraphic="true" side="LEFT" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="200.0" tabMaxWidth="30.0" tabMinHeight="200.0" tabMinWidth="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
                     <tabs>
                         <Tab>
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                             </content>
                             <content>
-                                <AnchorPane prefWidth="737.0">
-                                    <children>
-                                        <Label layoutX="64.0" layoutY="22.0" text="Email" AnchorPane.bottomAnchor="461.0" AnchorPane.leftAnchor="64.0" />
-                                        <Label layoutX="64.0" layoutY="62.0" text="Username" AnchorPane.bottomAnchor="421.0" AnchorPane.leftAnchor="64.0" />
-                                        <Label layoutX="64.0" layoutY="102.0" text="Role" AnchorPane.bottomAnchor="381.0" AnchorPane.leftAnchor="64.0" />
-                                        <TextField fx:id="emailTextField" disable="true" layoutX="133.0" layoutY="16.0" prefHeight="27.0" prefWidth="165.0" AnchorPane.bottomAnchor="457.0" AnchorPane.leftAnchor="133.0" />
-                                        <TextField fx:id="usernameTextField" disable="true" layoutX="133.0" layoutY="56.0" prefHeight="27.0" prefWidth="165.0" AnchorPane.bottomAnchor="417.0" AnchorPane.leftAnchor="133.0" />
-                                        <TextField fx:id="roleTextField" disable="true" layoutX="133.0" layoutY="96.0" prefHeight="27.0" prefWidth="165.0" AnchorPane.bottomAnchor="377.0" AnchorPane.leftAnchor="133.0" />
-                                        <Button fx:id="editEmailButton" layoutX="309.0" layoutY="16.0" mnemonicParsing="false" onAction="#editEmailButtonAction" prefHeight="27.0" prefWidth="27.0" AnchorPane.bottomAnchor="457.0" AnchorPane.leftAnchor="309.0" />
-                                        <Button fx:id="editUsernameButton" layoutX="309.0" layoutY="56.0" mnemonicParsing="false" onAction="#editUsernameButtonAction" prefHeight="27.0" prefWidth="27.0" AnchorPane.bottomAnchor="417.0" AnchorPane.leftAnchor="309.0" />
-                                        <Button fx:id="updateAccDetailsButton" layoutX="133.0" layoutY="184.0" mnemonicParsing="false" onAction="#updateAccDetailsButtonAction" text="Update account details" />
-                                    </children>
-                                </AnchorPane>
+                        <ScrollPane fitToHeight="true" fitToWidth="true">
+                           <content>
+                                      <AnchorPane>
+                                          <children>
+                                              <Label text="Email" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="72.0" />
+                                              <Label text="Username" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="112.0" />
+                                              <Label text="Role" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="152.0" />
+                                              <TextField fx:id="emailTextField" disable="true" prefHeight="27.0" prefWidth="165.0" AnchorPane.leftAnchor="133.0" AnchorPane.rightAnchor="362.0" AnchorPane.topAnchor="67.0" />
+                                              <TextField fx:id="usernameTextField" disable="true" prefHeight="27.0" prefWidth="165.0" AnchorPane.leftAnchor="133.0" AnchorPane.rightAnchor="362.0" AnchorPane.topAnchor="107.0" />
+                                              <TextField fx:id="roleTextField" disable="true" prefHeight="27.0" prefWidth="165.0" AnchorPane.leftAnchor="133.0" AnchorPane.rightAnchor="362.0" AnchorPane.topAnchor="147.0" />
+                                              <Button fx:id="editEmailButton" mnemonicParsing="false" onAction="#editEmailButtonAction" prefHeight="27.0" prefWidth="27.0" AnchorPane.rightAnchor="324.0" AnchorPane.topAnchor="66.0" />
+                                              <Button fx:id="editUsernameButton" mnemonicParsing="false" onAction="#editUsernameButtonAction" prefHeight="27.0" prefWidth="27.0" AnchorPane.rightAnchor="324.0" AnchorPane.topAnchor="106.0" />
+                                              <Button fx:id="updateAccDetailsButton" mnemonicParsing="false" onAction="#updateAccDetailsButtonAction" text="Update account details" AnchorPane.leftAnchor="133.0" AnchorPane.topAnchor="187.0" />
+                                          </children>
+                                      </AnchorPane>
+                           </content>
+                        </ScrollPane>
                             </content>
                             <graphic>
                                 <Group>
@@ -47,20 +54,24 @@
                         </Tab>
                         <Tab>
                             <content>
-                                <AnchorPane prefWidth="737.0">
-                                    <children>
-                                        <Label layoutX="64.0" layoutY="22.0" text="Old password" AnchorPane.bottomAnchor="461.0" AnchorPane.leftAnchor="64.0" />
-                                        <Label layoutX="64.0" layoutY="62.0" text="New password" AnchorPane.bottomAnchor="421.0" AnchorPane.leftAnchor="64.0" />
-                                        <Label layoutX="64.0" layoutY="104.0" text="Confirm new password" AnchorPane.bottomAnchor="379.0" AnchorPane.leftAnchor="64.0" />
-                                        <Button fx:id="changePasswordButton" layoutX="192.0" layoutY="142.0" mnemonicParsing="false" onAction="#changePasswordButtonAction" text="Change password" AnchorPane.bottomAnchor="333.0" AnchorPane.leftAnchor="192.0" />
-                                        <Hyperlink fx:id="forgotPasswordHL" layoutX="310.0" layoutY="143.0" onAction="#forgotPasswordHLAction" text="I forgot my password" AnchorPane.bottomAnchor="334.0" AnchorPane.leftAnchor="310.0" />
-                                        <PasswordField fx:id="oldPasswordField" layoutX="200.0" layoutY="19.0" prefHeight="27.0" prefWidth="165.0" AnchorPane.bottomAnchor="455.0" AnchorPane.leftAnchor="192.0" />
-                                        <PasswordField fx:id="newPasswordField" layoutX="200.0" layoutY="59.0" prefHeight="27.0" prefWidth="165.0" AnchorPane.bottomAnchor="415.0" AnchorPane.leftAnchor="192.0" />
-                                        <PasswordField fx:id="confirmPasswordField" layoutX="206.0" layoutY="100.0" prefHeight="27.0" prefWidth="165.0" AnchorPane.bottomAnchor="375.0" AnchorPane.leftAnchor="192.0" />
-                                        <Label fx:id="badOldPassword" layoutX="192.0" layoutY="175.0" text="You have entered your old password incorrectly" visible="false" AnchorPane.leftAnchor="192.0" />
-                                        <Label fx:id="badNewPassword" layoutX="192.0" layoutY="195.0" text="Your new password does not match" visible="false" AnchorPane.leftAnchor="192.0" />
-                                    </children>
-                                </AnchorPane>
+                        <ScrollPane fitToHeight="true" fitToWidth="true">
+                           <content>
+                                      <AnchorPane>
+                                          <children>
+                                              <Label text="Old password" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="72.0" />
+                                              <Label text="New password" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="112.0" />
+                                              <Label text="Confirm new password" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="152.0" />
+                                              <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#changePasswordButtonAction" text="Change password" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="187.0" />
+                                              <Hyperlink fx:id="forgotPasswordHL" onAction="#forgotPasswordHLAction" text="I forgot my password" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="227.0" />
+                                              <PasswordField fx:id="oldPasswordField" prefHeight="27.0" prefWidth="165.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="295.0" AnchorPane.topAnchor="67.0" />
+                                              <PasswordField fx:id="newPasswordField" prefHeight="27.0" prefWidth="165.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="295.0" AnchorPane.topAnchor="107.0" />
+                                              <PasswordField fx:id="confirmPasswordField" prefHeight="27.0" prefWidth="165.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="295.0" AnchorPane.topAnchor="147.0" />
+                                              <Label fx:id="badOldPassword" text="You have entered your old password incorrectly" visible="false" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="267.0" />
+                                              <Label fx:id="badNewPassword" text="Your new password does not match" visible="false" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="300.0" />
+                                          </children>
+                                      </AnchorPane>
+                           </content>
+                        </ScrollPane>
                             </content>
                             <graphic>
                                 <Group>
@@ -71,9 +82,6 @@
                             </graphic>
                         </Tab>
                     </tabs>
-                    <stylesheets>
-                        <URL value="@../../../css/theme.css" />
-                    </stylesheets>
                 </TabPane>
             </children>
         </AnchorPane>
