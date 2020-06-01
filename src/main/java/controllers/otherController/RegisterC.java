@@ -66,7 +66,6 @@ public class RegisterC implements Initializable{
     }
 
     @FXML void createAccountButtonAction(ActionEvent actionEvent) throws IOException {
-        UserMisc.readUsers();
         Person person = null;
         if (checkFields()) {
             NodeMisc.showNode(checkFieldsLabel);

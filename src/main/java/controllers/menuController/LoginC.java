@@ -30,6 +30,11 @@ public class LoginC implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            UserMisc.readUsers();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         NodeMisc.hideDisableNode(asList(badLogin), asList(loginButton));
     }
 
