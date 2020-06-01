@@ -1,10 +1,23 @@
 .root {
-    -fx-background-color: linear-gradient(to bottom, rgb(36, 39, 45), rgb(42, 46, 51));
+    -fx-background-color: linear-gradient(to bottom, rgb(33, 35, 39), rgb(22, 26, 29));
 }
+/* panes */
+
+    /* anchor-panes */
 
 .anchor-pane {
-    -fx-background-color: linear-gradient(to bottom, rgb(36, 39, 45), rgb(42, 46, 51));
+    -fx-background-color: linear-gradient(to bottom, rgb(33, 35, 39), rgb(22, 26, 29));
 }
+
+#patientMenuLeftAP {
+    -fx-background-color: linear-gradient(to bottom, rgb(27, 29, 33), rgb(16, 18, 20));
+}
+
+#doctorMenuLeftAP {
+    -fx-background-color: linear-gradient(to bottom, rgb(27, 29, 33), rgb(16, 18, 20));
+}
+
+    /* tab-pane */
 
 .tab-pane {
     -fx-tab-min-width: 30px;
@@ -14,11 +27,11 @@
 }
 
 .tab-pane *.tab-header-area *.tab-header-background {
-  -fx-background-color:transparent;
+  -fx-background-color: transparent;
 }
 
 .tab {
-  -fx-background-color:transparent ;
+  -fx-background-color: transparent;
    -fx-focus-color: transparent;
 }
 
@@ -36,16 +49,14 @@
     -fx-border-color: transparent;
 }
 
-.border-pane {
-    -fx-background-color: linear-gradient(to bottom, rgb(36, 39, 45), rgb(42, 46, 51));
-}
+    /* scroll-pane */
 
 .scroll-pane > .viewport {
    -fx-background-color: transparent;
 }
 
 .scroll-pane {
-    -fx-background-color: linear-gradient(to bottom, rgb(36, 39, 45), rgb(42, 46, 51));
+    -fx-background-color: linear-gradient(to bottom, rgb(33, 35, 39), rgb(22, 26, 29));
 }
 
 .scroll-pane .scroll-bar {
@@ -53,26 +64,41 @@
 }
 
 .scroll-pane .scroll-bar .thumb {
-    -fx-background-color: #E7E7E8;
+    -fx-background-color: rgb(231, 231, 232);
     -fx-background-radius: 0;
 }
+
+/* controls */
+
+    /* label */
 
 .label {
-    -fx-text-fill: #E7E7E8;
+    -fx-text-fill: rgb(231, 231, 232);
 }
 
+    /* button */
+
 .button {
-    -fx-background-color: linear-gradient(to bottom, rgb(80, 80, 80), rgb(51, 57, 63));
-    -fx-background-radius: 0;
-    -fx-text-fill: #E7E7E8;
+    -fx-background-color: linear-gradient(to bottom, rgb(58, 58, 58), rgb(40, 40, 40));
+    -fx-background-opacity: 0;
+    -fx-background-radius: 3;
+    -fx-text-fill: rgb(231, 231, 232);
 }
 
 .button:hover {
-    -fx-background-color: linear-gradient(to bottom, rgb(85, 85, 85), rgb(60, 65, 70));
+    -fx-background-color: linear-gradient(to bottom, rgb(85, 85, 85), rgb(65, 65, 65));
 }
 
 .button:pressed {
     -fx-background-color: linear-gradient(to bottom, rgb(43, 48, 53), rgb(49, 54, 60));
+}
+
+#requestHelpButton {
+    -fx-background-color: linear-gradient(to bottom, rgb(68, 21, 22), rgb(61, 18, 19));
+}
+
+#requestHelpButton:hover {
+    -fx-background-color: linear-gradient(to bottom, rgb(85, 26, 27), rgb(72, 21, 22));
 }
 
 #editEmailButton, #editUsernameButton, #editAddressButton {
@@ -84,48 +110,51 @@
     -fx-background-position: center;
 }
 
-#settingsMenuButton {
-    -fx-background-color: transparent;
-    -fx-border-color: white;
-}
-
-#settingsMenuButton:hover {
-    -fx-background-color: linear-gradient(to bottom, rgb(85, 85, 85), rgb(60, 65, 70));
-}
+    /* text-field */
 
 .text-field {
     -fx-background-color: transparent;
-    -fx-text-fill: #E7E7E8;
+    -fx-text-fill: rgb(231, 231, 232);
     -fx-border-style: solid;
-    -fx-border-color: #4B5466;
+    -fx-border-color: rgb(75, 84, 102);
     -fx-border-width: 0.5px;
 }
 
 .text-field: focused {
-    -fx-border-color: #7D8594;
+    -fx-border-color: rgb(125, 133, 148);
 }
+
+    /* text-area */
 
 .text-area {
     -fx-background-color: transparent;
-    -fx-text-fill: #E7E7E8;
+    -fx-text-fill: rgb(231, 231, 232);
     -fx-border-style: solid;
-    -fx-border-color: #4B5466;
+    -fx-border-color: rgb(75, 84, 102);
     -fx-border-width: 0.5px;
     -fx-area-background: transparent;
 }
 
 .text-area: focused {
-    -fx-border-color: #7D8594;
+    -fx-border-color: rgb(125, 133, 148);
 }
 
 .text-area .content {
     -fx-background-color: transparent;
 }
 
+#problemTA . content,
+#allergiesTA .content,
+#ccTA .content {
+    -fx-cursor: default;
+}
+
+    /* combo-box */
+
 .combo-box {
 	-fx-background-color: transparent;
 	-fx-border-style: solid;
-    -fx-border-color: #4B5466;
+    -fx-border-color: rgb(75, 84, 102);
     -fx-border-width: 0.5px;
 }
 
@@ -134,35 +163,45 @@
 }
 
 .combo-box .scroll-bar .thumb {
-    -fx-background-color: #E7E7E8;
+    -fx-background-color: rgb(231, 231, 232);
     -fx-background-radius: 0;
 }
 
 .combo-box: hover {
-    -fx-border-color: #7D8594;
+    -fx-border-color: rgb(125, 133, 148);
 }
 
 .combo-box .list-view {
-    -fx-background-color: linear-gradient(to bottom, rgb(36, 39, 45), rgb(42, 46, 51));
+    -fx-background-color: linear-gradient(to bottom, rgb(58, 58, 58), rgb(40, 40, 40));
 }
 
 .combo-box .list-cell {
-    -fx-background-color: linear-gradient(to bottom, rgb(36, 39, 45), rgb(42, 46, 51));
-    -fx-text-fill: #E7E7E8;
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(231, 231, 232);
 }
+
+.combo-box .list-cell: hover {
+    -fx-background-color: linear-gradient(to bottom, rgb(85, 85, 85), rgb(65, 65, 65));
+    -fx-text-fill: rgb(231, 231, 232);
+}
+
+    /* check-box */
 
 .check-box {
-    -fx-text-fill: #E7E7E8;
+    -fx-text-fill: rgb(231, 231, 232);
 }
+
+    /* radio-button */
 
 .radio-button {
-    -fx-text-fill: #E7E7E8;
-
+    -fx-text-fill: rgb(231, 231, 232);
 }
+
+    /* table-view */
 
 .table-view {
    -fx-background-color: transparent;
-   -fx-text-fill: #E7E7E8;
+   -fx-text-fill: rgb(231, 231, 232);
    -fx-table-cell-border-color: transparent;
    -fx-selection-bar: transparent;
    -fx-selection-bar-non-focused: transparent
@@ -170,7 +209,7 @@
 
 .table-row-cell {
   -fx-background-color: transparent;
-  -fx-text-fill: #E7E7E8;
+  -fx-text-fill: rgb(231, 231, 232);
 }
 
 .table-row-cell:filled:selected {
@@ -178,18 +217,21 @@
 }
 
 .table-column {
-    -fx-text-fill: #E7E7E8;
+    -fx-text-fill: rgb(231, 231, 232);
 }
 
-.table-view .column-header,
-.table-view .column-header .filler,
-.table-view .column-header-background .filler {
-    -fx-background-color: linear-gradient(to bottom, rgb(43, 48, 53), rgb(49, 54, 60));
+.table-view .column-header {
+    -fx-background-color: transparent;
 }
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+    /* hyperlink */
 
 .hyperlink {
     -fx-underline: false;
     -fx-border-color: transparent;
 }
-
 

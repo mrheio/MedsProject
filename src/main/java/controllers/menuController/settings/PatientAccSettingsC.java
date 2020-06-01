@@ -1,5 +1,7 @@
 package controllers.menuController.settings;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,12 +27,23 @@ public class PatientAccSettingsC implements Initializable {
     @FXML private PasswordField confirmPasswordField;
     @FXML private Label badOldPassword;
     @FXML private Label badNewPassword;
+    @FXML private ComboBox patientOptionsComboBox;
 
     private Patient loggedPatient = (Patient) UserMisc.getLoggedUser();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        configurePatientSettingsCB();
         configureAccountTab();
+    }
+
+    @FXML void patientOptionsComboBoxAction(ActionEvent actionEvent) {
+        if (patientOptionsComboBox.getSelectionModel().getSelectedItem().equals("Log out")) {
+            UserMisc.logOutUser();
+        }
+        if (patientOptionsComboBox.getSelectionModel().getSelectedItem().equals("Menu")) {
+            ViewMisc.showStage("/view/menuView/patientMenuView.fxml");
+        }
     }
 
     @FXML private void editEmailButtonAction(ActionEvent event) throws IOException {
@@ -82,11 +95,16 @@ public class PatientAccSettingsC implements Initializable {
 
     }
 
+    private void configurePatientSettingsCB() {
+        ObservableList<String> patientOptions = FXCollections.observableArrayList("Log out", "Menu");
+        patientOptionsComboBox.setPromptText(loggedPatient.getSurname() + " " + loggedPatient.getForename());
+        patientOptionsComboBox.setItems(patientOptions);
+    }
+
     private void configureAccountTab() {
         emailTextField.setText(loggedPatient.getEmail());
         usernameTextField.setText(loggedPatient.getUsername());
         roleTextField.setText(loggedPatient.getRole());
     }
-
 
 }

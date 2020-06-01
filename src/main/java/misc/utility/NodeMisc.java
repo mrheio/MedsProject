@@ -3,9 +3,9 @@ package misc.utility;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import model.roles.Doctor;
 
-import javax.swing.text.TableView;
 import java.util.List;
 
 public class NodeMisc {
@@ -86,5 +86,13 @@ public class NodeMisc {
         for (Node x: enable) {
             x.setDisable(false);
         }
+    }
+
+    public static void deselectTableView(TableView tableView) {
+        tableView.focusedProperty().addListener((observableValue, oldVal, newVal) -> {
+            if (!newVal) {
+                tableView.getSelectionModel().clearSelection();
+            }
+        });
     }
 }

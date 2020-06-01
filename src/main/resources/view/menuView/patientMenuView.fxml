@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -10,55 +9,24 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.menuController.PatientMenuC">
+<ScrollPane fitToHeight="true" fitToWidth="true" styleClass="edge-to-edge" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.menuController.PatientMenuC">
+    <stylesheets>
+        <URL value="@../../css/theme.css" />
+    </stylesheets>
     <content>
-        <BorderPane prefHeight="598.0" prefWidth="798.0">
-            <top>
-            <AnchorPane BorderPane.alignment="CENTER">
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
-               <children>
-                          <ComboBox fx:id="patientOptionsComboBox" layoutX="650.0" layoutY="12.0" onAction="#patientOptionsComboBoxAction" promptText="Patient name" />
-               </children>
-            </AnchorPane>
-            </top>
-            <left>
-                <AnchorPane prefHeight="559.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                        <TableView fx:id="doctorsTableView" editable="true" layoutX="5.0" layoutY="77.0" prefHeight="400.0" prefWidth="190.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="80.0">
-                            <placeholder>
-                                <Label text="No doctor available" />
-                            </placeholder>
-                            <columns>
-                                <TableColumn fx:id="surnameColumn" editable="false" prefWidth="75.0" text="Surname" />
-                                <TableColumn fx:id="forenameColumn" editable="false" prefWidth="75.0" text="Forename" />
-                                <TableColumn fx:id="specialtyColumn" editable="false" prefWidth="75.0" text="Specialty" />
-                            </columns>
-                            <columnResizePolicy>
-                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                            </columnResizePolicy>
-                        </TableView>
-                        <Label layoutX="15.0" layoutY="14.0" text="Available doctors" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="7.0">
+        <AnchorPane prefHeight="600.0" prefWidth="800.0">
+            <children>
+                <AnchorPane layoutX="277.0" layoutY="82.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="277.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="82.0">
+                    <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="64.0" text="Your problems" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="67.0">
                             <font>
                                 <Font size="18.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="doctorFilterTextField" layoutX="15.0" layoutY="47.0" prefHeight="25.0" prefWidth="170.0" promptText="Search for medical specialty" AnchorPane.leftAnchor="5.0" />
-               </children>
-                </AnchorPane>
-            </left>
-            <center>
-                <AnchorPane prefHeight="559.0" prefWidth="400.0" BorderPane.alignment="CENTER">
-                    <children>
-                        <Label layoutX="135.0" layoutY="14.0" text="Your problems" AnchorPane.topAnchor="7.0">
-                     <font>
-                        <Font size="18.0" />
-                     </font></Label>
-                        <TableView fx:id="problemsTableView" editable="true" layoutX="43.0" layoutY="80.0" prefHeight="400.0" prefWidth="300.0" AnchorPane.bottomAnchor="79.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="55.0" AnchorPane.topAnchor="80.0">
+                        <TableView fx:id="problemsTableView" editable="true" layoutY="57.0" prefHeight="384.0" prefWidth="248.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0">
                             <placeholder>
                                 <Label text="You don't have any problem" />
                             </placeholder>
@@ -71,21 +39,40 @@
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                             </columnResizePolicy>
                         </TableView>
-                        <Button fx:id="deleteProblemButton" layoutX="138.0" layoutY="468.0" mnemonicParsing="false" onAction="#deleteProblemButtonAction" text="DELETE PROBLEM" textAlignment="CENTER" wrapText="true" />
                     </children>
                 </AnchorPane>
-            </center>
-            <right>
-                <AnchorPane fx:id="doctorDetailsAnchorPane" prefHeight="559.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                        <Label fx:id="doctorName" layoutX="48.0" layoutY="197.0" text="SURNAME FORENAME" />
-                        <Button fx:id="requestHelpButton" layoutX="61.0" layoutY="464.0" mnemonicParsing="false" onAction="#requestHelpButtonAction" text="REQUEST HELP" />
-               </children>
+                <AnchorPane fx:id="patientMenuLeftAP" prefWidth="215.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <TableView fx:id="doctorsTableView" editable="true" layoutX="10.0" layoutY="140.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0">
+                            <placeholder>
+                                <Label text="No doctor available" />
+                            </placeholder>
+                            <columns>
+                                <TableColumn fx:id="surnameColumn" editable="false" prefWidth="75.0" text="Surname" />
+                                <TableColumn fx:id="forenameColumn" editable="false" prefWidth="75.0" text="Forename" />
+                                <TableColumn fx:id="specialtyColumn" editable="false" minWidth="0.0" prefWidth="0.0" text="Specialty" />
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                        <Label layoutX="10.0" layoutY="44.0" text="Available doctors" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="44.0">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="doctorFilterTextField" layoutX="10.0" layoutY="87.0" promptText="Search for medical specialty" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="87.0" />
+                    </children>
                 </AnchorPane>
-            </right>
-        </BorderPane>
+                <ComboBox fx:id="patientOptionsComboBox" onAction="#patientOptionsComboBoxAction" prefHeight="27.0" prefWidth="125.0" promptText="NAME" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="14.0" />
+                <VBox fx:id="patientButtonsVB" alignment="BOTTOM_CENTER" fillWidth="false" layoutX="665.0" layoutY="430.0" prefHeight="110.0" prefWidth="111.0" spacing="20.0" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="430.0">
+                    <children>
+                        <Button fx:id="deleteProblemButton" mnemonicParsing="false" onAction="#deleteProblemButtonAction" prefHeight="40.0" prefWidth="111.0" text="DELETE PROBLEM" textAlignment="CENTER" wrapText="true" />
+                        <Button fx:id="requestHelpButton" mnemonicParsing="false" onAction="#requestHelpButtonAction" prefHeight="40.0" prefWidth="111.0" text="REQUEST HELP" />
+                    </children>
+                </VBox>
+            <Label fx:id="doctorName" layoutX="681.0" layoutY="82.0" text="Doctor Name" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="82.0" />
+            </children>
+        </AnchorPane>
     </content>
-    <stylesheets>
-        <URL value="@../../css/theme.css" />
-    </stylesheets>
 </ScrollPane>
