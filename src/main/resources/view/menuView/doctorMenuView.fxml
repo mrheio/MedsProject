@@ -21,7 +21,7 @@
     <content>
       <AnchorPane prefHeight="600.0" prefWidth="800.0">
          <children>
-            <AnchorPane layoutX="215.0" layoutY="100.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="86.0">
+            <AnchorPane fx:id="patientDetailsAP" layoutX="215.0" layoutY="100.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="86.0">
                <children>
                         <VBox layoutY="33.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
                             <children>

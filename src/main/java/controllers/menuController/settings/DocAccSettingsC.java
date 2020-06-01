@@ -1,5 +1,7 @@
 package controllers.menuController.settings;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,12 +31,23 @@ public class DocAccSettingsC implements Initializable {
     @FXML private PasswordField confirmPasswordField;
     @FXML private Label badOldPassword;
     @FXML private Label badNewPassword;
+    @FXML private ComboBox doctorOptionsComboBox;
 
     private Doctor loggedDoctor = (Doctor) UserMisc.getLoggedUser();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        configureDoctorSettingsCB();
         configureAccountTab();
+    }
+
+    @FXML void doctorOptionsComboBoxAction(ActionEvent actionEvent) {
+        if (doctorOptionsComboBox.getSelectionModel().getSelectedItem().equals("Log out")) {
+            UserMisc.logOutUser();
+        }
+        if (doctorOptionsComboBox.getSelectionModel().getSelectedItem().equals("Menu")) {
+            ViewMisc.showStage("/view/menuView/doctorMenuView.fxml");
+        }
     }
 
     @FXML private void editEmailButtonAction(ActionEvent event) throws IOException {
@@ -91,12 +104,19 @@ public class DocAccSettingsC implements Initializable {
 
     }
 
+    private void configureDoctorSettingsCB() {
+        ObservableList<String> doctorOptions = FXCollections.observableArrayList("Log out", "Menu");
+        doctorOptionsComboBox.setPromptText(loggedDoctor.getSurname() + " " + loggedDoctor.getForename());
+        doctorOptionsComboBox.setItems(doctorOptions);
+    }
+
     private void configureAccountTab() {
         emailTextField.setText(loggedDoctor.getEmail());
         usernameTextField.setText(loggedDoctor.getUsername());
         roleTextField.setText(loggedDoctor.getRole()+ " - "+loggedDoctor.getSpecialty());
         addressTextField.setText(loggedDoctor.getAddress());
     }
+
 
 
 }

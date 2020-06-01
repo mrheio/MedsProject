@@ -64,13 +64,14 @@
                         <TextField fx:id="doctorFilterTextField" layoutX="10.0" layoutY="87.0" promptText="Search for medical specialty" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="87.0" />
                     </children>
                 </AnchorPane>
-                <ComboBox fx:id="patientOptionsComboBox" layoutX="651.0" layoutY="14.0" onAction="#patientOptionsComboBoxAction" prefHeight="27.0" prefWidth="125.0" promptText="NAME" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="14.0" />
-                <VBox fx:id="patientButtonsVB" alignment="BOTTOM_CENTER" fillWidth="false" layoutX="665.0" layoutY="100.0" prefHeight="460.0" prefWidth="111.0" spacing="20.0" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="100.0">
+                <ComboBox fx:id="patientOptionsComboBox" onAction="#patientOptionsComboBoxAction" prefHeight="27.0" prefWidth="125.0" promptText="NAME" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="14.0" />
+                <VBox fx:id="patientButtonsVB" alignment="BOTTOM_CENTER" fillWidth="false" layoutX="665.0" layoutY="430.0" prefHeight="110.0" prefWidth="111.0" spacing="20.0" AnchorPane.bottomAnchor="60.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="430.0">
                     <children>
                         <Button fx:id="deleteProblemButton" mnemonicParsing="false" onAction="#deleteProblemButtonAction" prefHeight="40.0" prefWidth="111.0" text="DELETE PROBLEM" textAlignment="CENTER" wrapText="true" />
                         <Button fx:id="requestHelpButton" mnemonicParsing="false" onAction="#requestHelpButtonAction" prefHeight="40.0" prefWidth="111.0" text="REQUEST HELP" />
                     </children>
                 </VBox>
+            <Label fx:id="doctorName" layoutX="681.0" layoutY="82.0" text="Doctor Name" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="82.0" />
             </children>
         </AnchorPane>
     </content>

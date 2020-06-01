@@ -27,7 +27,7 @@ import java.util.ResourceBundle;
 public class DoctorMenuC implements Initializable {
 
     @FXML private ComboBox doctorOptionsComboBox;
-    @FXML private AnchorPane patientDetailsAnchorPane;
+    @FXML private AnchorPane patientDetailsAP;
     @FXML private Button giveTreatmentButton;
     @FXML private Button appointmentNeededButton;
     @FXML private TableView<Patient> patientsTableView;
@@ -89,7 +89,7 @@ public class DoctorMenuC implements Initializable {
     private void configureMenu() {
         configureDoctorOptionsCB();
         configurePatientTable();
-        NodeMisc.hideNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAnchorPane);
+        NodeMisc.hideNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAP);
         NodeMisc.disableNode(giveTreatmentButton);
     }
 
@@ -112,7 +112,7 @@ public class DoctorMenuC implements Initializable {
             } else {
                 ccTA.setText(hasCC);
             }
-            NodeMisc.showNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAnchorPane);
+            NodeMisc.showNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAP);
 
         }
         if (patient == null) {
@@ -121,7 +121,7 @@ public class DoctorMenuC implements Initializable {
             problemTA.setText("");
             allergiesTA.setText("");
             ccTA.setText("");
-            NodeMisc.hideNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAnchorPane);
+            NodeMisc.hideNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAP);
         }
     }
 

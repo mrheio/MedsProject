@@ -130,7 +130,6 @@ public class PatientMenuC implements Initializable {
     private void configureMenu() throws IOException {
         configurePatientMenuCB();
         configureTables();
-        NodeMisc.hideNode(doctorName);
     }
 
     private void doctorSelected() {
