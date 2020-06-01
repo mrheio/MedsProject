@@ -11,23 +11,83 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane styleClass="edge-to-edge" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.menuController.DoctorMenuC">
+<ScrollPane fitToHeight="true" fitToWidth="true" styleClass="edge-to-edge" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.menuController.DoctorMenuC">
     <content>
-        <BorderPane prefHeight="600.0" prefWidth="800.0">
-            <top>
-            <AnchorPane BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="600.0" prefWidth="800.0">
+         <children>
+            <AnchorPane layoutX="215.0" layoutY="100.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="215.0" AnchorPane.rightAnchor="235.0" AnchorPane.topAnchor="86.0">
                <children>
-                          <ComboBox fx:id="doctorOptionsComboBox" layoutX="650.0" onAction="#doctorOptionsComboBoxAction" promptText="NAME" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="650.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="12.0" />
+                        <VBox layoutY="33.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="33.0">
+                            <children>
+                                <AnchorPane>
+                                    <children>
+                                        <Label layoutX="14.0" layoutY="14.0" text="About problem" AnchorPane.leftAnchor="14.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextArea fx:id="problemTA" editable="false" layoutX="14.0" layoutY="44.0" prefHeight="80.0" prefWidth="330.0" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="6.0">
+                                 <cursor>
+                                    <Cursor fx:constant="NONE" />
+                                 </cursor>
+                              </TextArea>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane>
+                                    <children>
+                                        <Label layoutX="14.0" layoutY="14.0" text="Allergies" AnchorPane.leftAnchor="14.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextArea fx:id="allergiesTA" editable="false" layoutX="14.0" layoutY="44.0" prefHeight="80.0" prefWidth="330.0" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="6.0" />
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane layoutX="10.0" layoutY="167.0">
+                                    <children>
+                                        <Label layoutX="14.0" layoutY="14.0" text="Chronic conditions" AnchorPane.leftAnchor="14.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextArea fx:id="ccTA" editable="false" layoutX="10.0" layoutY="55.0" prefHeight="80.0" prefWidth="330.0" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="6.0" />
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                        </VBox>
+                        <Label fx:id="patientName" layoutX="14.0" text="SURNAME FORENAME" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                        <Label fx:id="patientAgeLabel" layoutX="229.0" prefHeight="25.0" prefWidth="60.0" text="AGE: " AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-            </top>
-            <right>
-                <VBox fx:id="doctorTreatmentMenuVBox" alignment="BOTTOM_RIGHT" spacing="20.0" BorderPane.alignment="CENTER">
+                <AnchorPane fx:id="doctorMenuLeftAP" prefWidth="215.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <Label layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="185.0" text="People that need help" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="44.0">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <TableView fx:id="patientsTableView" layoutY="86.0" prefHeight="460.0" prefWidth="250.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0">
+                            <placeholder>
+                                <Label text="No patients" />
+                            </placeholder>
+                            <columns>
+                                <TableColumn fx:id="surnameColumn" prefWidth="75.0" text="Surname" />
+                                <TableColumn fx:id="forenameColumn" minWidth="0.0" prefWidth="114.0" text="Forename" />
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+                <VBox fx:id="doctorTreatmentMenuVBox" alignment="BOTTOM_RIGHT" layoutX="572.0" layoutY="158.0" spacing="20.0" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="100.0">
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets>
@@ -45,82 +105,9 @@
                         <Insets bottom="20.0" right="20.0" />
                     </padding>
                 </VBox>
-            </right>
-            <left>
-                <AnchorPane BorderPane.alignment="CENTER">
-                    <children>
-                        <Label layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="185.0" text="People that need help" AnchorPane.bottomAnchor="501.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="14.0">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                        <TableView fx:id="patientsTableView" layoutY="86.0" prefHeight="460.0" prefWidth="250.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0">
-                            <placeholder>
-                                <Label text="No patients" />
-                            </placeholder>
-                            <columns>
-                                <TableColumn fx:id="surnameColumn" prefWidth="75.0" text="Surname" />
-                                <TableColumn fx:id="forenameColumn" prefWidth="75.0" text="Forename" />
-                            </columns>
-                            <columnResizePolicy>
-                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-                            </columnResizePolicy>
-                        </TableView>
-                    </children>
-                </AnchorPane>
-            </left>
-            <center>
-                <AnchorPane fx:id="patientDetailsAnchorPane" BorderPane.alignment="CENTER">
-                    <children>
-                        <Label fx:id="patientName" layoutX="14.0" layoutY="4.0" text="SURNAME FORENAME" AnchorPane.bottomAnchor="511.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="119.0" AnchorPane.topAnchor="4.0">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                        <VBox layoutX="118.0" layoutY="60.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
-                            <children>
-                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                    <children>
-                                        <Label layoutX="14.0" layoutY="14.0" text="About problem" AnchorPane.leftAnchor="14.0">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextArea fx:id="problemTA" editable="false" layoutX="14.0" layoutY="44.0" prefHeight="80.0" prefWidth="330.0" wrapText="true" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="44.0">
-                                 <cursor>
-                                    <Cursor fx:constant="NONE" />
-                                 </cursor>
-                              </TextArea>
-                                    </children>
-                                </AnchorPane>
-                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                                    <children>
-                                        <Label layoutX="14.0" layoutY="14.0" text="Allergies" AnchorPane.leftAnchor="14.0">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextArea fx:id="allergiesTA" editable="false" layoutX="14.0" layoutY="44.0" prefHeight="80.0" prefWidth="330.0" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="6.0" />
-                                    </children>
-                                </AnchorPane>
-                                <AnchorPane layoutX="10.0" layoutY="167.0" prefHeight="200.0" prefWidth="200.0">
-                                    <children>
-                                        <Label layoutX="14.0" layoutY="14.0" text="Chronic conditions" AnchorPane.leftAnchor="14.0">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <TextArea fx:id="ccTA" editable="false" layoutX="10.0" layoutY="55.0" prefHeight="80.0" prefWidth="330.0" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="6.0" />
-                                    </children>
-                                </AnchorPane>
-                            </children>
-                        </VBox>
-                        <Line endX="150.0" layoutX="175.0" layoutY="51.0" startX="-150.0" />
-                        <Label fx:id="patientAgeLabel" layoutX="201.0" layoutY="15.0" prefHeight="25.0" prefWidth="60.0" text="AGE: " AnchorPane.topAnchor="15.0" />
-                    </children>
-                </AnchorPane>
-            </center>
-        </BorderPane>
+                    <ComboBox fx:id="doctorOptionsComboBox" onAction="#doctorOptionsComboBoxAction" prefHeight="27.0" prefWidth="125.0" promptText="NAME" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="14.0" />
+         </children>
+      </AnchorPane>
     </content>
     <stylesheets>
         <URL value="@../../css/theme.css" />
