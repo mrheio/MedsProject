@@ -27,16 +27,16 @@ import java.util.ResourceBundle;
 public class DoctorMenuC implements Initializable {
 
     @FXML private ComboBox doctorOptionsComboBox;
-    @FXML private AnchorPane patientDetailsAnchorPane;
+    @FXML private AnchorPane patientDetailsAP;
     @FXML private Button giveTreatmentButton;
     @FXML private Button appointmentNeededButton;
     @FXML private TableView<Patient> patientsTableView;
         @FXML private TableColumn<Patient, String> surnameColumn;
         @FXML private TableColumn<Patient, String> forenameColumn;
     @FXML private TextArea treatmentTextArea;
-    @FXML private Label problemDescriptionLabel;
-    @FXML private Label allergiesDescriptionLabel;
-    @FXML private Label ccDescriptionLabel;
+    @FXML private TextArea problemTA;
+    @FXML private TextArea allergiesTA;
+    @FXML private TextArea ccTA;
     @FXML private Label patientName;
     @FXML private Label patientAgeLabel;
     @FXML private Label writeDownTreatment;
@@ -89,7 +89,7 @@ public class DoctorMenuC implements Initializable {
     private void configureMenu() {
         configureDoctorOptionsCB();
         configurePatientTable();
-        NodeMisc.hideNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAnchorPane);
+        NodeMisc.hideNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAP);
         NodeMisc.disableNode(giveTreatmentButton);
     }
 
@@ -99,29 +99,29 @@ public class DoctorMenuC implements Initializable {
             PatientProblem patientProblem = patient.returnSpecificProblem();
             patientName.setText(patient.getSurname() + " " + patient.getForename());
             patientAgeLabel.setText("AGE: " + Period.between(patient.getBirthday(), LocalDate.now()).getYears());
-            problemDescriptionLabel.setText(patientProblem.getDescriptionOfProblem());
+            problemTA.setText(patientProblem.getDescriptionOfProblem());
             String hasAllergies = patientProblem.getHasAllergies();
             String hasCC = patientProblem.getHasChronicConditions();
             if (patientProblem.getHasAllergies().equals("yes")) {
-                allergiesDescriptionLabel.setText(patientProblem.getAllergies().toString());
+                allergiesTA.setText(patientProblem.getAllergies().toString());
             } else {
-                allergiesDescriptionLabel.setText(hasAllergies);
+                allergiesTA.setText(hasAllergies);
             }
             if (patientProblem.getHasChronicConditions().equals("yes")) {
-                ccDescriptionLabel.setText(patientProblem.getChronicConditions().toString());
+                ccTA.setText(patientProblem.getChronicConditions().toString());
             } else {
-                ccDescriptionLabel.setText(hasCC);
+                ccTA.setText(hasCC);
             }
-            NodeMisc.showNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAnchorPane);
+            NodeMisc.showNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAP);
 
         }
         if (patient == null) {
             patientName.setText("");
             patientAgeLabel.setText("");
-            problemDescriptionLabel.setText("");
-            allergiesDescriptionLabel.setText("");
-            ccDescriptionLabel.setText("");
-            NodeMisc.hideNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAnchorPane);
+            problemTA.setText("");
+            allergiesTA.setText("");
+            ccTA.setText("");
+            NodeMisc.hideNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAP);
         }
     }
 
