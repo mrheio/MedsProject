@@ -19,6 +19,7 @@ public class SecurityMiscTest {
         System.out.println(pw);
         assertTrue("Password validation failed", specialCharCount >= 2);
     }
+
     @Test
     public void checkIfEmailIsSent() {
         SecurityMisc securityMisc = new SecurityMisc();
