@@ -3,6 +3,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import misc.users.UserMisc;
 import misc.utility.FileMisc;
+import misc.utility.SecurityMisc;
 import misc.utility.ViewMisc;
 
 import java.nio.file.Paths;
