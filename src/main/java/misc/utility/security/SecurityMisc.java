@@ -1,4 +1,4 @@
-package misc.utility;
+package misc.utility.security;
 
 import org.passay.CharacterData;
 import org.passay.CharacterRule;

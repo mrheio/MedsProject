@@ -1,5 +1,6 @@
 package misc.utility;
 
+import misc.utility.security.SecurityMisc;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
