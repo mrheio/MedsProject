@@ -19,14 +19,14 @@
     <content>
         <AnchorPane prefHeight="600.0" prefWidth="800.0">
             <children>
-                <AnchorPane layoutX="277.0" layoutY="82.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="277.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="82.0">
+                <AnchorPane layoutX="277.0" layoutY="82.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="277.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="82.0">
                     <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="64.0" text="Your problems" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="67.0">
                             <font>
                                 <Font size="18.0" />
                             </font>
                         </Label>
-                        <TableView fx:id="problemsTableView" editable="true" layoutY="57.0" prefHeight="384.0" prefWidth="248.0" AnchorPane.bottomAnchor="37.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0">
+                        <TableView fx:id="problemsTableView" editable="true" layoutY="57.0" prefHeight="384.0" prefWidth="248.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0">
                             <placeholder>
                                 <Label text="You don't have any problem" />
                             </placeholder>
@@ -43,7 +43,7 @@
                 </AnchorPane>
                 <AnchorPane fx:id="patientMenuLeftAP" prefWidth="215.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <TableView fx:id="doctorsTableView" editable="true" layoutX="10.0" layoutY="140.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0">
+                        <TableView fx:id="doctorsTableView" editable="true" layoutX="10.0" layoutY="140.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="140.0">
                             <placeholder>
                                 <Label text="No doctor available" />
                             </placeholder>
