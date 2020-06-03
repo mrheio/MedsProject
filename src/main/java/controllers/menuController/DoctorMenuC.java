@@ -16,7 +16,9 @@ import misc.users.UserMisc;
 import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
 import model.other.PatientProblem;
+import model.roles.Doctor;
 import model.roles.Patient;
+import model.roles.Person;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,6 +43,7 @@ public class DoctorMenuC implements Initializable {
     @FXML private Label patientAgeLabel;
     @FXML private Label writeDownTreatment;
 
+    private Doctor loggedDoctor = (Doctor) UserMisc.getLoggedUser();
     private ObservableList<Patient> patients = FXCollections.observableList(DoctorMisc.getPatientsForLoggedDoctor());
 
     public DoctorMenuC() throws IOException {
@@ -75,7 +78,7 @@ public class DoctorMenuC implements Initializable {
 
     private void configureDoctorOptionsCB() {
         ObservableList<String> doctorOptions = FXCollections.observableArrayList("Log out", "Edit profile");
-        doctorOptionsComboBox.setPromptText(UserMisc.getLoggedUser().getSurname() + " " + UserMisc.getLoggedUser().getForename());
+        doctorOptionsComboBox.setPromptText(loggedDoctor.getSurname() + " " + loggedDoctor.getForename());
         doctorOptionsComboBox.setItems(doctorOptions);
     }
 
@@ -96,7 +99,7 @@ public class DoctorMenuC implements Initializable {
     private void setShowPatientDetails() {
         Patient patient = patientsTableView.getSelectionModel().getSelectedItem();
         if (patient != null) {
-            PatientProblem patientProblem = patient.returnSpecificProblem();
+            PatientProblem patientProblem = patient.returnSpecificProblem(loggedDoctor.getSpecialty());
             patientName.setText(patient.getSurname() + " " + patient.getForename());
             patientAgeLabel.setText("AGE: " + Period.between(patient.getBirthday(), LocalDate.now()).getYears());
             problemTA.setText(patientProblem.getDescriptionOfProblem());
@@ -136,10 +139,10 @@ public class DoctorMenuC implements Initializable {
 
     private void setPatientTreatment(String treatment) throws IOException {
         Patient patient = patientsTableView.getSelectionModel().getSelectedItem();
-        PatientProblem patientProblem = patient.returnSpecificProblem();
+        PatientProblem patientProblem = patient.returnSpecificProblem(loggedDoctor.getSpecialty());
         patientProblem.setTreatment(treatment);
         patients.remove(patientsTableView.getSelectionModel().getSelectedItem());
-        UserMisc.writeUsers();
+        UserMisc.updateUsers(patient);
     }
 
 }

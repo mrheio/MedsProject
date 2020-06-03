@@ -7,7 +7,7 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import misc.utility.BCrypt;
+import misc.utility.security.BCrypt;
 import misc.users.UserMisc;
 import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
@@ -30,6 +30,11 @@ public class LoginC implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            UserMisc.readUsers();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         NodeMisc.hideDisableNode(asList(badLogin), asList(loginButton));
     }
 

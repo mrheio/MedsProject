@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import misc.users.UserMisc;
-import misc.utility.BCrypt;
+import misc.utility.security.BCrypt;
 import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
 import model.roles.Patient;
