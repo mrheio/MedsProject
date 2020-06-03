@@ -57,7 +57,7 @@ public class LoginC implements Initializable {
     }
 
     @FXML void resetPasswordHLAction(ActionEvent actionEvent) {
-
+        ViewMisc.showStage("/view/otherView/passwordResetView.fxml");
     }
     
     private void checkUser() {
