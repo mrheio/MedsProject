@@ -25,8 +25,10 @@
     - BCrypt
     - FileMisc
     - NodeMisc
+    - SecurityMisc
     - TextMisc
     - ViewMisc
+
     
 #### model (java classes)
 - **date**
