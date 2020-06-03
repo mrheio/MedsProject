@@ -4,6 +4,7 @@ package controllers.menuController;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -54,6 +55,10 @@ public class LoginC implements Initializable {
     @FXML void createNewAccountButtonAction() throws IOException {
         ViewMisc.showStage("/view/otherView/registerView.fxml");
     }
+
+    @FXML void resetPasswordHLAction(ActionEvent actionEvent) {
+
+    }
     
     private void checkUser() {
         String username = usernameTextField.getText();
@@ -83,5 +88,6 @@ public class LoginC implements Initializable {
             passwordField.clear();
         }
     }
+
 
 }
