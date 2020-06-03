@@ -15,9 +15,8 @@ public class Patient extends Person {
         this.problems = new ArrayList<>();
     }
 
-    public Patient(String surname, String forename, LocalDate birthday, String email, String username,  String password, String role) {
-        super(surname, forename, birthday, email, username, password, role);
-
+    public Patient(String surname, String forename, LocalDate birthday, String email, String username,  String password) {
+        super(surname, forename, birthday, email, username, password, "Patient");
     }
 
     public List<PatientProblem> getProblems() {
@@ -32,9 +31,9 @@ public class Patient extends Person {
         problems.remove(patientProblem);
     }
 
-    public PatientProblem returnSpecificProblem() {
+    public PatientProblem returnSpecificProblem(String specialty) {
         for (PatientProblem x: problems) {
-            if (x.getTypeOfProblem().equals(((Doctor) UserMisc.getLoggedUser()).getSpecialty())) {
+            if (x.getTypeOfProblem().equals(specialty)) {
                 return x;
             }
         }

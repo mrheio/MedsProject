@@ -10,7 +10,6 @@ public class FileMisc {
     private static final Path usersPath = Paths.get(projectFolderLocation, "users.json");
 
     public static Path getUsersPath() {
-        System.out.println(usersPath);
         return usersPath;
     }
 

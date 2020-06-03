@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.util.StringConverter;
-import misc.utility.BCrypt;
+import misc.utility.security.BCrypt;
 import misc.users.UserMisc;
 import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
@@ -66,7 +66,6 @@ public class RegisterC implements Initializable{
     }
 
     @FXML void createAccountButtonAction(ActionEvent actionEvent) throws IOException {
-        UserMisc.readUsers();
         Person person = null;
         if (checkFields()) {
             NodeMisc.showNode(checkFieldsLabel);
@@ -85,10 +84,10 @@ public class RegisterC implements Initializable{
     private Person returnPerson() {
         String role = roleComboBox.getSelectionModel().getSelectedItem();
         if (role.equals("Patient")) {
-            return new Patient(surname.getText(), forename.getText(), LocalDate.of(yearComboBox.getSelectionModel().getSelectedItem(), monthComboBox.getSelectionModel().getSelectedItem().getId(), dayComboBox.getSelectionModel().getSelectedItem()), email.getText(), usernameTextField.getText(), BCrypt.hashpw(passwordField.getText(), BCrypt.gensalt(12)), role);
+            return new Patient(surname.getText(), forename.getText(), LocalDate.of(yearComboBox.getSelectionModel().getSelectedItem(), monthComboBox.getSelectionModel().getSelectedItem().getId(), dayComboBox.getSelectionModel().getSelectedItem()), email.getText(), usernameTextField.getText(), BCrypt.hashpw(passwordField.getText(), BCrypt.gensalt(12)));
         }
         if (role.equals("Doctor")) {
-            return new Doctor(surname.getText(), forename.getText(), LocalDate.of(yearComboBox.getSelectionModel().getSelectedItem(), monthComboBox.getSelectionModel().getSelectedItem().getId(), dayComboBox.getSelectionModel().getSelectedItem()), email.getText(), usernameTextField.getText(), BCrypt.hashpw(passwordField.getText(), BCrypt.gensalt(12)), role, doctorSpecialtyComboBoxAction(), addressTextField.getText());
+            return new Doctor(surname.getText(), forename.getText(), LocalDate.of(yearComboBox.getSelectionModel().getSelectedItem(), monthComboBox.getSelectionModel().getSelectedItem().getId(), dayComboBox.getSelectionModel().getSelectedItem()), email.getText(), usernameTextField.getText(), BCrypt.hashpw(passwordField.getText(), BCrypt.gensalt(12)), doctorSpecialtyComboBoxAction(), addressTextField.getText());
 
         }
         return null;
