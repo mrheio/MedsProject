@@ -154,5 +154,4 @@ public class PatientMenuC implements Initializable {
 
     }
 
-
 }
