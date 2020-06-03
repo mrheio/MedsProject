@@ -213,7 +213,7 @@
 }
 
 .table-row-cell:filled:selected {
-    -fx-background-color: linear-gradient(to bottom, rgb(85, 85, 85), rgb(60, 65, 70));
+    -fx-background-color: rgb(49, 53, 62);
 }
 
 .table-column {
