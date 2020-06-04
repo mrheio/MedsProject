@@ -49,7 +49,7 @@ public class SecurityMisc {
 
     public static String sendMailFromTo (String from, String pass, String to) {
         String pw = generatePassayPassword();
-        String text = "Use this password to log in on MEDS for the first time:\n" + "password: " + pw + "\nYou can change it afterwards.";
+        String text = "Your new password is: "+ pw + "\nYou can change it afterwards.";
         System.out.println("generated password: " + pw);
         String host = "smtp.gmail.com";
         Properties properties = System.getProperties();
@@ -67,7 +67,7 @@ public class SecurityMisc {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(from));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-            message.setSubject("MEDS first time log in password");
+            message.setSubject("MEDS password reset");
             message.setText(text);
             System.out.println("message sending...");
             Transport.send(message);
