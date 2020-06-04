@@ -24,5 +24,6 @@ public class SecurityMiscTest {
     @Test
     public void checkIfEmailIsSent() {
         SecurityMisc securityMisc = new SecurityMisc();
+        securityMisc.sendMailFromTo("meds.app0@gmail.com", "8L111119meds", "ovidiu.dragoi00@gmail.com");
     }
 }
