@@ -28,20 +28,21 @@ import java.util.ResourceBundle;
 public class PatientMenuC implements Initializable {
 
 
-    @FXML private AnchorPane doctorDetailsAnchorPane;
+    @FXML private AnchorPane treatmentAP;
     @FXML private Button deleteProblemButton;
     @FXML private TableView<PatientProblem> problemsTableView;
         @FXML private TableColumn<PatientProblem, String> typeOfProblemTableColumn;
         @FXML private TableColumn<PatientProblem, String> problemTableColumn;
-        @FXML private TableColumn<PatientProblem, String> treatmentTableColumn;
     @FXML private ComboBox patientOptionsComboBox;
     @FXML private TextField doctorFilterTextField;
+    @FXML private TextArea treatmentTA;
     @FXML private TableView<Doctor> doctorsTableView;
         @FXML private TableColumn<Doctor, String> surnameColumn;
         @FXML private TableColumn<Doctor, String> forenameColumn;
         @FXML private TableColumn<Doctor, String> specialtyColumn;
     @FXML private Label doctorName;
 
+    private Patient loggedPatient = (Patient) UserMisc.getLoggedUser();
     private ObservableList<PatientProblem> patientProblems = FXCollections.observableList(((Patient) UserMisc.getLoggedUser()).getProblems());
 
     @Override
@@ -76,7 +77,7 @@ public class PatientMenuC implements Initializable {
 
     private void configurePatientMenuCB() {
         ObservableList<String> patientOptions = FXCollections.observableArrayList("Log out", "Edit profile");
-        patientOptionsComboBox.setPromptText(UserMisc.getLoggedUser().getSurname() + " " + UserMisc.getLoggedUser().getForename());
+        patientOptionsComboBox.setPromptText(loggedPatient.getForename());
         patientOptionsComboBox.setItems(patientOptions);
     }
 
@@ -111,15 +112,13 @@ public class PatientMenuC implements Initializable {
         doctorsTableView.getSortOrder().add(specialtyColumn);
 
         filterTableView(doctors, doctorFilterTextField, doctorsTableView);
-
-        doctorSelected();
     }
 
     private void configureProblemsTable() {
         problemsTableView.setItems(patientProblems);
         typeOfProblemTableColumn.setCellValueFactory(patientProblemStringCellDataFeatures -> patientProblemStringCellDataFeatures.getValue().typeOfProblemProperty());
         problemTableColumn.setCellValueFactory(patientProblemStringCellDataFeatures -> patientProblemStringCellDataFeatures.getValue().descriptionOfProblemProperty());
-        treatmentTableColumn.setCellValueFactory(patientProblemStringCellDataFeatures -> patientProblemStringCellDataFeatures.getValue().treatmentProperty());
+        showTreatmentForSelectedProblem();
     }
 
     private void configureTables() throws IOException {
@@ -132,26 +131,25 @@ public class PatientMenuC implements Initializable {
         configureTables();
     }
 
-    private void doctorSelected() {
-        doctorsTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Doctor>() {
+    private void showTreatmentForSelectedProblem() {
+        problemsTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<PatientProblem>() {
             @Override
-            public void changed(ObservableValue<? extends Doctor> observableValue, Doctor doctor, Doctor t1) {
-                showDoctorDetails();
+            public void changed(ObservableValue<? extends PatientProblem> observableValue, PatientProblem patientProblem, PatientProblem t1) {
+                showTreatment();
             }
         });
     }
 
-    private void showDoctorDetails() {
-        Doctor selectedDoctor = doctorsTableView.getSelectionModel().getSelectedItem();
-        if (selectedDoctor != null) {
-            doctorName.setText(selectedDoctor.getSurname() + " " + selectedDoctor.getForename());
-            NodeMisc.showNode(doctorName);
+    private void showTreatment() {
+        PatientProblem selectedProblem = problemsTableView.getSelectionModel().getSelectedItem();
+        if (selectedProblem == null) {
+            treatmentTA.setText(null);
+            NodeMisc.hideNode(treatmentAP);
         }
-        if (selectedDoctor == null) {
-            doctorName.setText(null);
-            NodeMisc.hideNode(doctorName);
+        if (selectedProblem != null) {
+            treatmentTA.setText(selectedProblem.getTreatment());
+            NodeMisc.showNode(treatmentAP);
         }
-
     }
 
 }

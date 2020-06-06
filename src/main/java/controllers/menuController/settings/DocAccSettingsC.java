@@ -103,7 +103,7 @@ public class DocAccSettingsC implements Initializable {
 
     private void configureDoctorSettingsCB() {
         ObservableList<String> doctorOptions = FXCollections.observableArrayList("Log out", "Menu");
-        doctorOptionsComboBox.setPromptText(loggedDoctor.getSurname() + " " + loggedDoctor.getForename());
+        doctorOptionsComboBox.setPromptText(loggedDoctor.getForename());
         doctorOptionsComboBox.setItems(doctorOptions);
     }
 

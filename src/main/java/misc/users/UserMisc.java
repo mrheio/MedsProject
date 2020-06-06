@@ -49,10 +49,11 @@ public class UserMisc {
             ObjectMapper mapper = new ObjectMapper();
             mapper.registerModule(new JavaTimeModule());
             users = mapper.readValue(usersPath.toFile(), new TypeReference<List<Person>>(){});
-            System.out.println("Reading users");
+            System.out.println("reading users...");
         } catch (Exception e) {
             e.printStackTrace();
         }
+        System.out.println("users read");
     }
 
     public static List<Person> getUsers() {
