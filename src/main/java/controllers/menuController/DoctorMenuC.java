@@ -78,7 +78,7 @@ public class DoctorMenuC implements Initializable {
 
     private void configureDoctorOptionsCB() {
         ObservableList<String> doctorOptions = FXCollections.observableArrayList("Log out", "Edit profile");
-        doctorOptionsComboBox.setPromptText(loggedDoctor.getSurname() + " " + loggedDoctor.getForename());
+        doctorOptionsComboBox.setPromptText(loggedDoctor.getForename());
         doctorOptionsComboBox.setItems(doctorOptions);
     }
 

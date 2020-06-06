@@ -145,7 +145,8 @@
 
 #problemTA . content,
 #allergiesTA .content,
-#ccTA .content {
+#ccTA .content,
+#treatmentTA .content {
     -fx-cursor: default;
 }
 
@@ -181,7 +182,7 @@
 }
 
 .combo-box .list-cell: hover {
-    -fx-background-color: linear-gradient(to bottom, rgb(85, 85, 85), rgb(65, 65, 65));
+    -fx-background-color: rgb(85, 85, 85);
     -fx-text-fill: rgb(231, 231, 232);
 }
 

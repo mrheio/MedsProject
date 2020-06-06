@@ -97,7 +97,7 @@ public class PatientAccSettingsC implements Initializable {
 
     private void configurePatientSettingsCB() {
         ObservableList<String> patientOptions = FXCollections.observableArrayList("Log out", "Menu");
-        patientOptionsComboBox.setPromptText(loggedPatient.getSurname() + " " + loggedPatient.getForename());
+        patientOptionsComboBox.setPromptText(loggedPatient.getForename());
         patientOptionsComboBox.setItems(patientOptions);
     }
 
