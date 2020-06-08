@@ -29,7 +29,6 @@ public class PatientMenuC implements Initializable {
 
 
     @FXML private AnchorPane treatmentAP;
-    @FXML private Button deleteProblemButton;
     @FXML private TableView<PatientProblem> problemsTableView;
         @FXML private TableColumn<PatientProblem, String> typeOfProblemTableColumn;
         @FXML private TableColumn<PatientProblem, String> problemTableColumn;
@@ -40,7 +39,6 @@ public class PatientMenuC implements Initializable {
         @FXML private TableColumn<Doctor, String> surnameColumn;
         @FXML private TableColumn<Doctor, String> forenameColumn;
         @FXML private TableColumn<Doctor, String> specialtyColumn;
-    @FXML private Label doctorName;
 
     private Patient loggedPatient = (Patient) UserMisc.getLoggedUser();
     private ObservableList<PatientProblem> patientProblems = FXCollections.observableList(((Patient) UserMisc.getLoggedUser()).getProblems());

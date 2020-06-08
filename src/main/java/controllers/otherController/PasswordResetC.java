@@ -19,13 +19,9 @@ import java.util.ResourceBundle;
 
 public class PasswordResetC implements Initializable {
 
-    @FXML private Label usernameLabel;
     @FXML private Label badCredentials;
-    @FXML private Label nameLabel;
     @FXML private TextField usernameTextField;
     @FXML private TextField emailTextField;
-    @FXML private Button resetPWButton;
-    @FXML private Button cancelButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

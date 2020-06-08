@@ -1,9 +1,14 @@
 package misc.utility;
 
+import javafx.beans.property.Property;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import model.roles.Doctor;
 
 import java.util.List;
@@ -95,4 +100,5 @@ public class NodeMisc {
             }
         });
     }
+
 }

@@ -2,7 +2,7 @@
 
 ## Project structure:
 
- ### java
+### java
 
 #### controllers (java classes)
 - **menuController**
@@ -22,14 +22,15 @@
     - PatientMisc
     - UserMisc
 - **utility**
-    - BCrypt
+    - security
+        - BCrypt
+        - SecurityMisc
     - FileMisc
     - NodeMisc
-    - SecurityMisc
     - TextMisc
     - ViewMisc
 
-    
+
 #### model (java classes)
 - **date**
     - Date
@@ -43,6 +44,7 @@
     - *Person*
     
 #### Main
+#### MainStarter
 
 ### resources
 
