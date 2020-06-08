@@ -7,6 +7,7 @@
 #### controllers (java classes)
 - **menuController**
     - settings
+        - *AccSettingsC* 
         - DocAccSettingsC
         - PatientAccSettingsC
     - DoctorMenuC
