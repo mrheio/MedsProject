@@ -1,6 +1,7 @@
 package controllers.menuController;
 
 import controllers.otherController.RequestHelpC;
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -23,7 +24,10 @@ import model.roles.Patient;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Function;
 
 public class PatientMenuC implements Initializable {
 
@@ -79,26 +83,6 @@ public class PatientMenuC implements Initializable {
         patientOptionsComboBox.setItems(patientOptions);
     }
 
-    private void filterTableView(ObservableList list, TextField filterTextField, TableView table) {
-        FilteredList<Doctor> filteredList = new FilteredList<>(list, p -> true);
-        doctorFilterTextField.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(model -> {
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-
-                String text = newValue.toLowerCase();
-                if (model.getSpecialty().toLowerCase().indexOf(text) != -1) {
-                    return true;
-                }
-                return false;
-            });
-            SortedList<Doctor> sortedList = new SortedList<Doctor>(filteredList);
-            sortedList.comparatorProperty().bind(doctorsTableView.comparatorProperty());
-            table.setItems(sortedList);
-        });
-    }
-
     private void configureDoctorsTable() throws IOException {
         ObservableList<Doctor> doctors = FXCollections.observableList(DoctorMisc.getDoctorsFromFile());
         NodeMisc.deselectTableView(doctorsTableView);
@@ -106,10 +90,10 @@ public class PatientMenuC implements Initializable {
         surnameColumn.setCellValueFactory(doctorStringCellDataFeatures -> doctorStringCellDataFeatures.getValue().surnameProperty());
         forenameColumn.setCellValueFactory(doctorStringCellDataFeatures -> doctorStringCellDataFeatures.getValue().forenameProperty());
         specialtyColumn.setCellValueFactory(doctorStringCellDataFeatures -> doctorStringCellDataFeatures.getValue().specialtyProperty());
-        doctorsTableView.sort();
-        doctorsTableView.getSortOrder().add(specialtyColumn);
 
-        filterTableView(doctors, doctorFilterTextField, doctorsTableView);
+       Function<Doctor, String> stringFunction = doctor -> doctor.getSpecialty();
+       NodeMisc.sortTableViewAfterColumn(doctorsTableView, specialtyColumn);
+       NodeMisc.filterTableViewWithTextField(doctorsTableView, doctors, doctorFilterTextField, stringFunction);
     }
 
     private void configureProblemsTable() {
@@ -127,6 +111,7 @@ public class PatientMenuC implements Initializable {
     private void configureMenu() throws IOException {
         configurePatientMenuCB();
         configureTables();
+        NodeMisc.hideNode(treatmentAP);
     }
 
     private void showTreatmentForSelectedProblem() {

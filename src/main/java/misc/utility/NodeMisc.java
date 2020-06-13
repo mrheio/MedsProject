@@ -2,6 +2,7 @@ package misc.utility;
 
 import javafx.beans.property.Property;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
@@ -9,9 +10,12 @@ import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.util.Callback;
 import model.roles.Doctor;
+import model.roles.Person;
 
 import java.util.List;
+import java.util.function.Function;
 
 public class NodeMisc {
 
@@ -100,5 +104,30 @@ public class NodeMisc {
             }
         });
     }
+
+    public static <T> void filterTableViewWithTextField(TableView<T> tableView, ObservableList<T> list, TextField textField, Function<T, String> stringFunction) {
+        FilteredList<T> filteredList = new FilteredList<T>(list, p -> true);
+        textField.textProperty().addListener((observableValue, oldValue, newValue) -> {
+            filteredList.setPredicate(t -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+            }
+                String text = newValue.toLowerCase();
+                if (stringFunction.apply(t).toLowerCase().contains(text)) {
+                    return true;
+                }
+                return false;
+        });
+            SortedList<T> sortedList = new SortedList<>(filteredList);
+            sortedList.comparatorProperty().bind(tableView.comparatorProperty());
+            tableView.setItems(sortedList);
+        });
+    }
+
+    public static <T, S> void sortTableViewAfterColumn(TableView<T> tableView, TableColumn<T, S> tableColumn) {
+        tableView.sort();
+        tableView.getSortOrder().add(tableColumn);
+    }
+
 
 }
