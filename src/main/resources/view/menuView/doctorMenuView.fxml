@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" styleClass="edge-to-edge" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.menuController.DoctorMenuC">
+<ScrollPane fitToHeight="true" fitToWidth="true" styleClass="edge-to-edge" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.menuController.menus.DoctorMenuC">
     <stylesheets>
         <URL value="@../../css/theme.css" />
     </stylesheets>
@@ -108,7 +108,7 @@
                         <Insets bottom="20.0" right="20.0" />
                     </padding>
                 </VBox>
-                    <ComboBox fx:id="doctorOptionsComboBox" onAction="#doctorOptionsComboBoxAction" prefHeight="27.0" prefWidth="125.0" promptText="NAME" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="14.0" />
+                    <ComboBox fx:id="optionsCB" onAction="#doctorOptionsComboBoxAction" prefHeight="27.0" prefWidth="125.0" promptText="NAME" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="14.0" />
          </children>
       </AnchorPane>
     </content>

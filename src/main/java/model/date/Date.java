@@ -1,9 +1,11 @@
 package model.date;
 
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Date {
     private int day;
@@ -66,5 +68,16 @@ public class Date {
             years.add(i);
         }
         return years;
+    }
+
+    public static ObservableList<Integer> generateDaysForMonth(month month) {
+        ObservableList<Integer> days = generateDays(31);
+        if (month.equals("April") || month.equals("June") || month.equals("September") || month.equals("November")) {
+                days = generateDays(30);
+            }
+        if (month.equals("February")) {
+                days = generateDays(28);
+            }
+        return days;
     }
 }

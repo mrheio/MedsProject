@@ -2,6 +2,7 @@ package model.date;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class month {
     private int id;
@@ -43,5 +44,18 @@ public class month {
         months.add(new month(11, "November"));
         months.add(new month(12, "December"));
         return months;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        month month = (month) o;
+        return Objects.equals(monthName, month.monthName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, monthName);
     }
 }

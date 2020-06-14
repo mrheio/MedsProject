@@ -12,27 +12,24 @@ import java.util.List;
 
 public class PatientMisc {
 
-    public static void addLoggedPatientProblem(PatientProblem patientProblem) throws IOException {
-        Patient patient = (Patient) UserMisc.getLoggedUser();
+    public static void addPatientProblem(Patient patient, PatientProblem patientProblem) throws IOException {
         patient.getProblems().add(patientProblem);
         UserMisc.updateUsers(patient);
     }
 
-    public static void deleteLoggedPatientProblem(PatientProblem patientProblem) throws IOException {
-        Patient patient = (Patient) UserMisc.getLoggedUser();
+    public static void addLoggedPatientProblem(PatientProblem patientProblem) throws IOException {
+        Patient loggedPatient = (Patient) UserMisc.getLoggedUser();
+        addPatientProblem(loggedPatient, patientProblem);
+    }
+
+    public static void deletePatientProblem(Patient patient, PatientProblem patientProblem) throws IOException {
         patient.getProblems().remove(patientProblem);
         UserMisc.updateUsers(patient);
     }
 
-    public static List<Patient> getPatientsFromFile() throws IOException {
-        List<Patient> patients = new ArrayList<>();
-        UserMisc.readUsers();
-        for (Person x: UserMisc.getUsers()) {
-            if (x.getRole().equals("Patient")) {
-                patients.add((Patient) x);
-            }
-        }
-        return patients;
+    public static void deleteLoggedPatientProblem(PatientProblem patientProblem) throws IOException {
+        Patient loggedPatient = (Patient) UserMisc.getLoggedUser();
+        deletePatientProblem(loggedPatient, patientProblem);
     }
 
     public static List<Patient> getPatientsFromUsers() {
@@ -45,6 +42,10 @@ public class PatientMisc {
         return patients;
     }
 
+    public static List<Patient> getPatientsFromFile() throws IOException {
+        UserMisc.readUsers();
+        return getPatientsFromUsers();
+    }
 
 
 

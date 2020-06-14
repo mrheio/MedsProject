@@ -26,8 +26,6 @@ public class LoginC implements Initializable {
     @FXML private PasswordField passwordField;
     @FXML private Label badLogin;
     @FXML private Button loginButton;
-    @FXML private Button cancelButton;
-    @FXML private Button createNewAccountButton;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -12,9 +12,8 @@ import java.util.List;
 
 public class DoctorMisc {
 
-    public static List<Doctor> getDoctorsFromFile() throws IOException {
+    public static List<Doctor> getDoctorsFromUsers() {
         List<Doctor> doctors = new ArrayList<>();
-        UserMisc.readUsers();
         for (Person x: UserMisc.getUsers()) {
             if (x.getRole().equals("Doctor")) {
                 doctors.add((Doctor) x);
@@ -23,18 +22,13 @@ public class DoctorMisc {
         return doctors;
     }
 
-    public static List<Doctor> getDoctorsFromUsers() {
-        List<Doctor> doctors = new ArrayList<>();
-        for (Person x: UserMisc.getUsers()) {
-            if (x.getRole().equals("Patient")) {
-                doctors.add((Doctor) x);
-            }
-        }
-        return doctors;
+    public static List<Doctor> getDoctorsFromFile() throws IOException {
+        UserMisc.readUsers();
+        return getDoctorsFromUsers();
     }
 
-    public static List<Patient> getPatientsForLoggedDoctor() throws IOException {
-        Doctor doctor = (Doctor) UserMisc.getLoggedUser();
+    public static List<Patient> getPatientsForDoctor(Doctor doctor) throws IOException {
+
         List<Patient> allPatients = PatientMisc.getPatientsFromFile();
         List<Patient> patientsForDoctor = new ArrayList<>();
         for (Patient x: allPatients) {
@@ -45,6 +39,11 @@ public class DoctorMisc {
             }
         }
         return patientsForDoctor;
+    }
+
+    public static List<Patient> getPatientsForLoggedDoctor() throws IOException {
+        Doctor doctor = (Doctor) UserMisc.getLoggedUser();
+        return getPatientsForDoctor(doctor);
     }
 
     public static void updateLoggedDoctorAddress(String address) throws IOException {
