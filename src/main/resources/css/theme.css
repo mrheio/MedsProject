@@ -219,6 +219,7 @@
 
 .table-column {
     -fx-text-fill: rgb(231, 231, 232);
+    -fx-alignment: center;
 }
 
 .table-view .column-header {

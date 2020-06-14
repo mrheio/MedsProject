@@ -27,7 +27,6 @@ import java.util.ResourceBundle;
 
 public class RegisterC implements Initializable{
 
-    @FXML private ScrollPane registerScrollPane;
     @FXML private TextField surname;
     @FXML private TextField forename;
     @FXML private TextField email;
@@ -40,8 +39,6 @@ public class RegisterC implements Initializable{
     @FXML private ComboBox<Integer> yearComboBox;
     @FXML private ComboBox<String> roleComboBox;
     @FXML private ComboBox<String> doctorSpecialtyComboBox;
-    @FXML private Button createAccountButton;
-    @FXML private Button cancelButton;
     @FXML private Label checkFieldsLabel;
 
     @Override

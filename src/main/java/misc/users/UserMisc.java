@@ -23,10 +23,25 @@ public class UserMisc {
     private static List<Person> users = new ArrayList<Person>();
     private static Person loggedUser;
     private static final Path usersPath = FileMisc.getUsersPath();
-    private final JsonNodeFactory factory = JsonNodeFactory.instance;
 
     public static void addUser(Person person) {
         users.add(person);
+    }
+
+    public static void setUsers(List<Person> users) {
+        UserMisc.users = users;
+    }
+
+    public static List<Person> getUsers() {
+        return users;
+    }
+
+    public static Person getLoggedUser() {
+        return loggedUser;
+    }
+
+    public static void setLoggedUser(Person loggedUser) {
+        UserMisc.loggedUser = loggedUser;
     }
 
     public static void writeUsers() throws IOException {
@@ -54,22 +69,6 @@ public class UserMisc {
             e.printStackTrace();
         }
         System.out.println("users read");
-    }
-
-    public static List<Person> getUsers() {
-        return users;
-    }
-
-    public static void setUsers(List<Person> users) {
-        UserMisc.users = users;
-    }
-
-    public static Person getLoggedUser() {
-        return loggedUser;
-    }
-
-    public static void setLoggedUser(Person loggedUser) {
-        UserMisc.loggedUser = loggedUser;
     }
 
     public static void updateUsers(Person person) throws IOException {
