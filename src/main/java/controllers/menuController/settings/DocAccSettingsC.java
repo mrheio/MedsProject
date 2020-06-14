@@ -29,10 +29,11 @@ public class DocAccSettingsC extends AccSettingsC implements Initializable {
     }
 
     @FXML void doctorOptionsComboBoxAction(ActionEvent actionEvent) {
-        if (doctorOptionsComboBox.getSelectionModel().getSelectedItem().equals("Log out")) {
+        Object selectedOption = doctorOptionsComboBox.getSelectionModel().getSelectedItem();
+        if (selectedOption.equals("Log out")) {
             UserMisc.logOutUser();
         }
-        if (doctorOptionsComboBox.getSelectionModel().getSelectedItem().equals("Menu")) {
+        if (selectedOption.equals("Menu")) {
             ViewMisc.showStage("/view/menuView/doctorMenuView.fxml");
         }
     }
@@ -46,9 +47,8 @@ public class DocAccSettingsC extends AccSettingsC implements Initializable {
     }
 
     private void configureDoctorSettingsCB() {
-        ObservableList<String> doctorOptions = FXCollections.observableArrayList("Log out", "Menu");
         doctorOptionsComboBox.setPromptText(loggedUser.getForename());
-        doctorOptionsComboBox.setItems(doctorOptions);
+        doctorOptionsComboBox.setItems(super.options);
     }
 
     @Override

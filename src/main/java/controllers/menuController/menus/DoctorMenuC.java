@@ -1,4 +1,4 @@
-package controllers.menuController;
+package controllers.menuController.menus;
 
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.value.ChangeListener;
@@ -26,15 +26,12 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ResourceBundle;
 
-public class DoctorMenuC implements Initializable {
+public class DoctorMenuC extends MenuC implements Initializable {
 
-    @FXML private ComboBox doctorOptionsComboBox;
     @FXML private AnchorPane patientDetailsAP;
+    @FXML private ComboBox optionsCB;
     @FXML private Button giveTreatmentButton;
     @FXML private Button appointmentNeededButton;
-    @FXML private TableView<Patient> patientsTableView;
-        @FXML private TableColumn<Patient, String> surnameColumn;
-        @FXML private TableColumn<Patient, String> forenameColumn;
     @FXML private TextArea treatmentTextArea;
     @FXML private TextArea problemTA;
     @FXML private TextArea allergiesTA;
@@ -42,6 +39,9 @@ public class DoctorMenuC implements Initializable {
     @FXML private Label patientName;
     @FXML private Label patientAgeLabel;
     @FXML private Label writeDownTreatment;
+    @FXML private TableView<Patient> patientsTableView;
+        @FXML private TableColumn<Patient, String> surnameColumn;
+        @FXML private TableColumn<Patient, String> forenameColumn;
 
     private Doctor loggedDoctor = (Doctor) UserMisc.getLoggedUser();
     private ObservableList<Patient> patients = FXCollections.observableList(DoctorMisc.getPatientsForLoggedDoctor());
@@ -55,10 +55,11 @@ public class DoctorMenuC implements Initializable {
     }
 
     @FXML void doctorOptionsComboBoxAction(ActionEvent actionEvent) {
-        if (doctorOptionsComboBox.getSelectionModel().getSelectedItem().equals("Log out")) {
+        Object selectedOption = optionsCB.getSelectionModel().getSelectedItem();
+        if (selectedOption.equals("Log out")) {
             UserMisc.logOutUser();
         }
-        if (doctorOptionsComboBox.getSelectionModel().getSelectedItem().equals("Edit profile")) {
+        if (selectedOption.equals("Edit profile")) {
             ViewMisc.showStage("/view/menuView/settingsView/docAccSettingsView.fxml");
         }
     }
@@ -77,15 +78,14 @@ public class DoctorMenuC implements Initializable {
     }
 
     private void configureDoctorOptionsCB() {
-        ObservableList<String> doctorOptions = FXCollections.observableArrayList("Log out", "Edit profile");
-        doctorOptionsComboBox.setPromptText(loggedDoctor.getForename());
-        doctorOptionsComboBox.setItems(doctorOptions);
+        optionsCB.setPromptText(loggedDoctor.getForename());
+        optionsCB.setItems(super.options);
     }
 
     private void configurePatientTable() {
         patientsTableView.setItems(patients);
-        surnameColumn.setCellValueFactory(data -> data.getValue().surnameProperty());
-        forenameColumn.setCellValueFactory(data -> data.getValue().forenameProperty());
+        surnameColumn.setCellValueFactory(x -> x.getValue().surnameProperty());
+        forenameColumn.setCellValueFactory(x -> x.getValue().forenameProperty());
         patientSelected();
     }
 
@@ -119,11 +119,8 @@ public class DoctorMenuC implements Initializable {
 
         }
         if (patient == null) {
-            patientName.setText("");
-            patientAgeLabel.setText("");
-            problemTA.setText("");
-            allergiesTA.setText("");
-            ccTA.setText("");
+            NodeMisc.clearLabels(patientName, patientAgeLabel);
+            NodeMisc.clearTextFieldsAndAreas(problemTA, allergiesTA, ccTA);
             NodeMisc.hideNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAP);
         }
     }
@@ -141,7 +138,7 @@ public class DoctorMenuC implements Initializable {
         Patient patient = patientsTableView.getSelectionModel().getSelectedItem();
         PatientProblem patientProblem = patient.returnSpecificProblem(loggedDoctor.getSpecialty());
         patientProblem.setTreatment(treatment);
-        patients.remove(patientsTableView.getSelectionModel().getSelectedItem());
+        patients.remove(patient);
         UserMisc.updateUsers(patient);
     }
 

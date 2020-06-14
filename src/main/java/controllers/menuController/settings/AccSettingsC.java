@@ -1,5 +1,8 @@
 package controllers.menuController.settings;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,17 +22,18 @@ import java.util.ResourceBundle;
 
 abstract public class AccSettingsC implements Initializable {
 
-    @FXML TextField emailTextField;
-    @FXML TextField usernameTextField;
-    @FXML TextField roleTextField;
-    @FXML PasswordField oldPasswordField;
-    @FXML PasswordField newPasswordField;
-    @FXML PasswordField confirmPasswordField;
-    @FXML Label badOldPassword;
-    @FXML Label badNewPassword;
-    @FXML Hyperlink forgotPasswordHL;
+    @FXML protected TextField emailTextField;
+    @FXML protected TextField usernameTextField;
+    @FXML protected TextField roleTextField;
+    @FXML protected PasswordField oldPasswordField;
+    @FXML protected PasswordField newPasswordField;
+    @FXML protected PasswordField confirmPasswordField;
+    @FXML protected Label badOldPassword;
+    @FXML protected Label badNewPassword;
+    @FXML protected Hyperlink forgotPasswordHL;
 
     Person loggedUser = UserMisc.getLoggedUser();
+    ObservableList<String> options = FXCollections.observableArrayList("Log out", "Menu");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

@@ -29,10 +29,11 @@ public class PatientAccSettingsC extends AccSettingsC implements Initializable {
     }
 
     @FXML void patientOptionsComboBoxAction(ActionEvent actionEvent) {
-        if (patientOptionsComboBox.getSelectionModel().getSelectedItem().equals("Log out")) {
+        Object selectedOption = patientOptionsComboBox.getSelectionModel().getSelectedItem();
+        if (selectedOption.equals("Log out")) {
             UserMisc.logOutUser();
         }
-        if (patientOptionsComboBox.getSelectionModel().getSelectedItem().equals("Menu")) {
+        if (selectedOption.equals("Menu")) {
             ViewMisc.showStage("/view/menuView/patientMenuView.fxml");
         }
     }
@@ -42,9 +43,8 @@ public class PatientAccSettingsC extends AccSettingsC implements Initializable {
     }
 
     private void configurePatientSettingsCB() {
-        ObservableList<String> patientOptions = FXCollections.observableArrayList("Log out", "Menu");
         patientOptionsComboBox.setPromptText(loggedUser.getForename());
-        patientOptionsComboBox.setItems(patientOptions);
+        patientOptionsComboBox.setItems(super.options);
     }
 
     @Override

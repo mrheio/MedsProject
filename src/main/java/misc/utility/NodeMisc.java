@@ -7,9 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.scene.Node;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.util.Callback;
 import model.roles.Doctor;
 import model.roles.Person;
@@ -103,6 +101,18 @@ public class NodeMisc {
                 tableView.getSelectionModel().clearSelection();
             }
         });
+    }
+
+    public static void clearLabels(Label... labels) {
+        for (Label x: labels) {
+            x.setText(null);
+        }
+    }
+
+    public static void clearTextFieldsAndAreas(TextInputControl... textInputControls) {
+        for (TextInputControl x: textInputControls) {
+            x.clear();
+        }
     }
 
     public static <T> void filterTableViewWithTextField(TableView<T> tableView, ObservableList<T> list, TextField textField, Function<T, String> stringFunction) {
