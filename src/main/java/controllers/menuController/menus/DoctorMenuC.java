@@ -86,7 +86,7 @@ public class DoctorMenuC extends MenuC implements Initializable {
         patientsTableView.setItems(patients);
         surnameColumn.setCellValueFactory(x -> x.getValue().surnameProperty());
         forenameColumn.setCellValueFactory(x -> x.getValue().forenameProperty());
-        patientSelected();
+        showSelectedPatient();
     }
 
     private void configureMenu() {
@@ -125,7 +125,7 @@ public class DoctorMenuC extends MenuC implements Initializable {
         }
     }
 
-    private void patientSelected() {
+    private void showSelectedPatient() {
         patientsTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Patient>() {
             @Override
             public void changed(ObservableValue<? extends Patient> observableValue, Patient doctor, Patient t1) {
@@ -139,6 +139,8 @@ public class DoctorMenuC extends MenuC implements Initializable {
         PatientProblem patientProblem = patient.returnSpecificProblem(loggedDoctor.getSpecialty());
         patientProblem.setTreatment(treatment);
         patients.remove(patient);
+        loggedDoctor.getSolvedProblems().add(patientProblem);
+        UserMisc.updateUsers(loggedDoctor);
         UserMisc.updateUsers(patient);
     }
 

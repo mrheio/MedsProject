@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.other.PatientProblem;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,11 +14,10 @@ import java.util.List;
 public class Doctor extends Person {
 
     protected final StringProperty specialty;
-    protected List<String> solvedProblems;
+    protected List<PatientProblem> solvedProblems = new ArrayList<>();
     protected StringProperty address;
 
     public Doctor() {
-        this.solvedProblems = new ArrayList<>();
         this.specialty = new SimpleStringProperty();
         this.address = new SimpleStringProperty();
     }
@@ -40,11 +40,11 @@ public class Doctor extends Person {
         this.specialty.set(specialty);
     }
 
-    public List<String> getSolvedProblems() {
+    public List<PatientProblem> getSolvedProblems() {
         return solvedProblems;
     }
 
-    public void setSolvedProblems(List<String> solvedProblems) {
+    public void setSolvedProblems(List<PatientProblem> solvedProblems) {
         this.solvedProblems = solvedProblems;
     }
 

@@ -32,7 +32,6 @@ public class PasswordResetC implements Initializable {
         ViewMisc.showStage("/view/menuView/loginView.fxml");
     }
 
-
     @FXML void resetPWButtonAction(ActionEvent event) throws IOException {
         checkCredentialsResetPassword();
     }
@@ -58,6 +57,5 @@ public class PasswordResetC implements Initializable {
             NodeMisc.showNode(badCredentials);
         }
     }
-
 
 }
