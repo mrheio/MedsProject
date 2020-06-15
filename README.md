@@ -6,13 +6,15 @@
 
 #### controllers (java classes)
 - **menuController**
+    - menus
+         - DoctorMenuC
+         - *MenuC*
+         - PatientMenuC
     - settings
         - *AccSettingsC* 
         - DocAccSettingsC
         - PatientAccSettingsC
-    - DoctorMenuC
     - LoginC
-    - PatientMenuC
 - **otherController**
     - RegisterC
     - RequestHelpViewC
@@ -52,20 +54,26 @@
 #### css
 - theme.css
 
-#### data
-- users.json
-
 #### images
-- edit.png
+- FXML
+    - LogoSVG.fxml
+- PNG
+    - appIcon-01
+    - appIcon-02
+    - edit
+- SVG
+    - Logo    
 
 #### view (fxml files)
 - **menuView**
+    - menusView
+        - doctorMenuView
+        - patientMenuView  
     - settingsView
         - docAccSettingsView
-        - patientAccSettingsView
-    - doctorMenuView
+        - patientAccSettingsView 
     - loginView
-    - patientMenuView
+    
 - **otherView**
     - registerView
     - requestHelpView
