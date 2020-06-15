@@ -104,7 +104,7 @@
 #editEmailButton, #editUsernameButton, #editAddressButton {
     -fx-cursor: hand;
     -fx-background-color: transparent;
-    -fx-background-image: url("../images/edit.png");
+    -fx-background-image: url("../images/PNG/edit.png");
     -fx-background-size: 30px 30px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
