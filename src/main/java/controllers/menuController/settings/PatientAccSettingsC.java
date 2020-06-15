@@ -1,13 +1,10 @@
 package controllers.menuController.settings;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import misc.users.UserMisc;
-import misc.utility.security.BCrypt;
 import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
 import model.roles.Patient;
@@ -34,7 +31,7 @@ public class PatientAccSettingsC extends AccSettingsC implements Initializable {
             UserMisc.logOutUser();
         }
         if (selectedOption.equals("Menu")) {
-            ViewMisc.showStage("/view/menuView/patientMenuView.fxml");
+            ViewMisc.showStage("/view/menuView/menusView/patientMenuView.fxml");
         }
     }
 

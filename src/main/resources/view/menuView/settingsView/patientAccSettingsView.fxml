@@ -29,19 +29,19 @@
                             <content>
                         <ScrollPane fitToHeight="true" fitToWidth="true">
                            <content>
-                                      <AnchorPane>
-                                          <children>
-                                              <Label text="Email" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="72.0" />
-                                              <Label text="Username" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="112.0" />
-                                              <Label text="Role" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="152.0" />
-                                              <TextField fx:id="emailTextField" disable="true" prefHeight="27.0" prefWidth="165.0" AnchorPane.leftAnchor="133.0" AnchorPane.rightAnchor="362.0" AnchorPane.topAnchor="67.0" />
-                                              <TextField fx:id="usernameTextField" disable="true" prefHeight="27.0" prefWidth="165.0" AnchorPane.leftAnchor="133.0" AnchorPane.rightAnchor="362.0" AnchorPane.topAnchor="107.0" />
-                                              <TextField fx:id="roleTextField" disable="true" prefHeight="27.0" prefWidth="165.0" AnchorPane.leftAnchor="133.0" AnchorPane.rightAnchor="362.0" AnchorPane.topAnchor="147.0" />
-                                              <Button fx:id="editEmailButton" mnemonicParsing="false" onAction="#editEmailButtonAction" prefHeight="27.0" prefWidth="27.0" AnchorPane.rightAnchor="324.0" AnchorPane.topAnchor="66.0" />
-                                              <Button fx:id="editUsernameButton" mnemonicParsing="false" onAction="#editUsernameButtonAction" prefHeight="27.0" prefWidth="27.0" AnchorPane.rightAnchor="324.0" AnchorPane.topAnchor="106.0" />
-                                              <Button fx:id="updateAccDetailsButton" mnemonicParsing="false" onAction="#updateAccDetailsButtonAction" text="Update account details" AnchorPane.leftAnchor="133.0" AnchorPane.topAnchor="187.0" />
-                                          </children>
-                                      </AnchorPane>
+                               <AnchorPane>
+                                   <children>
+                                       <Label text="Email" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="72.0" />
+                                       <Label text="Username" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="112.0" />
+                                       <Label text="Role" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="152.0" />
+                                       <TextField fx:id="emailTextField" disable="true" prefHeight="27.0" prefWidth="165.0" AnchorPane.leftAnchor="133.0" AnchorPane.rightAnchor="362.0" AnchorPane.topAnchor="67.0" />
+                                       <TextField fx:id="usernameTextField" disable="true" prefHeight="27.0" prefWidth="165.0" AnchorPane.leftAnchor="133.0" AnchorPane.rightAnchor="362.0" AnchorPane.topAnchor="107.0" />
+                                       <TextField fx:id="roleTextField" disable="true" prefHeight="27.0" prefWidth="165.0" AnchorPane.leftAnchor="133.0" AnchorPane.rightAnchor="362.0" AnchorPane.topAnchor="147.0" />
+                                       <Button fx:id="editEmailButton" mnemonicParsing="false" onAction="#editEmailButtonAction" prefHeight="27.0" prefWidth="27.0" AnchorPane.rightAnchor="324.0" AnchorPane.topAnchor="66.0" />
+                                       <Button fx:id="editUsernameButton" mnemonicParsing="false" onAction="#editUsernameButtonAction" prefHeight="27.0" prefWidth="27.0" AnchorPane.rightAnchor="324.0" AnchorPane.topAnchor="106.0" />
+                                       <Button fx:id="updateAccDetailsButton" mnemonicParsing="false" onAction="#updateAccDetailsButtonAction" text="Update account details" AnchorPane.leftAnchor="133.0" AnchorPane.topAnchor="187.0" />
+                                   </children>
+                               </AnchorPane>
                            </content>
                         </ScrollPane>
                             </content>

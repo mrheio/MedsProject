@@ -1,7 +1,5 @@
 package controllers.menuController.settings;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -34,7 +32,7 @@ public class DocAccSettingsC extends AccSettingsC implements Initializable {
             UserMisc.logOutUser();
         }
         if (selectedOption.equals("Menu")) {
-            ViewMisc.showStage("/view/menuView/doctorMenuView.fxml");
+            ViewMisc.showStage("/view/menuView/menusView/doctorMenuView.fxml");
         }
     }
 

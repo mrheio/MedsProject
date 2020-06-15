@@ -74,11 +74,11 @@ public class LoginC implements Initializable {
             UserMisc.setLoggedUser(person);
             if (person.getRole().equals("Patient")) {
                 System.out.println("Logged as patient");
-                ViewMisc.showStage("/view/menuView/patientMenuView.fxml");
+                ViewMisc.showStage("/view/menuView/menusView/patientMenuView.fxml");
             }
             if (person.getRole().equals("Doctor")) {
                 System.out.println("Logged as doctor");
-                ViewMisc.showStage("/view/menuView/doctorMenuView.fxml");
+                ViewMisc.showStage("/view/menuView/menusView/doctorMenuView.fxml");
             }
         }
         if (userExists == false) {

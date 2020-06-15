@@ -33,7 +33,7 @@ abstract public class AccSettingsC implements Initializable {
     @FXML protected Hyperlink forgotPasswordHL;
 
     Person loggedUser = UserMisc.getLoggedUser();
-    ObservableList<String> options = FXCollections.observableArrayList("Log out", "Menu");
+    protected ObservableList<String> options = FXCollections.observableArrayList("Log out", "Menu");
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

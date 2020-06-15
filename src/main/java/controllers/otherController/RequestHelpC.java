@@ -90,13 +90,13 @@ public class RequestHelpC implements Initializable {
     }
 
     @FXML void cancelButtonAction(ActionEvent event) {
-        ViewMisc.showStage("/view/menuView/patientMenuView.fxml");
+        ViewMisc.showStage("/view/menuView/menusView/patientMenuView.fxml");
     }
 
     @FXML void requestHelpButtonAction(ActionEvent event) throws IOException {
         setDetails();
         PatientMisc.addLoggedPatientProblem(patientProblem);
-        ViewMisc.showStage("/view/menuView/patientMenuView.fxml");
+        ViewMisc.showStage("/view/menuView/menusView/patientMenuView.fxml");
     }
 
     private void setDetails() {

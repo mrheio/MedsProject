@@ -237,3 +237,9 @@
     -fx-border-color: transparent;
 }
 
+    /* SVG */
+
+#logoSVG {
+    -fx-fill: rgb(231, 231, 232);
+}
+
