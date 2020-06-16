@@ -58,9 +58,8 @@
 - FXML
     - LogoSVG.fxml
 - PNG
-    - appIcon-01
-    - appIcon-02
     - edit
+    - icon
 - SVG
     - Logo    
 
