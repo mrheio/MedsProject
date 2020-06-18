@@ -1,4 +1,4 @@
-package controllers.menuController.menus;
+package controllers.account.menus;
 
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.value.ChangeListener;
@@ -11,14 +11,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
-import misc.users.DoctorMisc;
-import misc.users.UserMisc;
+import misc.user.DoctorMisc;
+import misc.user.UserMisc;
 import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
 import model.other.PatientProblem;
 import model.roles.Doctor;
 import model.roles.Patient;
-import model.roles.Person;
 
 import java.io.IOException;
 import java.net.URL;
@@ -60,7 +59,7 @@ public class DoctorMenuC extends MenuC implements Initializable {
             UserMisc.logOutUser();
         }
         if (selectedOption.equals("Edit profile")) {
-            ViewMisc.showStage("/view/menuView/settingsView/docAccSettingsView.fxml");
+            ViewMisc.showStage("/view/account/settings/docAccSettingsView.fxml");
         }
     }
 

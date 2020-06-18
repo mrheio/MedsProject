@@ -1,6 +1,5 @@
 package model.roles;
 
-import misc.users.UserMisc;
 import model.other.PatientProblem;
 
 import java.time.LocalDate;

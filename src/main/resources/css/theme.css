@@ -1,5 +1,11 @@
+@font-face {
+  src: url("RenogareSoft-Regular.ttf");
+}
+
 .root {
     -fx-background-color: linear-gradient(to bottom, rgb(33, 35, 39), rgb(22, 26, 29));
+    -fx-font-family: "Renogare Soft";
+    -fx-font-size: 10px;
 }
 /* panes */
 
@@ -74,6 +80,33 @@
 
 .label {
     -fx-text-fill: rgb(231, 231, 232);
+}
+
+#nameLabel {
+    -fx-font-size: 60px;
+}
+
+#passwordResetLabel {
+    -fx-font-size: 40px;
+}
+
+#createAccLabel {
+    -fx-font-size: 18px;
+}
+
+#requestHelpLabel {
+    -fx-font-size: 16px;
+}
+
+#typeOfProblemLabel,
+#describeYourProblemLabel,
+#allergiesLabel,
+#ccLabel,
+#availableDoctorsLabel,
+#yourProblemsLabel,
+#treatmentLabel,
+#peopleThatNeedHelpLabel {
+    -fx-font-size: 12px;
 }
 
     /* button */

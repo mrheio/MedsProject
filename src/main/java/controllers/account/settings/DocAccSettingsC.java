@@ -1,10 +1,10 @@
-package controllers.menuController.settings;
+package controllers.account.settings;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import misc.users.UserMisc;
+import misc.user.UserMisc;
 import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
 import model.roles.Doctor;
@@ -32,7 +32,7 @@ public class DocAccSettingsC extends AccSettingsC implements Initializable {
             UserMisc.logOutUser();
         }
         if (selectedOption.equals("Menu")) {
-            ViewMisc.showStage("/view/menuView/menusView/doctorMenuView.fxml");
+            ViewMisc.showStage("/view/account/menus/doctorMenuView.fxml");
         }
     }
 

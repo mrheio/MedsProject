@@ -1,13 +1,11 @@
-package misc.users;
+package misc.user;
 
-import misc.utility.FileMisc;
 import model.other.PatientProblem;
 import model.roles.Patient;
 import model.roles.Person;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class PatientMisc {

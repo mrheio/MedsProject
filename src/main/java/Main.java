@@ -10,7 +10,7 @@ public class Main extends Application {
         primaryStage.getIcons().add(new Image("images/PNG/icon.png"));
         primaryStage.setTitle("Meds");
         ViewMisc.setPrimaryStage(primaryStage);
-        ViewMisc.showStage("/view/menuView/loginView.fxml");
+        ViewMisc.showStage("/view/entry/loginView.fxml");
     }
 
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package controllers.otherController;
+package controllers.entry;
 
 
 import javafx.collections.FXCollections;
@@ -9,7 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.util.StringConverter;
 import misc.utility.security.BCrypt;
-import misc.users.UserMisc;
+import misc.user.UserMisc;
 import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
 import model.date.Date;
@@ -70,12 +70,12 @@ public class RegisterC implements Initializable{
             person = returnPerson();
             UserMisc.addUser(person);
             UserMisc.writeUsers();
-            ViewMisc.showStage("/view/menuView/loginView.fxml");
+            ViewMisc.showStage("/view/entry/loginView.fxml");
         }
     }
 
     @FXML void cancelButtonAction(ActionEvent actionEvent) {
-        ViewMisc.showStage("/view/menuView/loginView.fxml");
+        ViewMisc.showStage("/view/entry/loginView.fxml");
     }
 
     private Person returnPerson() {

@@ -1,4 +1,4 @@
-package controllers.menuController;
+package controllers.entry;
 
 
 import javafx.application.Platform;
@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import misc.utility.security.BCrypt;
-import misc.users.UserMisc;
+import misc.user.UserMisc;
 import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
 import model.roles.Person;
@@ -51,11 +51,11 @@ public class LoginC implements Initializable {
     }
 
     @FXML void createNewAccountButtonAction() throws IOException {
-        ViewMisc.showStage("/view/otherView/registerView.fxml");
+        ViewMisc.showStage("/view/entry/registerView.fxml");
     }
 
     @FXML void resetPasswordHLAction(ActionEvent actionEvent) {
-        ViewMisc.showStage("/view/otherView/passwordResetView.fxml");
+        ViewMisc.showStage("/view/other/passwordResetView.fxml");
     }
     
     private void checkUser() {
@@ -74,11 +74,11 @@ public class LoginC implements Initializable {
             UserMisc.setLoggedUser(person);
             if (person.getRole().equals("Patient")) {
                 System.out.println("Logged as patient");
-                ViewMisc.showStage("/view/menuView/menusView/patientMenuView.fxml");
+                ViewMisc.showStage("/view/account/menus/patientMenuView.fxml");
             }
             if (person.getRole().equals("Doctor")) {
                 System.out.println("Logged as doctor");
-                ViewMisc.showStage("/view/menuView/menusView/doctorMenuView.fxml");
+                ViewMisc.showStage("/view/account/menus/doctorMenuView.fxml");
             }
         }
         if (userExists == false) {

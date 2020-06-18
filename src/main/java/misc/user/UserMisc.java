@@ -1,4 +1,4 @@
-package misc.users;
+package misc.user;
 
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -6,7 +6,6 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import misc.utility.FileMisc;
 import misc.utility.ViewMisc;
@@ -82,7 +81,7 @@ public class UserMisc {
 
     public static void logOutUser() {
         setLoggedUser(null);
-        ViewMisc.showStage("/view/menuView/loginView.fxml");
+        ViewMisc.showStage("/view/entry/loginView.fxml");
     }
 
 }

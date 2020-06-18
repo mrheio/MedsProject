@@ -1,6 +1,5 @@
-package controllers.menuController.settings;
+package controllers.account.settings;
 
-import javafx.beans.Observable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,7 +9,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import misc.users.UserMisc;
+import misc.user.UserMisc;
 import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
 import misc.utility.security.BCrypt;
@@ -82,7 +81,7 @@ abstract public class AccSettingsC implements Initializable {
             newPasswordField.clear();
             confirmPasswordField.clear();
             NodeMisc.hideNode(badOldPassword, badNewPassword);
-            ViewMisc.showStage("/view/menuView/loginView.fxml");
+            ViewMisc.showStage("/view/entry/loginView.fxml");
             UserMisc.setLoggedUser(null);
         }
     }

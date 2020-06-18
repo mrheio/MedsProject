@@ -12,9 +12,8 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" styleClass="edge-to-edge" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.menuController.menus.DoctorMenuC">
+<ScrollPane fitToHeight="true" fitToWidth="true" styleClass="edge-to-edge" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.account.menus.DoctorMenuC">
     <stylesheets>
         <URL value="@../../../css/theme.css" />
     </stylesheets>
@@ -27,11 +26,7 @@
                             <children>
                                 <AnchorPane>
                                     <children>
-                                        <Label layoutX="14.0" layoutY="14.0" text="About problem" AnchorPane.leftAnchor="14.0">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
+                                        <Label fx:id="describeYourProblemLabel" layoutX="14.0" layoutY="14.0" text="About problem" AnchorPane.leftAnchor="14.0" />
                               <TextArea fx:id="problemTA" editable="false" layoutX="14.0" layoutY="44.0" prefHeight="80.0" prefWidth="330.0" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="6.0">
                                  <cursor>
                                     <Cursor fx:constant="NONE" />
@@ -41,41 +36,25 @@
                                 </AnchorPane>
                                 <AnchorPane>
                                     <children>
-                                        <Label layoutX="14.0" layoutY="14.0" text="Allergies" AnchorPane.leftAnchor="14.0">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
+                                        <Label fx:id="allergiesLabel" layoutX="14.0" layoutY="14.0" text="Allergies" AnchorPane.leftAnchor="14.0" />
                               <TextArea fx:id="allergiesTA" editable="false" layoutX="14.0" layoutY="44.0" prefHeight="80.0" prefWidth="330.0" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="6.0" />
                                     </children>
                                 </AnchorPane>
                                 <AnchorPane layoutX="10.0" layoutY="167.0">
                                     <children>
-                                        <Label layoutX="14.0" layoutY="14.0" text="Chronic conditions" AnchorPane.leftAnchor="14.0">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
+                                        <Label fx:id="ccLabel" layoutX="14.0" layoutY="14.0" text="Chronic conditions" AnchorPane.leftAnchor="14.0" />
                               <TextArea fx:id="ccTA" editable="false" layoutX="10.0" layoutY="55.0" prefHeight="80.0" prefWidth="330.0" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="6.0" />
                                     </children>
                                 </AnchorPane>
                             </children>
                         </VBox>
-                        <Label fx:id="patientName" layoutX="14.0" text="SURNAME FORENAME" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                  </Label>
-                        <Label fx:id="patientAgeLabel" layoutX="229.0" prefHeight="25.0" prefWidth="60.0" text="AGE: " AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="0.0" />
+                        <Label fx:id="patientName" layoutX="14.0" text="SURNAME FORENAME" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="0.0" />
+                        <Label fx:id="patientAgeLabel" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="60.0" text="AGE: " AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
                </children>
             </AnchorPane>
                 <AnchorPane fx:id="doctorMenuLeftAP" prefWidth="215.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <Label layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="185.0" text="People that need help" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="44.0">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
+                        <Label fx:id="peopleThatNeedHelpLabel" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="185.0" text="People that need help" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="44.0" />
                         <TableView fx:id="patientsTableView" layoutY="86.0" prefHeight="460.0" prefWidth="250.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="86.0">
                             <placeholder>
                                 <Label text="No patients" />

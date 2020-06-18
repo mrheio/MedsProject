@@ -1,21 +1,18 @@
-package controllers.menuController.menus;
+package controllers.account.menus;
 
-import controllers.otherController.RequestHelpC;
-import javafx.beans.property.StringProperty;
+import controllers.other.RequestHelpC;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import misc.users.DoctorMisc;
-import misc.users.PatientMisc;
-import misc.users.UserMisc;
+import misc.user.DoctorMisc;
+import misc.user.PatientMisc;
+import misc.user.UserMisc;
 import misc.utility.NodeMisc;
 import misc.utility.ViewMisc;
 import model.other.PatientProblem;
@@ -24,8 +21,6 @@ import model.roles.Patient;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.function.Function;
 
@@ -58,7 +53,7 @@ public class PatientMenuC extends MenuC implements Initializable {
 
     @FXML void requestHelpButtonAction(ActionEvent actionEvent) {
         RequestHelpC.setPatientProblem(new PatientProblem());
-        ViewMisc.showStage("/view/otherView/requestHelpView.fxml");
+        ViewMisc.showStage("/view/other/requestHelpView.fxml");
     }
 
     @FXML void patientOptionsComboBoxAction(ActionEvent actionEvent) {
@@ -67,7 +62,7 @@ public class PatientMenuC extends MenuC implements Initializable {
             UserMisc.logOutUser();
         }
         if (selectedOption.equals("Edit profile")) {
-            ViewMisc.showStage("/view/menuView/settingsView/patientAccSettingsView.fxml");
+            ViewMisc.showStage("/view/account/settings/patientAccSettingsView.fxml");
         }
     }
 

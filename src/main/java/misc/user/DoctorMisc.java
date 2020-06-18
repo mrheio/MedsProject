@@ -1,6 +1,5 @@
-package misc.users;
+package misc.user;
 
-import misc.utility.FileMisc;
 import model.other.PatientProblem;
 import model.roles.Doctor;
 import model.roles.Patient;

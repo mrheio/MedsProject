@@ -11,9 +11,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<ScrollPane fitToHeight="true" fitToWidth="true" styleClass="edge-to-edge" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.menuController.menus.PatientMenuC">
+<ScrollPane fitToHeight="true" fitToWidth="true" styleClass="edge-to-edge" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.account.menus.PatientMenuC">
     <stylesheets>
         <URL value="@../../../css/theme.css" />
     </stylesheets>
@@ -22,11 +21,7 @@
             <children>
                 <AnchorPane layoutX="277.0" layoutY="82.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="277.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="82.0">
                     <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="64.0" text="Your problems" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="67.0">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
+                        <Label fx:id="yourProblemsLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="64.0" text="Your problems" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="67.0" />
                         <TableView fx:id="problemsTableView" editable="true" layoutY="57.0" prefHeight="384.0" prefWidth="248.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="57.0">
                             <placeholder>
                                 <Label text="You don't have any problem" />
@@ -56,11 +51,7 @@
                                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                             </columnResizePolicy>
                         </TableView>
-                        <Label layoutX="10.0" layoutY="44.0" text="Available doctors" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="44.0">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
+                        <Label fx:id="availableDoctorsLabel" layoutX="10.0" layoutY="44.0" text="Available doctors" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="44.0" />
                         <TextField fx:id="doctorFilterTextField" layoutX="10.0" layoutY="87.0" promptText="Search for medical specialty" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="87.0" />
                     </children>
                 </AnchorPane>
@@ -74,11 +65,7 @@
             <AnchorPane fx:id="treatmentAP" layoutX="651.0" layoutY="100.0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="100.0">
                <children>
                   <TextArea fx:id="treatmentTA" editable="false" layoutY="41.0" prefHeight="100.0" prefWidth="125.0" wrapText="true" />
-                  <Label text="Treatment ">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
+                  <Label text="Treatment " />
                </children>
             </AnchorPane>
             </children>

@@ -12,9 +12,8 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.otherController.RequestHelpC">
+<ScrollPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.other.RequestHelpC">
     <stylesheets>
         <URL value="@../../css/theme.css" />
     </stylesheets>
@@ -36,20 +35,12 @@
                   <children>
                       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="400.0">
                           <children>
-                              <Label alignment="CENTER" layoutX="14.0" layoutY="36.0" prefHeight="50.0" prefWidth="195.0" text="REQUEST HELP FORM" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="36.0">
-                                  <font>
-                                      <Font size="20.0" />
-                                  </font>
-                              </Label>
+                              <Label fx:id="requestHelpLabel" alignment="CENTER" layoutX="14.0" layoutY="36.0" prefHeight="50.0" prefWidth="195.0" text="REQUEST HELP FORM" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="36.0" />
                           </children>
                       </AnchorPane>
                       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="400.0" GridPane.rowIndex="1">
                           <children>
-                              <Label layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="260.0" text="What type of problem do you have?" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="14.0">
-                                  <font>
-                                      <Font size="16.0" />
-                                  </font>
-                              </Label>
+                              <Label fx:id="typeOfProblemLabel" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="260.0" text="What type of problem do you have?" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="14.0" />
                               <RadioButton fx:id="mentalRadioButton" layoutX="99.0" layoutY="50.0" mnemonicParsing="false" onAction="#mentalButtonAction" text="Mental" AnchorPane.leftAnchor="99.0" AnchorPane.topAnchor="50.0">
                                   <toggleGroup>
                                       <ToggleGroup fx:id="typeOfProblem" />
@@ -61,21 +52,13 @@
                       </AnchorPane>
                       <AnchorPane layoutX="10.0" layoutY="110.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="400.0" GridPane.rowIndex="2">
                           <children>
-                              <Label layoutX="14.0" prefHeight="40.0" prefWidth="165.0" text="Describe your problem" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="221.0" AnchorPane.topAnchor="0.0">
-                                  <font>
-                                      <Font size="16.0" />
-                                  </font>
-                              </Label>
+                              <Label fx:id="describeYourProblemLabel" layoutX="14.0" prefHeight="40.0" prefWidth="165.0" text="Describe your problem" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="221.0" AnchorPane.topAnchor="0.0" />
                               <TextArea fx:id="problemTextArea" layoutX="14.0" layoutY="32.0" prefHeight="87.0" prefWidth="350.0" wrapText="true" AnchorPane.bottomAnchor="31.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="36.0" AnchorPane.topAnchor="32.0" />
                           </children>
                       </AnchorPane>
                       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="400.0" GridPane.rowIndex="3">
                           <children>
-                              <Label layoutX="14.0" prefHeight="40.0" prefWidth="195.0" text="Do you have any allergies?" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="0.0">
-                                  <font>
-                                      <Font size="16.0" />
-                                  </font>
-                              </Label>
+                              <Label fx:id="allergiesLabel" layoutX="14.0" prefHeight="40.0" prefWidth="195.0" text="Do you have any allergies?" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="191.0" AnchorPane.topAnchor="0.0" />
                               <TextArea fx:id="allergiesTextArea" disable="true" layoutX="191.0" layoutY="80.0" prefHeight="50.0" prefWidth="195.0" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
                               <RadioButton fx:id="yesAllergiesRadioButton" layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#yesAllergiesButtonAction" text="Yes" AnchorPane.bottomAnchor="94.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="40.0">
                                   <toggleGroup>
@@ -89,11 +72,7 @@
                       </AnchorPane>
                       <AnchorPane layoutX="10.0" layoutY="360.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="400.0" GridPane.rowIndex="4">
                           <children>
-                              <Label layoutX="14.0" prefHeight="40.0" prefWidth="260.0" text="Do you have any chronic conditions?" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="0.0">
-                                  <font>
-                                      <Font size="16.0" />
-                                  </font>
-                              </Label>
+                              <Label fx:id="ccLabel" layoutX="14.0" prefHeight="40.0" prefWidth="260.0" text="Do you have any chronic conditions?" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="0.0" />
                               <TextArea fx:id="chronicConditionsTextArea" disable="true" layoutX="191.0" layoutY="80.0" prefHeight="50.0" prefWidth="195.0" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
                               <RadioButton fx:id="yesChronicConditionsRadioButton" layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#yesChronicConditionsButtonAction" text="Yes" AnchorPane.bottomAnchor="94.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="40.0">
                                   <toggleGroup>

@@ -1,4 +1,4 @@
-package controllers.otherController;
+package controllers.other;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -6,7 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import misc.utility.NodeMisc;
 import misc.utility.TextMisc;
-import misc.users.PatientMisc;
+import misc.user.PatientMisc;
 import misc.utility.ViewMisc;
 import model.other.PatientProblem;
 import model.other.ProblemTypes;
@@ -90,13 +90,13 @@ public class RequestHelpC implements Initializable {
     }
 
     @FXML void cancelButtonAction(ActionEvent event) {
-        ViewMisc.showStage("/view/menuView/menusView/patientMenuView.fxml");
+        ViewMisc.showStage("/view/account/menus/patientMenuView.fxml");
     }
 
     @FXML void requestHelpButtonAction(ActionEvent event) throws IOException {
         setDetails();
         PatientMisc.addLoggedPatientProblem(patientProblem);
-        ViewMisc.showStage("/view/menuView/menusView/patientMenuView.fxml");
+        ViewMisc.showStage("/view/account/menus/patientMenuView.fxml");
     }
 
     private void setDetails() {
