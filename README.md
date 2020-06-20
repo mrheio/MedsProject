@@ -88,3 +88,18 @@
 - **other**
     - passwordResetView
     - requestHelpView
+
+
+## Create jar
+
+- go to project folder
+
+```
+mvnw clean install
+```
+
+- go to "target" folder
+
+```
+java -jar Meds-jar-with-dependencies.jar
+``` 
