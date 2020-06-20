@@ -45,8 +45,8 @@ public class DoctorMenuC extends MenuC implements Initializable {
         @FXML private TableColumn<PatientProblem, String> problemColumn;
 
     private Doctor loggedUser = (Doctor) super.loggedUser;
-    private ObservableList<PatientProblem> problems = FXCollections.observableList(loggedUser.getProblemsForDoctor());
-    private ObservableList<PatientProblem> noTreatmentUnsolvedProblems = FXCollections.observableList(loggedUser.getNoTreatmentUnsolvedProblemsForDoctor());
+    private ObservableList<PatientProblem> problems = FXCollections.observableList(loggedUser.getProblemsForDoctor(PatientMisc.getPatientsFromUsers()));
+    private ObservableList<PatientProblem> noTreatmentUnsolvedProblems = FXCollections.observableList(loggedUser.getNoTreatmentUnsolvedProblemsForDoctor(PatientMisc.getPatientsFromUsers()));
     private ObservableList<PatientProblem> solvedProblems = FXCollections.observableList(loggedUser.getSolvedProblems());
 
     public DoctorMenuC() throws IOException {

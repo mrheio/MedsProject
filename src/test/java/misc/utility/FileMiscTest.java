@@ -9,6 +9,5 @@ public class FileMiscTest {
     @Test
     public void checkUsersPathLocation() {
         FileMisc fileMisc = new FileMisc();
-        System.out.println(fileMisc.getUsersPath());
     }
 }

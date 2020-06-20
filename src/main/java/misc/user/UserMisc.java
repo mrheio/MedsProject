@@ -13,7 +13,6 @@ import misc.utility.ViewMisc;
 import model.roles.Person;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.Period;
@@ -24,7 +23,7 @@ public class UserMisc {
 
     private static List<Person> users = new ArrayList<Person>();
     private static Person loggedUser;
-    private static final Path usersPath = FileMisc.getUsersPath();
+    public static Path usersPath = FileMisc.getPathToFile("src/main/resources/data/users.json");
 
     public static void addUser(Person person) {
         users.add(person);
@@ -59,9 +58,7 @@ public class UserMisc {
     }
 
     public static void readUsers() throws IOException {
-        if (!Files.exists(usersPath)) {
-            Files.createFile(usersPath);
-        }
+        FileMisc.createFileIfNotFound(usersPath);
         try {
             ObjectMapper mapper = new ObjectMapper();
             mapper.registerModule(new JavaTimeModule());

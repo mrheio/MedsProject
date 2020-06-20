@@ -1,5 +1,7 @@
 package misc.utility;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import org.junit.Test;
 
 import java.util.Arrays;
