@@ -37,6 +37,11 @@
 
 
 #### model
+- **combobox**
+    - AccSettings
+    - LogOut
+    - Menu
+    - *Option*
 - **date**
     - Date
     - month
@@ -54,7 +59,11 @@
 ### resources
 
 #### css
+- RenogareSoft-Regular.ttf (font)
 - theme.css
+
+#### data
+- users.json
 
 #### images
 - FXML
