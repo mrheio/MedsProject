@@ -1,0 +1,328 @@
+@font-face {
+  src: url("RenogareSoft-Regular.ttf");
+}
+
+.root {
+    -fx-background-color: linear-gradient(to bottom, rgb(33, 35, 39), rgb(22, 26, 29));
+    -fx-font-family: "Renogare Soft";
+    -fx-font-size: 10px;
+}
+/* panes */
+
+    /* anchor-panes */
+
+.anchor-pane {
+    -fx-background-color: linear-gradient(to bottom, rgb(33, 35, 39), rgb(22, 26, 29));
+}
+
+#leftAP {
+    -fx-background-color: linear-gradient(to bottom, rgb(27, 29, 33), rgb(16, 18, 20));
+}
+
+#topAP {
+    -fx-background-color: linear-gradient(from 50% 0% to 50% 50%, rgb(46, 46, 46), rgb(27, 29, 33));
+}
+
+    /* tab-pane */
+
+.tab-pane {
+    -fx-tab-min-width: 30px;
+    -fx-tab-max-width: 30px;
+    -fx-tab-min-height: 130px;
+    -fx-tab-max-height: 130px;
+}
+
+.tab-pane *.tab-header-area *.tab-header-background {
+  -fx-background-color: transparent;
+}
+
+.tab {
+  -fx-background-color: transparent;
+   -fx-focus-color: transparent;
+}
+
+.tab:hover {
+    -fx-background-color: rgb(49, 53, 62);
+}
+
+.tab:selected
+{
+    -fx-border-width: 3 0 0 0;
+    -fx-border-color: white;
+}
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-color: transparent;
+}
+
+    /* scroll-pane */
+
+.scroll-pane .viewport {
+   -fx-background-color: transparent;
+}
+
+.scroll-pane {
+    -fx-background-color: linear-gradient(to bottom, rgb(33, 35, 39), rgb(22, 26, 29));
+}
+
+.scroll-pane .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color: rgb(231, 231, 232);
+    -fx-background-radius: 0;
+}
+
+/* controls */
+
+    /* label */
+
+.label {
+    -fx-text-fill: rgb(231, 231, 232);
+}
+
+#medsLabel {
+    -fx-font-size: 60px;
+}
+
+#passwordResetLabel {
+    -fx-font-size: 40px;
+}
+
+#createAccLabel {
+    -fx-font-size: 18px;
+}
+
+#requestHelpLabel {
+    -fx-font-size: 16px;
+}
+
+#typeOfProblemLabel,
+#describeYourProblemLabel,
+#allergiesLabel,
+#ccLabel,
+#availableDoctorsLabel,
+#yourProblemsLabel,
+#treatmentLabel,
+#problemsLabel,
+#nameLabel,
+#giveTreatmentLabel {
+    -fx-font-size: 12px;
+}
+
+    /* button */
+
+.button {
+    -fx-background-color: linear-gradient(to bottom, rgb(58, 58, 58), rgb(40, 40, 40));
+    -fx-background-opacity: 0;
+    -fx-background-radius: 3;
+    -fx-text-fill: rgb(231, 231, 232);
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, rgb(85, 85, 85), rgb(65, 65, 65));
+}
+
+.button:pressed {
+    -fx-background-color: linear-gradient(to bottom, rgb(43, 48, 53), rgb(49, 54, 60));
+}
+
+#requestHelpButton {
+    -fx-background-color: linear-gradient(to bottom, rgb(68, 21, 22), rgb(61, 18, 19));
+}
+
+#requestHelpButton:hover {
+    -fx-background-color: linear-gradient(to bottom, rgb(85, 26, 27), rgb(72, 21, 22));
+}
+
+#editEmailButton, #editUsernameButton, #editAddressButton {
+    -fx-cursor: hand;
+    -fx-background-color: transparent;
+    -fx-background-image: url("../images/PNG/edit.png");
+    -fx-background-size: 30px 30px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+#myProblemsButton,
+#myHistoryButton {
+    -fx-background-color: transparent;
+}
+
+    /* text-field */
+
+.text-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(231, 231, 232);
+    -fx-border-style: solid;
+    -fx-border-color: rgb(75, 84, 102);
+    -fx-border-width: 0.5px;
+}
+
+.text-field: focused {
+    -fx-border-color: rgb(125, 133, 148);
+}
+
+    /* text-area */
+
+.text-area {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(231, 231, 232);
+    -fx-border-style: solid;
+    -fx-border-color: rgb(75, 84, 102);
+    -fx-border-width: 0.5px;
+    -fx-area-background: transparent;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area: focused {
+    -fx-border-color: rgb(125, 133, 148);
+}
+
+.text-area .content {
+    -fx-background-color: transparent;
+}
+
+#descriptionTA,
+#allergiesTA,
+#ccTA {
+    -fx-border-color: transparent;
+}
+
+#descriptionTA .content,
+#allergiesTA .content,
+#ccTA .content {
+    -fx-cursor: default;
+    -fx-background-color: transparent;
+}
+
+    /* combo-box */
+
+.combo-box {
+	-fx-background-color: transparent;
+	-fx-border-style: solid;
+    -fx-border-color: rgb(75, 84, 102);
+    -fx-border-width: 0.5px;
+}
+
+.combo-box .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.combo-box .scroll-bar .thumb {
+    -fx-background-color: rgb(231, 231, 232);
+    -fx-background-radius: 0;
+}
+
+.combo-box: hover {
+    -fx-border-color: rgb(125, 133, 148);
+}
+
+.combo-box .list-view {
+    -fx-background-color: linear-gradient(to bottom, rgb(58, 58, 58), rgb(40, 40, 40));
+}
+
+.combo-box .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(231, 231, 232);
+}
+
+.combo-box .list-cell: hover {
+    -fx-background-color: rgb(85, 85, 85);
+    -fx-text-fill: rgb(231, 231, 232);
+}
+
+    /* check-box */
+
+.check-box {
+    -fx-text-fill: rgb(231, 231, 232);
+}
+
+    /* radio-button */
+
+.radio-button {
+    -fx-text-fill: rgb(231, 231, 232);
+}
+
+    /* list-view */
+
+.list-view {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(231, 231, 232);
+    -fx-table-cell-border-color: transparent;
+    -fx-selection-bar: transparent;
+    -fx-selection-bar-non-focused: transparent
+}
+
+.list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(231, 231, 232);
+}
+
+.list-view .list-cell: filled: hover {
+    -fx-background-color: rgb(49, 53, 62);
+}
+
+.list-view .list-cell: filled: selected {
+    -fx-background-color: rgb(72, 78, 91);
+}
+
+
+    /* table-view */
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(231, 231, 232);
+    -fx-table-cell-border-color: transparent;
+    -fx-selection-bar: transparent;
+    -fx-selection-bar-non-focused: transparent
+}
+
+.table-row-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(231, 231, 232);
+}
+
+.table-row-cell:filled:selected {
+    -fx-background-color: rgb(49, 53, 62);
+}
+
+.table-column {
+    -fx-text-fill: rgb(231, 231, 232);
+    -fx-alignment: center;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+    /* hyperlink */
+
+.hyperlink {
+    -fx-underline: false;
+    -fx-border-color: transparent;
+    -fx-text-fill: rgb(88, 97, 109);;
+}
+
+.hyperlink: hover {
+    -fx-text-fill: rgb(187, 187, 187);
+}
+
+.hyperlink: visited {
+    -fx-text-fill: rgb(231, 231, 232);
+}
+
+    /* SVG */
+
+#logoSVG {
+    -fx-fill: rgb(231, 231, 232);
+}
+
