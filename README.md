@@ -1,24 +1,28 @@
 # Meds
 
-## Project structure:
+## structure:
 
 ### java
 
-#### controllers (java classes)
-- **menuController**
+#### controllers
+- **account**
+    - menus
+         - DoctorMenuC
+         - *MenuC*
+         - PatientMenuC
     - settings
         - *AccSettingsC* 
         - DocAccSettingsC
         - PatientAccSettingsC
-    - DoctorMenuC
+- **entry**
     - LoginC
-    - PatientMenuC
-- **otherController**
     - RegisterC
-    - RequestHelpViewC
+- **other**
+    - PasswordResetC
+    - RequestHelpC
     
-#### misc (java classes)
-- **users**
+#### misc
+- **user**
     - DoctorMisc
     - PatientMisc
     - UserMisc
@@ -32,7 +36,7 @@
     - ViewMisc
 
 
-#### model (java classes)
+#### model
 - **date**
     - Date
     - month
@@ -52,20 +56,26 @@
 #### css
 - theme.css
 
-#### data
-- users.json
-
 #### images
-- edit.png
+- FXML
+    - LogoSVG.fxml
+- PNG
+    - edit
+    - icon
+- SVG
+    - Logo    
 
 #### view (fxml files)
-- **menuView**
-    - settingsView
+- **account**
+    - menus
+        - doctorMenuView
+        - patientMenuView  
+    - settings
         - docAccSettingsView
-        - patientAccSettingsView
-    - doctorMenuView
+        - patientAccSettingsView 
+- **entry**
     - loginView
-    - patientMenuView
-- **otherView**
     - registerView
+- **other**
+    - passwordResetView
     - requestHelpView

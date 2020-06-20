@@ -19,6 +19,7 @@ public abstract class Person {
 
     protected final StringProperty surname;
     protected final StringProperty forename;
+    protected final StringProperty fullName;
     protected final ObjectProperty<LocalDate> birthday;
     protected StringProperty email;
     protected StringProperty username;
@@ -28,6 +29,7 @@ public abstract class Person {
     public Person() {
         this.surname = new SimpleStringProperty();
         this.forename = new SimpleStringProperty();
+        this.fullName = new SimpleStringProperty();
         this.birthday = new SimpleObjectProperty<LocalDate>();
         this.email = new SimpleStringProperty();
         this.username = new SimpleStringProperty();
@@ -38,6 +40,7 @@ public abstract class Person {
     public Person(String surname, String forename, LocalDate birthday, String email, String username, String password, String role) {
         this.surname = new SimpleStringProperty(surname);
         this.forename = new SimpleStringProperty(forename);
+        this.fullName = new SimpleStringProperty(surname+" "+forename);
         this.birthday = new SimpleObjectProperty<LocalDate>(birthday);
         this.email = new SimpleStringProperty(email);
         this.username = new SimpleStringProperty(username);
@@ -67,6 +70,18 @@ public abstract class Person {
 
     public void setForename(String forename) {
         this.forename.set(forename);
+    }
+
+    public String getFullName() {
+        return fullName.get();
+    }
+
+    public StringProperty fullNameProperty() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName.set(fullName);
     }
 
     public LocalDate getBirthday() {

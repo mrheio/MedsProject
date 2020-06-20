@@ -1,6 +1,7 @@
 package misc.utility;
 
 import javafx.beans.property.Property;
+import javafx.beans.property.ReadOnlyStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -137,6 +138,17 @@ public class NodeMisc {
     public static <T, S> void sortTableViewAfterColumn(TableView<T> tableView, TableColumn<T, S> tableColumn) {
         tableView.sort();
         tableView.getSortOrder().add(tableColumn);
+    }
+
+    public static void oneHLVisited(Hyperlink visited, Hyperlink... unvisited) {
+        visited.setVisited(true);
+        for (Hyperlink x: unvisited) {
+            x.setVisited(false);
+        }
+    }
+
+    public static void setColumnWidth(TableView tableView, TableColumn tableColumn, int div) {
+        tableColumn.prefWidthProperty().bind(tableView.widthProperty().divide(div));
     }
 
 
