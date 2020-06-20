@@ -1,8 +1,6 @@
 package model.roles;
 
-import misc.utility.security.BCrypt;
 import model.other.PatientProblem;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -19,9 +17,9 @@ public class PatientTest {
     private static Patient p3 = new Patient("sn3", "fn3", LocalDate.of(1950, 7, 23), "email3", "un3", "pw3");
     private static List<String> allergies1 = Arrays.asList("a1", "a2", "a3");
     private static List<String> cc1 = Arrays.asList("cc1", "cc2");
-    private static PatientProblem problem1 = new PatientProblem("type1", "description1", "yes", "yes", allergies1, cc1, null);
-    private static PatientProblem problem2 = new PatientProblem("type2", "description1", "no", "no", null, null, "treatment2");
-    private static PatientProblem problem3 = new PatientProblem("type3", "description1", "no", "no", null, null, null);
+    private static PatientProblem problem1 = new PatientProblem("type1", "description1", "yes", "yes", allergies1, cc1, null, null);
+    private static PatientProblem problem2 = new PatientProblem("type2", "description1", "no", "no", null, null, "treatment2", null);
+    private static PatientProblem problem3 = new PatientProblem("type3", "description1", "no", "no", null, null, null, null);
 
     @BeforeClass
     public static void addProblems() {
@@ -31,19 +29,10 @@ public class PatientTest {
     }
 
     @Test
-    public void returnSpecificProblemShouldGetTheProblemWithTheWantedType() {
-        assertEquals(problem1, p1.returnSpecificProblem("type1"));
-        assertEquals(problem2, p1.returnSpecificProblem("type2"));
-        assertTrue("different problems", problem3.equals(p1.returnSpecificProblem("type3")));
-        assertFalse("same problem", problem1.equals(p1.returnSpecificProblem("type3")));
-        assertFalse("same problem", problem1.equals(p2.returnSpecificProblem("type1")));
-    }
-
-    @Test
     public void returnNoTreatmentProblemsShouldGetTheProblemsWithTreatmentSetOnNull() {
         List<PatientProblem> noTreatment = Arrays.asList(problem1, problem3);
-        assertEquals("different no treatment problems lists", noTreatment, p1.returnNoTreatmentProblems());
+        assertEquals("different no treatment problems lists", noTreatment, p1.getNoTreatmentProblems());
         List<PatientProblem> problems = Arrays.asList(problem1, problem2, problem3);
-        assertFalse("same lists", problems.equals(p1.returnNoTreatmentProblems()));
+        assertFalse("same lists", problems.equals(p1.getNoTreatmentProblems()));
     }
 }

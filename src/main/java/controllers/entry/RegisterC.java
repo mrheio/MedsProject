@@ -47,44 +47,14 @@ public class RegisterC implements Initializable{
         NodeMisc.hideNode(doctorSpecialtyComboBox, addressTextField, checkFieldsLabel);
     }
 
-    @FXML void roleComboBoxAction() {
-        String role = roleComboBox.getSelectionModel().getSelectedItem();
-        if (role.equals("Patient")) {
-            NodeMisc.hideNode(doctorSpecialtyComboBox, addressTextField);
-        }
-        if (role.equals("Doctor")) {
-            NodeMisc.showNode(doctorSpecialtyComboBox, addressTextField);
-        }
-    }
-
-    @FXML String doctorSpecialtyComboBoxAction() {
-        String specialty = doctorSpecialtyComboBox.getSelectionModel().getSelectedItem().toString();
-        return specialty;
-    }
-
-    @FXML void createAccountButtonAction(ActionEvent actionEvent) throws IOException {
-        Person person = null;
-        if (checkFields()) {
-            NodeMisc.showNode(checkFieldsLabel);
-        } else {
-            person = returnPerson();
-            UserMisc.addUser(person);
-            UserMisc.writeUsers();
-            ViewMisc.showStage("/view/entry/loginView.fxml");
-        }
-    }
-
-    @FXML void cancelButtonAction(ActionEvent actionEvent) {
-        ViewMisc.showStage("/view/entry/loginView.fxml");
-    }
-
     private Person returnPerson() {
         String role = roleComboBox.getSelectionModel().getSelectedItem();
         if (role.equals("Patient")) {
             return new Patient(surname.getText(), forename.getText(), LocalDate.of(yearComboBox.getSelectionModel().getSelectedItem(), monthComboBox.getSelectionModel().getSelectedItem().getId(), dayComboBox.getSelectionModel().getSelectedItem()), email.getText(), usernameTextField.getText(), BCrypt.hashpw(passwordField.getText(), BCrypt.gensalt(12)));
         }
         if (role.equals("Doctor")) {
-            return new Doctor(surname.getText(), forename.getText(), LocalDate.of(yearComboBox.getSelectionModel().getSelectedItem(), monthComboBox.getSelectionModel().getSelectedItem().getId(), dayComboBox.getSelectionModel().getSelectedItem()), email.getText(), usernameTextField.getText(), BCrypt.hashpw(passwordField.getText(), BCrypt.gensalt(12)), doctorSpecialtyComboBoxAction(), addressTextField.getText());
+            String specialty = doctorSpecialtyComboBox.getSelectionModel().getSelectedItem().toString();
+            return new Doctor(surname.getText(), forename.getText(), LocalDate.of(yearComboBox.getSelectionModel().getSelectedItem(), monthComboBox.getSelectionModel().getSelectedItem().getId(), dayComboBox.getSelectionModel().getSelectedItem()), email.getText(), usernameTextField.getText(), BCrypt.hashpw(passwordField.getText(), BCrypt.gensalt(12)), specialty, addressTextField.getText());
 
         }
         return null;
@@ -130,6 +100,32 @@ public class RegisterC implements Initializable{
                (roleComboBox.getSelectionModel().getSelectedItem().equals("Doctor") &&
                        doctorSpecialtyComboBox.getSelectionModel().isEmpty());
 
+    }
+
+    @FXML void roleComboBoxAction() {
+        String role = roleComboBox.getSelectionModel().getSelectedItem();
+        if (role.equals("Patient")) {
+            NodeMisc.hideNode(doctorSpecialtyComboBox, addressTextField);
+        }
+        if (role.equals("Doctor")) {
+            NodeMisc.showNode(doctorSpecialtyComboBox, addressTextField);
+        }
+    }
+
+    @FXML void createAccountButtonAction(ActionEvent actionEvent) throws IOException {
+        Person person = null;
+        if (checkFields()) {
+            NodeMisc.showNode(checkFieldsLabel);
+        } else {
+            person = returnPerson();
+            UserMisc.addUser(person);
+            UserMisc.writeUsers();
+            ViewMisc.showLogin();
+        }
+    }
+
+    @FXML void cancelButtonAction(ActionEvent actionEvent) {
+        ViewMisc.showLogin();
     }
 
 }

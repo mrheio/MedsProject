@@ -1,12 +1,15 @@
 package model.roles;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javafx.beans.Observable;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import misc.user.PatientMisc;
 import model.other.PatientProblem;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +17,8 @@ import java.util.List;
 public class Doctor extends Person {
 
     protected final StringProperty specialty;
-    protected List<PatientProblem> solvedProblems = new ArrayList<>();
     protected StringProperty address;
+    protected List<PatientProblem> solvedProblems = new ArrayList<>();
 
     public Doctor() {
         this.specialty = new SimpleStringProperty();
@@ -58,6 +61,27 @@ public class Doctor extends Person {
 
     public void setAddress(String address) {
         this.address.set(address);
+    }
+
+    @JsonIgnore
+    public List<PatientProblem> getProblemsForDoctor() throws IOException {
+        List<Patient> allPatients = PatientMisc.getPatientsFromUsers();
+        List<PatientProblem> problemsForDoctor = new ArrayList<>();
+        for (Patient x: allPatients) {
+            problemsForDoctor.addAll(x.getProblemsForSpecialty(getSpecialty()));
+        }
+        return problemsForDoctor;
+    }
+
+    @JsonIgnore
+    public List<PatientProblem> getNoTreatmentUnsolvedProblemsForDoctor() throws IOException {
+        List<PatientProblem> noTreatmentUnsolvedProblems = new ArrayList<>();
+        for (PatientProblem x: getProblemsForDoctor()) {
+            if (x.getTreatment() == null && x.isSolved() == false) {
+                noTreatmentUnsolvedProblems.add(x);
+            }
+        }
+        return noTreatmentUnsolvedProblems;
     }
 
     @Override

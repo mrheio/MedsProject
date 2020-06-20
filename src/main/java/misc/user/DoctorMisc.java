@@ -25,30 +25,4 @@ public class DoctorMisc {
         UserMisc.readUsers();
         return getDoctorsFromUsers();
     }
-
-    public static List<Patient> getPatientsForDoctor(Doctor doctor) throws IOException {
-
-        List<Patient> allPatients = PatientMisc.getPatientsFromFile();
-        List<Patient> patientsForDoctor = new ArrayList<>();
-        for (Patient x: allPatients) {
-            for (PatientProblem y: x.getProblems()) {
-                if (y.getTypeOfProblem().equals(doctor.getSpecialty()) && y.getTreatment() == null) {
-                    patientsForDoctor.add(x);
-                }
-            }
-        }
-        return patientsForDoctor;
-    }
-
-    public static List<Patient> getPatientsForLoggedDoctor() throws IOException {
-        Doctor doctor = (Doctor) UserMisc.getLoggedUser();
-        return getPatientsForDoctor(doctor);
-    }
-
-    public static void updateLoggedDoctorAddress(String address) throws IOException {
-        Doctor doctor = (Doctor) UserMisc.getLoggedUser();
-        doctor.setAddress(address);
-        UserMisc.updateUsers(doctor);
-    }
-
 }

@@ -48,7 +48,6 @@ public class ViewMisc {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ViewMisc.class.getResource(address));
             rootLayout = (Parent)loader.load();
-            makeStageMove();
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -56,4 +55,37 @@ public class ViewMisc {
             e.printStackTrace();
         }
     }
+
+    public static void showLogin() {
+        ViewMisc.showStage("/view/entry/loginView.fxml");
+    }
+
+    public static void showRegister() {
+        ViewMisc.showStage("/view/entry/registerView.fxml");
+    }
+
+    public static void showPasswordReset() {
+        ViewMisc.showStage("/view/other/passwordResetView.fxml");
+    }
+
+    public static void showPatientMenu() {
+        ViewMisc.showStage("/view/account/menus/patientMenuView.fxml");
+    }
+
+    public static void showPatientSettings() {
+        ViewMisc.showStage("/view/account/settings/patientAccSettingsView.fxml");
+    }
+
+    public static void showRequestHelp() {
+        ViewMisc.showStage("/view/other/requestHelpView.fxml");
+    }
+
+    public static void showDoctorMenu() {
+        ViewMisc.showStage("/view/account/menus/doctorMenuView.fxml");
+    }
+
+    public static void showDoctorSettings() {
+        ViewMisc.showStage("/view/account/settings/docAccSettingsView.fxml");
+    }
+
 }

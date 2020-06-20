@@ -6,6 +6,7 @@ import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.exc.MismatchedInputException;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import misc.utility.FileMisc;
 import misc.utility.ViewMisc;
@@ -14,6 +15,8 @@ import model.roles.Person;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,16 +67,24 @@ public class UserMisc {
             mapper.registerModule(new JavaTimeModule());
             users = mapper.readValue(usersPath.toFile(), new TypeReference<List<Person>>(){});
             System.out.println("reading users...");
+        } catch (MismatchedInputException e) {
+            System.out.println("users.json is empty");
         } catch (Exception e) {
             e.printStackTrace();
         }
         System.out.println("users read");
     }
 
-    public static void updateUsers(Person person) throws IOException {
-        for (Person x: users) {
-            if (x.equals(person)) {
-                users.set(users.indexOf(x), person);
+    public static void updateUsers(Person... persons) throws IOException {
+        for (Person x: persons) {
+            if (users.contains(x)) {
+                for (Person y: users) {
+                    if (y.equals(x)) {
+                        users.set(users.indexOf(y), x);
+                    }
+                }
+            } else {
+                users.add(x);
             }
         }
         UserMisc.writeUsers();
@@ -81,7 +92,11 @@ public class UserMisc {
 
     public static void logOutUser() {
         setLoggedUser(null);
-        ViewMisc.showStage("/view/entry/loginView.fxml");
+        ViewMisc.showLogin();
+    }
+
+    public static int getUserYears(Person person) {
+        return Period.between(person.getBirthday(), LocalDate.now()).getYears();
     }
 
 }

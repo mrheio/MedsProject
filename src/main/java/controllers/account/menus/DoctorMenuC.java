@@ -1,6 +1,8 @@
 package controllers.account.menus;
 
+import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -12,8 +14,10 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import misc.user.DoctorMisc;
+import misc.user.PatientMisc;
 import misc.user.UserMisc;
 import misc.utility.NodeMisc;
+import misc.utility.TextMisc;
 import misc.utility.ViewMisc;
 import model.other.PatientProblem;
 import model.roles.Doctor;
@@ -21,126 +25,136 @@ import model.roles.Patient;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 
 public class DoctorMenuC extends MenuC implements Initializable {
 
-    @FXML private AnchorPane patientDetailsAP;
-    @FXML private ComboBox optionsCB;
     @FXML private Button giveTreatmentButton;
-    @FXML private Button appointmentNeededButton;
-    @FXML private TextArea treatmentTextArea;
-    @FXML private TextArea problemTA;
+    @FXML private Label nameLabel;
+    @FXML private Label ageLabel;
+    @FXML private TextArea descriptionTA;
     @FXML private TextArea allergiesTA;
     @FXML private TextArea ccTA;
-    @FXML private Label patientName;
-    @FXML private Label patientAgeLabel;
-    @FXML private Label writeDownTreatment;
-    @FXML private TableView<Patient> patientsTableView;
-        @FXML private TableColumn<Patient, String> surnameColumn;
-        @FXML private TableColumn<Patient, String> forenameColumn;
+    @FXML private TextArea giveTreatmentTA;
+    @FXML private ListView<PatientProblem> problemsListView;
+    @FXML private TableView<PatientProblem> historyTableView;
+        @FXML private TableColumn<PatientProblem, String> problemColumn;
 
-    private Doctor loggedDoctor = (Doctor) UserMisc.getLoggedUser();
-    private ObservableList<Patient> patients = FXCollections.observableList(DoctorMisc.getPatientsForLoggedDoctor());
+    private Doctor loggedUser = (Doctor) super.loggedUser;
+    private ObservableList<PatientProblem> problems = FXCollections.observableList(loggedUser.getProblemsForDoctor());
+    private ObservableList<PatientProblem> noTreatmentUnsolvedProblems = FXCollections.observableList(loggedUser.getNoTreatmentUnsolvedProblemsForDoctor());
+    private ObservableList<PatientProblem> solvedProblems = FXCollections.observableList(loggedUser.getSolvedProblems());
 
     public DoctorMenuC() throws IOException {
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        configureMenu();
-    }
-
-    @FXML void doctorOptionsComboBoxAction(ActionEvent actionEvent) {
-        Object selectedOption = optionsCB.getSelectionModel().getSelectedItem();
-        if (selectedOption.equals("Log out")) {
-            UserMisc.logOutUser();
+        try {
+            configureMenu();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        if (selectedOption.equals("Edit profile")) {
-            ViewMisc.showStage("/view/account/settings/docAccSettingsView.fxml");
+        NodeMisc.hideDisableNode(Arrays.asList(problemsAP), Arrays.asList(giveTreatmentButton));
+
+    }
+
+    protected void configureProblemsAP() {
+        problemsListView.setItems(noTreatmentUnsolvedProblems);
+        if (problemsListView.getSelectionModel().getSelectedItem() == null) {
+            NodeMisc.hideNode(problemsAP);
         }
-    }
-
-    @FXML void appointmentNeededAction(ActionEvent event) throws IOException {
-        setPatientTreatment("Appointment needed!");
-    }
-
-    @FXML void giveTreatmentAction(ActionEvent event) throws IOException {
-        setPatientTreatment(treatmentTextArea.getText());
-    }
-
-    @FXML void keyReleaseProperty(KeyEvent keyEvent) {
-        BooleanBinding booleanBinding = treatmentTextArea.textProperty().isEmpty();
-        giveTreatmentButton.disableProperty().bind(booleanBinding);
-    }
-
-    private void configureDoctorOptionsCB() {
-        optionsCB.setPromptText(loggedDoctor.getForename());
-        optionsCB.setItems(super.options);
-    }
-
-    private void configurePatientTable() {
-        patientsTableView.setItems(patients);
-        surnameColumn.setCellValueFactory(x -> x.getValue().surnameProperty());
-        forenameColumn.setCellValueFactory(x -> x.getValue().forenameProperty());
         showSelectedPatient();
     }
 
-    private void configureMenu() {
-        configureDoctorOptionsCB();
-        configurePatientTable();
-        NodeMisc.hideNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAP);
-        NodeMisc.disableNode(giveTreatmentButton);
+    protected void configureHistoryAP() {
+        historyTableView.setItems(solvedProblems);
+        problemColumn.setCellValueFactory(x -> x.getValue().descriptionOfProblemProperty());
     }
 
-    private void setShowPatientDetails() {
-        Patient patient = patientsTableView.getSelectionModel().getSelectedItem();
-        if (patient != null) {
-            PatientProblem patientProblem = patient.returnSpecificProblem(loggedDoctor.getSpecialty());
-            patientName.setText(patient.getSurname() + " " + patient.getForename());
-            patientAgeLabel.setText("AGE: " + Period.between(patient.getBirthday(), LocalDate.now()).getYears());
-            problemTA.setText(patientProblem.getDescriptionOfProblem());
-            String hasAllergies = patientProblem.getHasAllergies();
-            String hasCC = patientProblem.getHasChronicConditions();
-            if (patientProblem.getHasAllergies().equals("yes")) {
-                allergiesTA.setText(patientProblem.getAllergies().toString());
-            } else {
-                allergiesTA.setText(hasAllergies);
-            }
-            if (patientProblem.getHasChronicConditions().equals("yes")) {
-                ccTA.setText(patientProblem.getChronicConditions().toString());
-            } else {
-                ccTA.setText(hasCC);
-            }
-            NodeMisc.showNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAP);
+    @Override
+    protected void configureMenu() throws IOException {
+        super.configureMenu();
+        configureProblemsAP();
+        configureHistoryAP();
+    }
 
+    private void showPatientDetails() throws IOException {
+        PatientProblem problem = problemsListView.getSelectionModel().getSelectedItem();
+        if (problem != null) {
+            NodeMisc.showNode(problemsAP);
+            Patient patient = PatientMisc.getProblemSource(problem);
+            nameLabel.setText(patient.getFullName());
+            ageLabel.setText("AGE: "+ UserMisc.getUserYears(patient));
+            descriptionTA.setText(problem.getDescriptionOfProblem());
+            if (problem.getHasAllergies().equals("yes")) {
+                allergiesTA.setText(problem.getHasAllergies() + ": " + problem.getAllergies().toString());
+            } else {
+                allergiesTA.setText(problem.getHasAllergies());
+            }
+            if (problem.getHasAllergies().equals("yes")) {
+                ccTA.setText(problem.getHasChronicConditions() + ": " + problem.getChronicConditions().toString());
+            } else {
+                ccTA.setText(problem.getHasChronicConditions());
+            }
         }
-        if (patient == null) {
-            NodeMisc.clearLabels(patientName, patientAgeLabel);
-            NodeMisc.clearTextFieldsAndAreas(problemTA, allergiesTA, ccTA);
-            NodeMisc.hideNode(giveTreatmentButton, appointmentNeededButton, treatmentTextArea, writeDownTreatment, patientDetailsAP);
+        if (problem == null) {
+            NodeMisc.clearLabels(nameLabel, ageLabel);
+            NodeMisc.clearTextFieldsAndAreas(descriptionTA, allergiesTA, ccTA);
+            NodeMisc.hideNode(problemsAP);
         }
     }
 
     private void showSelectedPatient() {
-        patientsTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Patient>() {
+        problemsListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<PatientProblem>() {
             @Override
-            public void changed(ObservableValue<? extends Patient> observableValue, Patient doctor, Patient t1) {
-                setShowPatientDetails();
+            public void changed(ObservableValue<? extends PatientProblem> observableValue, PatientProblem patientProblem, PatientProblem t1) {
+                try {
+                    giveTreatmentTA.clear();
+                    showPatientDetails();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (NullPointerException e) {
+                    System.out.println("nothing selected");
+                }
             }
         });
     }
 
     private void setPatientTreatment(String treatment) throws IOException {
-        Patient patient = patientsTableView.getSelectionModel().getSelectedItem();
-        PatientProblem patientProblem = patient.returnSpecificProblem(loggedDoctor.getSpecialty());
-        patientProblem.setTreatment(treatment);
-        patients.remove(patient);
-        loggedDoctor.getSolvedProblems().add(patientProblem);
-        UserMisc.updateUsers(loggedDoctor);
-        UserMisc.updateUsers(patient);
+        PatientProblem problem = problemsListView.getSelectionModel().getSelectedItem();
+        Patient patient = PatientMisc.getProblemSource(problem);
+        problem.setTreatment(treatment);
+        problem.setDoctorName(loggedUser.getFullName());
+        noTreatmentUnsolvedProblems.remove(problem);
+        solvedProblems.add(problem);
+        UserMisc.updateUsers(loggedUser, patient);
+        giveTreatmentTA.clear();
+    }
+
+    @Override
+    void problemsHLAction(ActionEvent actionEvent) {
+        super.problemsHLAction(actionEvent);
+        if (problemsListView.getSelectionModel().getSelectedItem() == null) {
+            NodeMisc.hideNode(problemsAP);
+        }
+    }
+
+    @FXML void appointmentNeededButtonAction(ActionEvent event) throws IOException {
+        setPatientTreatment("Appointment needed!");
+    }
+
+    @FXML void giveTreatmentButtonAction(ActionEvent event) throws IOException {
+        setPatientTreatment(giveTreatmentTA.getText());
+    }
+
+    @FXML void keyReleaseProperty() {
+        BooleanBinding booleanBinding = giveTreatmentTA.textProperty().isEmpty();
+        giveTreatmentButton.disableProperty().bind(booleanBinding);
     }
 
 }

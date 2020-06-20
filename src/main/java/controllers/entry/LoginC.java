@@ -36,27 +36,6 @@ public class LoginC implements Initializable {
         }
         NodeMisc.hideDisableNode(asList(badLogin), asList(loginButton));
     }
-
-    @FXML void keyReleaseProperty() {
-        BooleanBinding booleanBinding = Bindings.or(usernameTextField.textProperty().isEmpty(), passwordField.textProperty().isEmpty());
-        loginButton.disableProperty().bind(booleanBinding);
-    }
-
-    @FXML void loginAction() throws IOException {
-        checkUser();
-    }
-
-    @FXML void cancelAction() {
-        Platform.exit();
-    }
-
-    @FXML void createNewAccountButtonAction() throws IOException {
-        ViewMisc.showStage("/view/entry/registerView.fxml");
-    }
-
-    @FXML void resetPasswordHLAction(ActionEvent actionEvent) {
-        ViewMisc.showStage("/view/other/passwordResetView.fxml");
-    }
     
     private void checkUser() {
         String username = usernameTextField.getText();
@@ -74,17 +53,38 @@ public class LoginC implements Initializable {
             UserMisc.setLoggedUser(person);
             if (person.getRole().equals("Patient")) {
                 System.out.println("Logged as patient");
-                ViewMisc.showStage("/view/account/menus/patientMenuView.fxml");
+                ViewMisc.showPatientMenu();
             }
             if (person.getRole().equals("Doctor")) {
                 System.out.println("Logged as doctor");
-                ViewMisc.showStage("/view/account/menus/doctorMenuView.fxml");
+                ViewMisc.showDoctorMenu();
             }
         }
         if (userExists == false) {
             NodeMisc.showNode(badLogin);
             passwordField.clear();
         }
+    }
+
+    @FXML void keyReleaseProperty() {
+        BooleanBinding booleanBinding = Bindings.or(usernameTextField.textProperty().isEmpty(), passwordField.textProperty().isEmpty());
+        loginButton.disableProperty().bind(booleanBinding);
+    }
+
+    @FXML void loginAction() throws IOException {
+        checkUser();
+    }
+
+    @FXML void cancelAction() {
+        Platform.exit();
+    }
+
+    @FXML void createNewAccountButtonAction() throws IOException {
+        ViewMisc.showRegister();
+    }
+
+    @FXML void resetPasswordHLAction(ActionEvent actionEvent) {
+        ViewMisc.showPasswordReset();
     }
 
 

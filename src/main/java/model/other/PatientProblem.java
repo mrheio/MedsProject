@@ -2,9 +2,11 @@ package model.other;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import model.roles.Doctor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class PatientProblem {
     private StringProperty typeOfProblem;
@@ -14,6 +16,8 @@ public class PatientProblem {
     private List<String> allergies;
     private List<String> chronicConditions;
     private StringProperty treatment;
+    private StringProperty doctorName;
+    private boolean isSolved;
 
     public PatientProblem() {
         this.typeOfProblem = new SimpleStringProperty();
@@ -23,9 +27,11 @@ public class PatientProblem {
         this.allergies = new ArrayList<>();
         this.chronicConditions = new ArrayList<>();
         this.treatment = new SimpleStringProperty();
+        this.doctorName = new SimpleStringProperty("-");
+        isSolved = false;
     }
 
-    public PatientProblem(String typeOfProblem, String descriptionOfProblem, String hasAllergies, String hasChronicConditions, List<String> allergies, List<String> chronicConditions, String treatment) {
+    public PatientProblem(String typeOfProblem, String descriptionOfProblem, String hasAllergies, String hasChronicConditions, List<String> allergies, List<String> chronicConditions, String treatment, String doctorName) {
         this.typeOfProblem = new SimpleStringProperty(typeOfProblem);
         this.descriptionOfProblem = new SimpleStringProperty(descriptionOfProblem);
         this.hasAllergies = new SimpleStringProperty(hasAllergies);
@@ -33,6 +39,8 @@ public class PatientProblem {
         this.allergies = allergies;
         this.chronicConditions = chronicConditions;
         this.treatment = new SimpleStringProperty(treatment);
+        this.doctorName = new SimpleStringProperty(doctorName);
+        isSolved = false;
     }
 
     public String getTypeOfProblem() {
@@ -111,16 +119,49 @@ public class PatientProblem {
         this.treatment.set(treatment);
     }
 
+    public String getDoctorName() {
+        return doctorName.get();
+    }
+
+    public StringProperty doctorNameProperty() {
+        return doctorName;
+    }
+
+    public void setDoctorName(String doctorName) {
+        this.doctorName.set(doctorName);
+    }
+
+    public boolean isSolved() {
+        return isSolved;
+    }
+
+    public void setSolved(boolean solved) {
+        isSolved = solved;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PatientProblem problem = (PatientProblem) o;
+        return isSolved == problem.isSolved &&
+                Objects.equals(typeOfProblem.getValue(), problem.typeOfProblem.getValue()) &&
+                Objects.equals(descriptionOfProblem.getValue(), problem.descriptionOfProblem.getValue()) &&
+                Objects.equals(hasAllergies.getValue(), problem.hasAllergies.getValue()) &&
+                Objects.equals(hasChronicConditions.getValue(), problem.hasChronicConditions.getValue()) &&
+                Objects.equals(allergies, problem.allergies) &&
+                Objects.equals(chronicConditions, problem.chronicConditions) &&
+                Objects.equals(treatment.getValue(), problem.treatment.getValue()) &&
+                Objects.equals(doctorName.getValue(), problem.doctorName.getValue());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(typeOfProblem, descriptionOfProblem, hasAllergies, hasChronicConditions, allergies, chronicConditions, treatment, doctorName, isSolved);
+    }
+
     @Override
     public String toString() {
-        return "PatientProblem{" +
-                "typeOfProblem=" + typeOfProblem +
-                ", descriptionOfProblem=" + descriptionOfProblem +
-                ", hasAllergies=" + hasAllergies +
-                ", hasChronicConditions=" + hasChronicConditions +
-                ", allergies=" + allergies +
-                ", chronicConditions=" + chronicConditions +
-                ", treatment=" + treatment +
-                '}';
+        return getDescriptionOfProblem();
     }
 }

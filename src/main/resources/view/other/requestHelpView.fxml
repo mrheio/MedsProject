@@ -88,7 +88,6 @@
                           <children>
                               <Button fx:id="cancelButton" layoutX="60.0" layoutY="42.0" mnemonicParsing="false" onAction="#cancelButtonAction" prefHeight="40.0" prefWidth="140.0" text="CANCEL" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="246.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="42.0" />
                               <Button fx:id="requestHelpButton" layoutX="14.0" layoutY="42.0" mnemonicParsing="false" onAction="#requestHelpButtonAction" prefHeight="40.0" prefWidth="140.0" text="REQUEST HELP" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="246.0" AnchorPane.topAnchor="42.0" />
-                              <Label fx:id="alreadyProblemLabel" layoutX="14.0" layoutY="21.0" text="You already have a problem for this specialty" />
                           </children>
                       </AnchorPane>
                   </children>

@@ -91,12 +91,12 @@
                   </AnchorPane>
                   <AnchorPane layoutX="10.0" layoutY="410.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="400.0" GridPane.rowIndex="8">
                       <children>
-                          <ComboBox fx:id="roleComboBox" layoutX="14.0" layoutY="33.0" onAction="#roleComboBoxAction" prefHeight="35.0" prefWidth="200.0" promptText="Pacient OR Doctor?" />
+                          <ComboBox fx:id="roleComboBox" layoutX="14.0" layoutY="33.0" onAction="#roleComboBoxAction" prefHeight="35.0" prefWidth="200.0" promptText="PATIENT OR DOCTOR?" />
                       </children>
                   </AnchorPane>
                   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="400.0" GridPane.rowIndex="9">
                       <children>
-                          <ComboBox fx:id="doctorSpecialtyComboBox" layoutX="112.0" layoutY="43.0" onAction="#doctorSpecialtyComboBoxAction" prefHeight="35.0" prefWidth="200.0" promptText="Select specialty" visible="false" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="185.0" AnchorPane.topAnchor="38.0" />
+                          <ComboBox fx:id="doctorSpecialtyComboBox" layoutX="112.0" layoutY="43.0" prefHeight="35.0" prefWidth="200.0" promptText="Select specialty" visible="false" AnchorPane.bottomAnchor="27.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="185.0" AnchorPane.topAnchor="38.0" />
                           <TextField fx:id="addressTextField" layoutX="236.0" layoutY="38.0" prefHeight="35.0" prefWidth="130.0" promptText="Write address" visible="false" />
                       </children>
                   </AnchorPane>

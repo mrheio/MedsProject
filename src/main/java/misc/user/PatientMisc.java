@@ -10,6 +10,21 @@ import java.util.List;
 
 public class PatientMisc {
 
+    public static List<Patient> getPatientsFromUsers() {
+        List<Patient> patients = new ArrayList<>();
+        for (Person x: UserMisc.getUsers()) {
+            if (x.getRole().equals("Patient")) {
+                patients.add((Patient) x);
+            }
+        }
+        return patients;
+    }
+
+    public static List<Patient> getPatientsFromFile() throws IOException {
+        UserMisc.readUsers();
+        return getPatientsFromUsers();
+    }
+
     public static void addPatientProblem(Patient patient, PatientProblem patientProblem) throws IOException {
         patient.getProblems().add(patientProblem);
         UserMisc.updateUsers(patient);
@@ -30,21 +45,14 @@ public class PatientMisc {
         deletePatientProblem(loggedPatient, patientProblem);
     }
 
-    public static List<Patient> getPatientsFromUsers() {
-        List<Patient> patients = new ArrayList<>();
-        for (Person x: UserMisc.getUsers()) {
-            if (x.getRole().equals("Patient")) {
-                patients.add((Patient) x);
+    public static Patient getProblemSource(PatientProblem patientProblem) throws IOException {
+        for (Patient x: getPatientsFromUsers()) {
+            for (PatientProblem y: x.getProblems()) {
+                if (y.equals(patientProblem)) {
+                    return x;
+                }
             }
         }
-        return patients;
+        return null;
     }
-
-    public static List<Patient> getPatientsFromFile() throws IOException {
-        UserMisc.readUsers();
-        return getPatientsFromUsers();
-    }
-
-
-
 }

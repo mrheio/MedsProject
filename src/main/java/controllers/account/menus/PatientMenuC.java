@@ -1,8 +1,6 @@
 package controllers.account.menus;
 
 import controllers.other.RequestHelpC;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,33 +12,40 @@ import misc.user.DoctorMisc;
 import misc.user.PatientMisc;
 import misc.user.UserMisc;
 import misc.utility.NodeMisc;
+import misc.utility.TextMisc;
 import misc.utility.ViewMisc;
 import model.other.PatientProblem;
 import model.roles.Doctor;
 import model.roles.Patient;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.ResourceBundle;
 import java.util.function.Function;
 
 public class PatientMenuC extends MenuC implements Initializable {
 
-
-    @FXML private AnchorPane treatmentAP;
-    @FXML private ComboBox optionsCB;
     @FXML private TextField doctorFilterTextField;
-    @FXML private TextArea treatmentTA;
     @FXML private TableView<Doctor> doctorsTableView;
-        @FXML private TableColumn<Doctor, String> surnameColumn;
-        @FXML private TableColumn<Doctor, String> forenameColumn;
+        @FXML private TableColumn<Doctor, String> nameColumn;
         @FXML private TableColumn<Doctor, String> specialtyColumn;
     @FXML private TableView<PatientProblem> problemsTableView;
-        @FXML private TableColumn<PatientProblem, String> typeOfProblemTableColumn;
-        @FXML private TableColumn<PatientProblem, String> problemTableColumn;
+        @FXML private TableColumn<PatientProblem, String> typeColumn;
+        @FXML private TableColumn<PatientProblem, String> descriptionColumn;
+        @FXML private TableColumn<PatientProblem, String> treatmentColumn;
+        @FXML private TableColumn<PatientProblem, String> doctorColumn;
+    @FXML private TableView<PatientProblem> historyTableView;
+        @FXML private TableColumn<PatientProblem, String> hTypeColumn;
+        @FXML private TableColumn<PatientProblem, String> hDescriptionColumn;
+        @FXML private TableColumn<PatientProblem, String> hTreatmentColumn;
+        @FXML private TableColumn<PatientProblem, String> hDoctorColumn;
 
-    private Patient loggedPatient = (Patient) UserMisc.getLoggedUser();
-    private ObservableList<PatientProblem> patientProblems = FXCollections.observableList(((Patient) UserMisc.getLoggedUser()).getProblems());
+    private Patient loggedUser = (Patient) super.loggedUser;
+    private ObservableList<PatientProblem> patientProblems = FXCollections.observableList(loggedUser.getProblems());
+    private ObservableList<PatientProblem> unsolvedProblems = FXCollections.observableList(loggedUser.getUnsolvedProblems());
+    private ObservableList<PatientProblem> solvedProblems = FXCollections.observableList(loggedUser.getSolvedProblems());
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -51,82 +56,67 @@ public class PatientMenuC extends MenuC implements Initializable {
         }
     }
 
-    @FXML void requestHelpButtonAction(ActionEvent actionEvent) {
-        RequestHelpC.setPatientProblem(new PatientProblem());
-        ViewMisc.showStage("/view/other/requestHelpView.fxml");
-    }
-
-    @FXML void patientOptionsComboBoxAction(ActionEvent actionEvent) {
-        Object selectedOption = optionsCB.getSelectionModel().getSelectedItem();
-        if (selectedOption.equals("Log out")) {
-            UserMisc.logOutUser();
-        }
-        if (selectedOption.equals("Edit profile")) {
-            ViewMisc.showStage("/view/account/settings/patientAccSettingsView.fxml");
-        }
-    }
-
-    @FXML void deleteProblemButtonAction(ActionEvent actionEvent) throws IOException {
-        PatientProblem patientProblem = problemsTableView.getSelectionModel().getSelectedItem();
-        patientProblems.remove(patientProblem);
-        PatientMisc.deleteLoggedPatientProblem(patientProblem);
-
-    }
-
-    private void configurePatientMenuCB() {
-        optionsCB.setPromptText(loggedPatient.getForename());
-        optionsCB.setItems(super.options);
-    }
-
     private void configureDoctorsTable() throws IOException {
         ObservableList<Doctor> doctors = FXCollections.observableList(DoctorMisc.getDoctorsFromFile());
         doctorsTableView.setItems(doctors);
-        surnameColumn.setCellValueFactory(x -> x.getValue().surnameProperty());
-        forenameColumn.setCellValueFactory(x -> x.getValue().forenameProperty());
+        nameColumn.setCellValueFactory(x -> x.getValue().fullNameProperty());
         specialtyColumn.setCellValueFactory(x -> x.getValue().specialtyProperty());
 
-       Function<Doctor, String> stringFunction = doctor -> doctor.getSpecialty();
-       NodeMisc.sortTableViewAfterColumn(doctorsTableView, specialtyColumn);
-       NodeMisc.filterTableViewWithTextField(doctorsTableView, doctors, doctorFilterTextField, stringFunction);
-       NodeMisc.deselectTableView(doctorsTableView);
+        Function<Doctor, String> stringFunction = doctor -> doctor.getSpecialty();
+        NodeMisc.sortTableViewAfterColumn(doctorsTableView, specialtyColumn);
+        NodeMisc.filterTableViewWithTextField(doctorsTableView, doctors, doctorFilterTextField, stringFunction);
+        NodeMisc.deselectTableView(doctorsTableView);
     }
 
-    private void configureProblemsTable() {
-        problemsTableView.setItems(patientProblems);
-        typeOfProblemTableColumn.setCellValueFactory(x -> x.getValue().typeOfProblemProperty());
-        problemTableColumn.setCellValueFactory(x -> x.getValue().descriptionOfProblemProperty());
-        showTreatmentForSelectedProblem();
+    protected void configureProblemsAP() {
+        problemsTableView.setItems(unsolvedProblems);
+        typeColumn.setCellValueFactory(x -> x.getValue().typeOfProblemProperty());
+        descriptionColumn.setCellValueFactory(x -> x.getValue().descriptionOfProblemProperty());
+        treatmentColumn.setCellValueFactory(x -> x.getValue().treatmentProperty());
+        doctorColumn.setCellValueFactory(x -> x.getValue().doctorNameProperty());
     }
 
-    private void configureTables() throws IOException {
+    protected void configureHistoryAP() {
+        historyTableView.setItems(solvedProblems);
+        hTypeColumn.setCellValueFactory(x -> x.getValue().typeOfProblemProperty());
+        hDescriptionColumn.setCellValueFactory(x -> x.getValue().descriptionOfProblemProperty());
+        hTreatmentColumn.setCellValueFactory(x -> x.getValue().treatmentProperty());
+        hDoctorColumn.setCellValueFactory(x -> x.getValue().doctorNameProperty());
+    }
+
+    @Override
+    protected void configureMenu() throws IOException {
+        super.configureMenu();
         configureDoctorsTable();
-        configureProblemsTable();
+        configureProblemsAP();
+        configureHistoryAP();
     }
 
-    private void configureMenu() throws IOException {
-        configurePatientMenuCB();
-        configureTables();
-        NodeMisc.hideNode(treatmentAP);
+    @FXML void requestHelpButtonAction(ActionEvent actionEvent) {
+        RequestHelpC.setPatientProblem(new PatientProblem());
+        ViewMisc.showRequestHelp();
     }
 
-    private void showTreatmentForSelectedProblem() {
-        problemsTableView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<PatientProblem>() {
-            @Override
-            public void changed(ObservableValue<? extends PatientProblem> observableValue, PatientProblem patientProblem, PatientProblem t1) {
-                showTreatment();
-            }
-        });
-    }
-
-    private void showTreatment() {
-        PatientProblem selectedProblem = problemsTableView.getSelectionModel().getSelectedItem();
-        if (selectedProblem != null) {
-            treatmentTA.setText(selectedProblem.getTreatment());
-            NodeMisc.showNode(treatmentAP);
+    @FXML void markAsSolvedButtonAction(ActionEvent actionEvent) throws IOException {
+        PatientProblem patientProblem = problemsTableView.getSelectionModel().getSelectedItem();
+        try {
+            patientProblem.setSolved(true);
+            unsolvedProblems.remove(patientProblem);
+            solvedProblems.add(patientProblem);
+            UserMisc.updateUsers(loggedUser);
+        } catch (NullPointerException e) {
+            System.out.println("nothing selected");
         }
-        if (selectedProblem == null) {
-            treatmentTA.setText(null);
-            NodeMisc.hideNode(treatmentAP);
+    }
+
+    @FXML void requestAnotherTreatmentButtonAction(ActionEvent actionEvent) throws IOException {
+        PatientProblem patientProblem = problemsTableView.getSelectionModel().getSelectedItem();
+        try {
+            patientProblem.setTreatment(null);
+            patientProblem.setDoctorName("-");
+            UserMisc.updateUsers(loggedUser);
+        } catch (NullPointerException e) {
+            System.out.println("nothing selected");
         }
     }
 

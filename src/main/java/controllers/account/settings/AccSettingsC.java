@@ -5,13 +5,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import misc.user.UserMisc;
 import misc.utility.NodeMisc;
+import misc.utility.TextMisc;
 import misc.utility.ViewMisc;
+import model.combobox.LogOut;
+import model.combobox.Menu;
+import model.combobox.Option;
 import misc.utility.security.BCrypt;
 import model.roles.Person;
 
@@ -29,10 +30,11 @@ abstract public class AccSettingsC implements Initializable {
     @FXML protected PasswordField confirmPasswordField;
     @FXML protected Label badOldPassword;
     @FXML protected Label badNewPassword;
+    @FXML protected ComboBox<Option> optionsCB;
     @FXML protected Hyperlink forgotPasswordHL;
 
     Person loggedUser = UserMisc.getLoggedUser();
-    protected ObservableList<String> options = FXCollections.observableArrayList("Log out", "Menu");
+    protected ObservableList<Option> options = FXCollections.observableArrayList(new LogOut(), new Menu());
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -43,6 +45,15 @@ abstract public class AccSettingsC implements Initializable {
         emailTextField.setText(loggedUser.getEmail());
         usernameTextField.setText(loggedUser.getUsername());
         roleTextField.setText(loggedUser.getRole());
+    }
+
+    protected void configureCB() {
+        TextMisc.textBind(optionsCB.promptTextProperty(), loggedUser.usernameProperty());
+        optionsCB.setItems(options);
+    }
+
+    @FXML void optionsCBAction() {
+        optionsCB.getSelectionModel().getSelectedItem().action(loggedUser);
     }
 
     @FXML void editEmailButtonAction(ActionEvent event) throws IOException {
@@ -84,6 +95,9 @@ abstract public class AccSettingsC implements Initializable {
             ViewMisc.showStage("/view/entry/loginView.fxml");
             UserMisc.setLoggedUser(null);
         }
+    }
+
+    @FXML void forgotPasswordHLAction(ActionEvent event) {
     }
 
 }

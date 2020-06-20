@@ -15,33 +15,12 @@ import java.util.ResourceBundle;
 
 public class PatientAccSettingsC extends AccSettingsC implements Initializable {
 
-    @FXML private ComboBox patientOptionsComboBox;
-
     private Patient loggedUser = (Patient) super.loggedUser;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        configurePatientSettingsCB();
+        configureCB();
         configureAccountTab();
-    }
-
-    @FXML void patientOptionsComboBoxAction(ActionEvent actionEvent) {
-        Object selectedOption = patientOptionsComboBox.getSelectionModel().getSelectedItem();
-        if (selectedOption.equals("Log out")) {
-            UserMisc.logOutUser();
-        }
-        if (selectedOption.equals("Menu")) {
-            ViewMisc.showStage("/view/account/menus/patientMenuView.fxml");
-        }
-    }
-
-    @FXML void forgotPasswordHLAction(ActionEvent event) {
-
-    }
-
-    private void configurePatientSettingsCB() {
-        patientOptionsComboBox.setPromptText(loggedUser.getForename());
-        patientOptionsComboBox.setItems(super.options);
     }
 
     @Override

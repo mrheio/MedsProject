@@ -25,7 +25,6 @@ public class RequestHelpC implements Initializable {
     @FXML private TextArea problemTextArea;
     @FXML private TextArea allergiesTextArea;
     @FXML private TextArea chronicConditionsTextArea;
-    @FXML private Label alreadyProblemLabel;
     @FXML private Label separatedByCommasLabel1;
     @FXML private Label separatedByCommasLabel2;
 
@@ -42,7 +41,7 @@ public class RequestHelpC implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         problemTypeComboBox.setItems(ProblemTypes.getPhysicalProblems());
-        NodeMisc.hideNode(problemTypeComboBox, separatedByCommasLabel1, separatedByCommasLabel2, alreadyProblemLabel);
+        NodeMisc.hideNode(problemTypeComboBox, separatedByCommasLabel1, separatedByCommasLabel2);
     }
 
     @FXML void physicalButtonAction(ActionEvent actionEvent) {
@@ -90,16 +89,19 @@ public class RequestHelpC implements Initializable {
     }
 
     @FXML void cancelButtonAction(ActionEvent event) {
-        ViewMisc.showStage("/view/account/menus/patientMenuView.fxml");
+        ViewMisc.showPatientMenu();
     }
 
     @FXML void requestHelpButtonAction(ActionEvent event) throws IOException {
         setDetails();
         PatientMisc.addLoggedPatientProblem(patientProblem);
-        ViewMisc.showStage("/view/account/menus/patientMenuView.fxml");
+        ViewMisc.showPatientMenu();
     }
 
     private void setDetails() {
+        if (patientProblem.getTypeOfProblem() == null) {
+            return;
+        }
         patientProblem.setDescriptionOfProblem(problemTextArea.getText());
         if (patientProblem.getHasAllergies().equals("yes")) {
             patientProblem.setAllergies(TextMisc.removeCommasFromTextAndToList(allergiesTextArea.getText()));

@@ -25,8 +25,8 @@
         <Label fx:id="createNewAccountLabel" layoutX="20.0" layoutY="340.0" prefHeight="17.0" prefWidth="161.0" text="Don't have a Meds account?" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="419.0" />
         <Label fx:id="badLogin" layoutX="88.0" layoutY="285.0" prefHeight="48.0" prefWidth="317.0" text="You have entered your password or username incorrectly. Please check your password and username and try again." wrapText="true" />
         <Line endX="420.0" fill="BLACK" layoutX="160.0" layoutY="332.0" startX="-140.0" stroke="#515151" AnchorPane.bottomAnchor="67.5" AnchorPane.leftAnchor="19.5" AnchorPane.rightAnchor="19.5" AnchorPane.topAnchor="331.5" />
-        <Label fx:id="nameLabel" layoutX="205.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="270.0" text="MEDS" AnchorPane.leftAnchor="205.0" AnchorPane.rightAnchor="204.0" />
-      <Hyperlink fx:id="resetPasswordHL" layoutY="257.0" onAction="#resetPasswordHLAction" text="Reset password" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="104.0" />
+        <Label fx:id="medsLabel" layoutX="205.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="85.0" prefWidth="270.0" text="MEDS" AnchorPane.leftAnchor="205.0" AnchorPane.rightAnchor="204.0" />
+      <Hyperlink fx:id="resetPasswordHL" layoutY="257.0" onAction="#resetPasswordHLAction" text="Reset password" AnchorPane.leftAnchor="405.0" AnchorPane.rightAnchor="75.0" />
       <Group layoutX="-125.0" layoutY="-326.0" scaleX="0.15" scaleY="0.15" scaleZ="0.1">
          <children>
              <fx:include source="../../images/FXML/LogoSVG.fxml" />

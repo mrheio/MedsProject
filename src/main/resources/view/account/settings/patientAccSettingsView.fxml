@@ -63,7 +63,7 @@
                                               <Label text="New password" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="112.0" />
                                               <Label text="Confirm new password" AnchorPane.leftAnchor="64.0" AnchorPane.topAnchor="152.0" />
                                               <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#changePasswordButtonAction" text="Change password" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="187.0" />
-                                              <Hyperlink fx:id="forgotPasswordHL" onAction="#forgotPasswordHLAction" text="I forgot my password" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="227.0" />
+                                              <Hyperlink fx:id="forgotPasswordHL" disable="true" onAction="#forgotPasswordHLAction" text="I forgot my password" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="227.0" />
                                               <PasswordField fx:id="oldPasswordField" prefHeight="27.0" prefWidth="165.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="295.0" AnchorPane.topAnchor="67.0" />
                                               <PasswordField fx:id="newPasswordField" prefHeight="27.0" prefWidth="165.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="295.0" AnchorPane.topAnchor="107.0" />
                                               <PasswordField fx:id="confirmPasswordField" prefHeight="27.0" prefWidth="165.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="295.0" AnchorPane.topAnchor="147.0" />
@@ -84,7 +84,7 @@
                         </Tab>
                     </tabs>
                 </TabPane>
-            <ComboBox fx:id="patientOptionsComboBox" onAction="#patientOptionsComboBoxAction" prefHeight="27.0" prefWidth="125.0" promptText="NUME" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="14.0" />
+            <ComboBox fx:id="optionsCB" onAction="#optionsCBAction" prefHeight="27.0" prefWidth="125.0" promptText="NUME" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="14.0" />
             </children>
         </AnchorPane>
     </content>
