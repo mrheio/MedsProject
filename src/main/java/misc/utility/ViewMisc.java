@@ -47,7 +47,7 @@ public class ViewMisc {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(ViewMisc.class.getResource(address));
-            rootLayout = (Parent)loader.load();
+            rootLayout = loader.load();
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();

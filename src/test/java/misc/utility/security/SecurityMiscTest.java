@@ -1,6 +1,6 @@
-package misc.utility;
+package misc.utility.security;
 
-import misc.utility.security.SecurityMisc;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -21,7 +21,7 @@ public class SecurityMiscTest {
         assertTrue("Password validation failed", specialCharCount >= 2);
     }
 
-    @Test
+    @Test @Ignore
     public void checkIfEmailIsSent() {
         SecurityMisc securityMisc = new SecurityMisc();
         securityMisc.sendMailFromTo("meds.app0@gmail.com", "8L111119meds", "ovidiu.dragoi00@gmail.com");

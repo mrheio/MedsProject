@@ -64,7 +64,7 @@ public class Date {
     public static ObservableList<Integer> generateYears(int startingYear) {
         LocalDate currentDate = LocalDate.now();
         ObservableList<Integer> years = FXCollections.observableArrayList();
-        for (int i=startingYear; i<currentDate.getYear(); i++) {
+        for (int i=startingYear; i<=currentDate.getYear(); i++) {
             years.add(i);
         }
         return years;

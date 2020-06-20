@@ -2,6 +2,7 @@ package model.roles;
 
 import model.other.PatientProblem;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -18,8 +19,8 @@ public class PatientTest {
     private static List<String> allergies1 = Arrays.asList("a1", "a2", "a3");
     private static List<String> cc1 = Arrays.asList("cc1", "cc2");
     private static PatientProblem problem1 = new PatientProblem("type1", "description1", "yes", "yes", allergies1, cc1, null, null);
-    private static PatientProblem problem2 = new PatientProblem("type2", "description1", "no", "no", null, null, "treatment2", null);
-    private static PatientProblem problem3 = new PatientProblem("type3", "description1", "no", "no", null, null, null, null);
+    private static PatientProblem problem2 = new PatientProblem("type1", "description2", "no", "no", null, null, "treatment2", null);
+    private static PatientProblem problem3 = new PatientProblem("type3", "description3", "no", "no", null, null, null, null);
 
     @BeforeClass
     public static void addProblems() {
@@ -29,10 +30,42 @@ public class PatientTest {
     }
 
     @Test
-    public void returnNoTreatmentProblemsShouldGetTheProblemsWithTreatmentSetOnNull() {
+    public void getNoTreatmentProblemsShouldGetTheProblemsWithTreatmentSetOnNull() {
         List<PatientProblem> noTreatment = Arrays.asList(problem1, problem3);
         assertEquals("different no treatment problems lists", noTreatment, p1.getNoTreatmentProblems());
         List<PatientProblem> problems = Arrays.asList(problem1, problem2, problem3);
         assertFalse("same lists", problems.equals(p1.getNoTreatmentProblems()));
     }
+
+    @Test
+    public void getProblemsForSpecialtyShouldGetTheProblemsForASpecialty() {
+        String specialty1 = "type1";
+        String specialty2 = "type2";
+        List<PatientProblem> type1Problems = Arrays.asList(problem1, problem2);
+        assertEquals("different specialty lists", type1Problems, p1.getProblemsForSpecialty(specialty1));
+        assertFalse("same lists", type1Problems.equals(p1.getProblemsForSpecialty(specialty2)));
+    }
+
+    @Test @Ignore
+    public void getSolvedProblemsShouldGetTheProblemsWithIsSOLVEDSetOnTRUE() {
+        problem1.setSolved(true);
+        problem3.setSolved(true);
+        List<PatientProblem> solvedProblems = Arrays.asList(problem1, problem3);
+        assertEquals("different solved lists", solvedProblems, p1.getSolvedProblems());
+    }
+
+    @Test
+    public void unsolvedToSolvedShouldPutAnUNSOLVEDProblemToSOLVED() {
+        p1.unsolvedToSolved(problem2);
+        assertEquals("not the same", true, problem2.isSolved());
+    }
+
+    @Test
+    public void checkIfProblemIsDeleted() {
+        List<PatientProblem> newProblems = Arrays.asList(problem2, problem3);
+        p1.deletePatientProblem(problem1);
+        assertEquals("not deleted", newProblems, p1.getProblems());
+    }
+
+
 }

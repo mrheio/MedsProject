@@ -64,19 +64,18 @@ public class Doctor extends Person {
     }
 
     @JsonIgnore
-    public List<PatientProblem> getProblemsForDoctor() throws IOException {
-        List<Patient> allPatients = PatientMisc.getPatientsFromUsers();
+    public List<PatientProblem> getProblemsForDoctor(List<Patient> patients) throws IOException {
         List<PatientProblem> problemsForDoctor = new ArrayList<>();
-        for (Patient x: allPatients) {
+        for (Patient x: patients) {
             problemsForDoctor.addAll(x.getProblemsForSpecialty(getSpecialty()));
         }
         return problemsForDoctor;
     }
 
     @JsonIgnore
-    public List<PatientProblem> getNoTreatmentUnsolvedProblemsForDoctor() throws IOException {
+    public List<PatientProblem> getNoTreatmentUnsolvedProblemsForDoctor(List<Patient> patients) throws IOException {
         List<PatientProblem> noTreatmentUnsolvedProblems = new ArrayList<>();
-        for (PatientProblem x: getProblemsForDoctor()) {
+        for (PatientProblem x: getProblemsForDoctor(patients)) {
             if (x.getTreatment() == null && x.isSolved() == false) {
                 noTreatmentUnsolvedProblems.add(x);
             }

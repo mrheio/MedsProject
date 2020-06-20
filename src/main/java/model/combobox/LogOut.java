@@ -1,5 +1,6 @@
 package model.combobox;
 
+import misc.user.UserMisc;
 import misc.utility.ViewMisc;
 import model.roles.Person;
 
@@ -11,6 +12,6 @@ public class LogOut extends Option {
 
     @Override
     public void action(Person person) {
-        ViewMisc.showLogin();
+        UserMisc.logOutUser();
     }
 }
