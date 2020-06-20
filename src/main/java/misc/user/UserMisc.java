@@ -24,7 +24,7 @@ public class UserMisc {
 
     private static List<Person> users = new ArrayList<Person>();
     private static Person loggedUser;
-    private static final Path usersPath = FileMisc.getUsersPath();
+    private static final Path usersPath = FileMisc.getPathToFile("src", "main", "resources", "data", "users.json");
 
     public static void addUser(Person person) {
         users.add(person);
