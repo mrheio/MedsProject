@@ -1,5 +1,11 @@
+@font-face {
+  src: url("RenogareSoft-Regular.ttf");
+}
+
 .root {
     -fx-background-color: linear-gradient(to bottom, rgb(33, 35, 39), rgb(22, 26, 29));
+    -fx-font-family: "Renogare Soft";
+    -fx-font-size: 10px;
 }
 /* panes */
 
@@ -9,12 +15,12 @@
     -fx-background-color: linear-gradient(to bottom, rgb(33, 35, 39), rgb(22, 26, 29));
 }
 
-#patientMenuLeftAP {
+#leftAP {
     -fx-background-color: linear-gradient(to bottom, rgb(27, 29, 33), rgb(16, 18, 20));
 }
 
-#doctorMenuLeftAP {
-    -fx-background-color: linear-gradient(to bottom, rgb(27, 29, 33), rgb(16, 18, 20));
+#topAP {
+    -fx-background-color: linear-gradient(from 50% 0% to 50% 50%, rgb(46, 46, 46), rgb(27, 29, 33));
 }
 
     /* tab-pane */
@@ -51,7 +57,7 @@
 
     /* scroll-pane */
 
-.scroll-pane > .viewport {
+.scroll-pane .viewport {
    -fx-background-color: transparent;
 }
 
@@ -74,6 +80,35 @@
 
 .label {
     -fx-text-fill: rgb(231, 231, 232);
+}
+
+#medsLabel {
+    -fx-font-size: 60px;
+}
+
+#passwordResetLabel {
+    -fx-font-size: 40px;
+}
+
+#createAccLabel {
+    -fx-font-size: 18px;
+}
+
+#requestHelpLabel {
+    -fx-font-size: 16px;
+}
+
+#typeOfProblemLabel,
+#describeYourProblemLabel,
+#allergiesLabel,
+#ccLabel,
+#availableDoctorsLabel,
+#yourProblemsLabel,
+#treatmentLabel,
+#problemsLabel,
+#nameLabel,
+#giveTreatmentLabel {
+    -fx-font-size: 12px;
 }
 
     /* button */
@@ -104,10 +139,15 @@
 #editEmailButton, #editUsernameButton, #editAddressButton {
     -fx-cursor: hand;
     -fx-background-color: transparent;
-    -fx-background-image: url("../images/edit.png");
+    -fx-background-image: url("../images/PNG/edit.png");
     -fx-background-size: 30px 30px;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
+}
+
+#myProblemsButton,
+#myHistoryButton {
+    -fx-background-color: transparent;
 }
 
     /* text-field */
@@ -135,6 +175,10 @@
     -fx-area-background: transparent;
 }
 
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
 .text-area: focused {
     -fx-border-color: rgb(125, 133, 148);
 }
@@ -143,11 +187,17 @@
     -fx-background-color: transparent;
 }
 
-#problemTA . content,
+#descriptionTA,
+#allergiesTA,
+#ccTA {
+    -fx-border-color: transparent;
+}
+
+#descriptionTA .content,
 #allergiesTA .content,
-#ccTA .content,
-#treatmentTA .content {
+#ccTA .content {
     -fx-cursor: default;
+    -fx-background-color: transparent;
 }
 
     /* combo-box */
@@ -198,19 +248,43 @@
     -fx-text-fill: rgb(231, 231, 232);
 }
 
+    /* list-view */
+
+.list-view {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(231, 231, 232);
+    -fx-table-cell-border-color: transparent;
+    -fx-selection-bar: transparent;
+    -fx-selection-bar-non-focused: transparent
+}
+
+.list-view .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(231, 231, 232);
+}
+
+.list-view .list-cell: filled: hover {
+    -fx-background-color: rgb(49, 53, 62);
+}
+
+.list-view .list-cell: filled: selected {
+    -fx-background-color: rgb(72, 78, 91);
+}
+
+
     /* table-view */
 
 .table-view {
-   -fx-background-color: transparent;
-   -fx-text-fill: rgb(231, 231, 232);
-   -fx-table-cell-border-color: transparent;
-   -fx-selection-bar: transparent;
-   -fx-selection-bar-non-focused: transparent
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(231, 231, 232);
+    -fx-table-cell-border-color: transparent;
+    -fx-selection-bar: transparent;
+    -fx-selection-bar-non-focused: transparent
 }
 
 .table-row-cell {
-  -fx-background-color: transparent;
-  -fx-text-fill: rgb(231, 231, 232);
+    -fx-background-color: transparent;
+    -fx-text-fill: rgb(231, 231, 232);
 }
 
 .table-row-cell:filled:selected {
@@ -235,5 +309,20 @@
 .hyperlink {
     -fx-underline: false;
     -fx-border-color: transparent;
+    -fx-text-fill: rgb(88, 97, 109);;
+}
+
+.hyperlink: hover {
+    -fx-text-fill: rgb(187, 187, 187);
+}
+
+.hyperlink: visited {
+    -fx-text-fill: rgb(231, 231, 232);
+}
+
+    /* SVG */
+
+#logoSVG {
+    -fx-fill: rgb(231, 231, 232);
 }
 
